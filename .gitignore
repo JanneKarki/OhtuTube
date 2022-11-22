@@ -1,0 +1,6 @@
+.pytest_cache
+__pycache__
+.coverage
+htmlcov
+src/data/database.sqlite
+src/data/test-database.sqlite

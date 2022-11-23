@@ -27,7 +27,7 @@ class ReferencesRepository:
 
         """
         references_database = self.connection.cursor()
-   
+
         references_database.execute(
                 """INSERT INTO Books (
                     author,

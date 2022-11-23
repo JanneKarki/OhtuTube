@@ -109,4 +109,4 @@ class BookReference:
         Returns:
             str: Styled reference form
         """
-        return f"{self._author:20} | {self._title:20} | {self._year:5} | {self._publisher:20} "
+        return f"{self._author:20} | {self._title:20} | {self._year:5} | {self._publisher:20}"

@@ -18,5 +18,8 @@ class TestBookReference(unittest.TestCase):
         self.book.author("Dan")
         author = self.book.author
         self.assertEqual(author, "Dan")
-        
+    
+    def test__str__call(self):
+        self.assertEqual(self.book.__str__(), f"{self.author:20} | {self.title:20} | {self.year:5} | {self.publisher:20}")
+
     

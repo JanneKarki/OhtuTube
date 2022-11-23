@@ -16,7 +16,7 @@ class ReferencesRepository:
         """
         self.connection = connection
 
-    def add_book_reference(self, book):
+    def add_book_reference(self, book:object):
         """Adds book reference to the database.
         
         Args:
@@ -36,12 +36,13 @@ class ReferencesRepository:
 
         references_database.execute(
                 """INSERT INTO Books (
+                    reference_id,
                     author,
                     title,
                     year,
                     publisher
                     )
-                    values (?,?,?,?)
+                    values (?,?,?,?,?)
                 """,
             [reference_id, author, title, year, publisher]
         )

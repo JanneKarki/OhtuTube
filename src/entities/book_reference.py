@@ -1,14 +1,11 @@
 
 class BookReference:
     """ Class for a single Book reference 
-
     Attributes:
-
     """
 
     def __init__(self, reference_id, author, title, year, publisher):
-        """Class constructor to create a new Book reference 
-
+        """Class constructor to create a new Book reference
         Args:
             author (str): Author of the book.
             title (str): Book title.
@@ -49,7 +46,6 @@ class BookReference:
     @author.setter
     def author(self, author):
         """Method that sets the author
-
         Args:
             author (str): Author of the book
         """
@@ -58,7 +54,6 @@ class BookReference:
     @property
     def title(self):
         """Method that returns the title
-
         Returns:
             str: Title of the book
         """
@@ -67,7 +62,6 @@ class BookReference:
     @title.setter
     def title(self, title):
         """Method that sets the title
-
         Args:
             title (str): Title of the Book
         """

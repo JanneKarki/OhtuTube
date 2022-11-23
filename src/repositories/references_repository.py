@@ -1,6 +1,5 @@
 from database_connection import get_database_connection
 
-
 class ReferencesRepository:
     """Class for managing Book-references database.
 
@@ -16,7 +15,7 @@ class ReferencesRepository:
         """
         self.connection = connection
 
-    def add_book_reference(self, author, title, year, publisher):
+    def add_book_reference(self, book:object):
         """Adds book reference to the database.
 
         Args:
@@ -26,18 +25,25 @@ class ReferencesRepository:
             publisher (str): Publisher of the book.
 
         """
+        reference_id = book.reference_id
+        author = book.author
+        title = book.title
+        year = book.year
+        publisher = book.publisher
+
         references_database = self.connection.cursor()
 
         references_database.execute(
                 """INSERT INTO Books (
+                    reference_id,
                     author,
                     title,
                     year,
                     publisher
                     )
-                    values (?,?,?,?)
+                    values (?,?,?,?,?)
                 """,
-            [author, title, year, publisher]
+            [reference_id, author, title, year, publisher]
         )
 
     def get_all_book_references(self):
@@ -51,6 +57,7 @@ class ReferencesRepository:
 
         references_database.execute(
             """SELECT
+                reference_id,
                 author,
                 title,
                 year,

@@ -14,6 +14,7 @@ def create_tables(connection):
 
     cursor = connection.cursor()
     cursor.execute("""CREATE TABLE Books(
+                    reference_id text,
                     author text, 
                     title text, 
                     year integer, 

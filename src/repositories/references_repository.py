@@ -1,6 +1,5 @@
 from database_connection import get_database_connection
 
-
 class ReferencesRepository:
     """Class for managing Book-references database.
 
@@ -18,7 +17,7 @@ class ReferencesRepository:
 
     def add_book_reference(self, book:object):
         """Adds book reference to the database.
-        
+
         Args:
             author (str): Author of the book.
             title (str): Book title.

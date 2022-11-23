@@ -7,7 +7,7 @@ class TestReferencesRepository(unittest.TestCase):
         references_repository.delete_all_book_references()
         self.references_repository = references_repository
         book = BookReference("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi")
-        references_repository.add_book_reference(book)   
+        references_repository.add_book_reference(book)
 
     def test_number_of_records_in_books_is_correct(self):
         data = self.references_repository.get_all_book_references()

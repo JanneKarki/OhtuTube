@@ -1,10 +1,10 @@
 
 class BookReference:
-    """ Class for a single Book reference 
+    """ Class for a single Book reference
     Attributes:
     """
 
-    def __init__(self, reference_id, author, title, year, publisher):
+    def __init__(self, reference_id:str, author:str, title:str, year:int, publisher:str):
         """Class constructor to create a new Book reference
         Args:
             author (str): Author of the book.
@@ -22,7 +22,7 @@ class BookReference:
     def reference_id(self):
         """Method that returns reference id
         Returns:
-            str: Reference id 
+            str: Reference id
         """
         return self._reference_id
 

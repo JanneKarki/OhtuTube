@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Install dotenv
+        run: pip install python-dotenv
+      - name: Install dependencies
+        run: |
+          poetry install
+          poetry add pylint --group dev
+      - name: Run tests
+        run: |
+          python3 src/initialize_database.py
+          poetry run coverage run --branch -m pytest
+      - name: Run pylint
+        run: poetry run pylint src

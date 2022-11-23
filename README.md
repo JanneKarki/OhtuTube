@@ -1,7 +1,7 @@
 # OhtuTube
 HY Ohjelmistotuotantokurssin miniprojekti Syksy -22
 
-
+![workflow badge](https://github.com/smannist/ohtuvarasto/workflows/CI/badge.svg)
 
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
 

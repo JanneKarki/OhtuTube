@@ -39,3 +39,5 @@ Testikattavuusraportin generointi tapahtuu komennolla:
 ```bash
 poetry run invoke coverage-report
 ```
+
+

@@ -4,7 +4,14 @@ class BookReference:
     Attributes:
     """
 
-    def __init__(self, reference_id: str, author: str, title: str, year: int, publisher: str, address: str):
+    def __init__(self,
+        reference_id: str,
+        author: str,
+        title: str,
+        year: int,
+        publisher: str,
+        address: str
+        ):
         """Class constructor to create a new Book reference
         Args:
             author (str): Author of the book.
@@ -118,7 +125,7 @@ class BookReference:
         """Method that returns bibtex form
         Returns:
             str: Bibtex form
-        """ 
+        """
 
         return f"""@book{{{self.reference_id},
         author = \"{self.author}\",
@@ -133,4 +140,5 @@ class BookReference:
         Returns:
             str: Styled reference form
         """
-        return f"{self.author:20} | {self.title:20} | {self.year:5} | {self.publisher:20} | {self.address:20}"
+        return f"""{self.author:20} | {self.title:20} |
+         {self.year:5} | {self.publisher:20} | {self.address:20}"""

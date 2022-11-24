@@ -30,6 +30,7 @@ class ReferencesRepository:
         title = book.title
         year = book.year
         publisher = book.publisher
+        address = book.address
 
         references_database = self.connection.cursor()
 
@@ -39,11 +40,12 @@ class ReferencesRepository:
                     author,
                     title,
                     year,
-                    publisher
+                    publisher,
+                    address
                     )
-                    values (?,?,?,?,?)
+                    values (?,?,?,?,?,?)
                 """,
-            [reference_id, author, title, year, publisher]
+            [reference_id, author, title, year, publisher, address]
         )
 
     def get_all_book_references(self):
@@ -61,7 +63,8 @@ class ReferencesRepository:
                 author,
                 title,
                 year,
-                publisher
+                publisher,
+                address
                 FROM Books
             """
         )

@@ -11,7 +11,6 @@ class ReferenceService:
 
         self._references_repository = references_repository
 
-    # missä muodossa lähdetiedot tulevat? JSON vaikka & json.loads() T.Esa
     def create_reference(self, entry_content ):
         """Creates a new book reference.
 
@@ -25,7 +24,9 @@ class ReferenceService:
         year = entry_content.author
         title = entry_content.title
         publisher = entry_content.publisher
-        book = BookReference(reference_id, author, title, year, publisher)
-        #ja lähtevätkö ne tietokantaan kans yhdessä muodossa? siellä ne tuli erikseen
+        address = entry_content.address
+
+        book = BookReference(reference_id, author, title, year, publisher, address)
+
         return self._references_repository.add_book_reference(book)
 reference_service = ReferenceService()

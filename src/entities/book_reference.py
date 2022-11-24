@@ -4,7 +4,7 @@ class BookReference:
     Attributes:
     """
 
-    def __init__(self, reference_id:str, author:str, title:str, year:int, publisher:str):
+    def __init__(self, reference_id: str, author: str, title: str, year: int, publisher: str, address: str):
         """Class constructor to create a new Book reference
         Args:
             author (str): Author of the book.
@@ -17,6 +17,7 @@ class BookReference:
         self._title = title
         self._year = year
         self._publisher = publisher
+        self._address = address
 
     @property
     def reference_id(self):
@@ -97,10 +98,49 @@ class BookReference:
             publisher (): _description_
         """
         self._publisher = publisher
+    
+    @property
+    def address(self):
+        """Method that return the address
+        Returns:
+            str:  Address of publication
+        """
+        return self._address
+    
+    @address.setter
+    def address(self, address):
+        """Method that sets the address
+        """
+        self._address = address
+
+    @property
+    def bibtex(self):
+        """Method that returns bibtex form
+        Returns:
+            str: Bibtex form
+        """ 
+
+        return f"""@book{{{self._reference_id},
+        author = \"{self._author}\",
+        title = \"{self._title}\",
+        year = \"{self._year}\",
+        publisher = \"{self._publisher}\",
+        address = \"{self._address}\"
+        }}"""
 
     def __str__(self):
         """Method that returns reference in styled form
         Returns:
             str: Styled reference form
         """
-        return f"{self._author:20} | {self._title:20} | {self._year:5} | {self._publisher:20}"
+        return f"{self._author:20} | {self._title:20} | {self._year:5} | {self._publisher:20} | {self.address:20}"
+
+if __name__ == "__main__":
+    author = "Larman, Craig and Vodde, Bass"
+    reference_id = "LESS"
+    title = "Large-Scale Scrum: More with LeSS"
+    year = 2016
+    publisher = "Addison-Wesley"
+    address = "Reading, Massachusetts"
+    book = BookReference(reference_id, author, title, year, publisher, address)
+    print(book.bibtex)

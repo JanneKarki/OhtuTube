@@ -18,7 +18,9 @@ def create_tables(connection):
                     author text, 
                     title text, 
                     year integer, 
-                    publisher text)""")
+                    publisher text,
+                    address text
+                    )""")
 
 
     connection.commit()

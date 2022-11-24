@@ -26,10 +26,11 @@ class Ui:
         """Asks the user for information"""
         print("---------------------------------------------------------------------------------------------------------------")
         print("| If there are several authors or address, separate them with a comma like this: Example1, Example2, Example3 |")
+        print("| Enter the year in numbers: 2016                                                                             |")
         print("---------------------------------------------------------------------------------------------------------------")
         title = input("Title: ")
         author = input("Author: ")
-        year = input("Year: ")
+        year = int(input("Year: "))  # error catch?
         publisher = input("Publisher: ")
         address = input("Address: ")
         while True:
@@ -42,7 +43,7 @@ class Ui:
             else:
                 print("Answer y(yes) or n(no)")
         pass
-    
+
     def end(self):
         print("\nClosing application")
         self.running = False

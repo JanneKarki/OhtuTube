@@ -140,5 +140,17 @@ class BookReference:
         Returns:
             str: Styled reference form
         """
-        return f"""{self.author:20} | {self.title:20} |
-         {self.year:5} | {self.publisher:20} | {self.address:20}"""
+        return (
+        f"{self.author:30}|{self.title:30}|"+
+        f"{self.year:5}|{self.publisher:20}|{self.address:30}"
+        )
+
+if __name__ == "__main__":
+    AUTHOR = "Larman, Craig and Vodde, Bass"
+    REFERENCE_ID = "LESS"
+    TITLE = "Large-Scale Scrum: More with LeSS"
+    YEAR = 2016
+    PUBLISHER = "Addison-Wesley"
+    ADDRESS = "Reading, Massachusetts"
+    book = BookReference(REFERENCE_ID, AUTHOR, TITLE, YEAR, PUBLISHER, ADDRESS)
+    print(book)

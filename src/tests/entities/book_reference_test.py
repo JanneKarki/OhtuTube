@@ -41,6 +41,7 @@ class TestBookReference(unittest.TestCase):
         self.assertEqual(bibtex, bibtex_model)
 
     def test__str__call(self):
-        self.assertEqual(self.book.__str__(), f"{self.author:20} | {self.title:20} | {self.year:5} | {self.publisher:20} | {self.address:20}")
+
+        self.assertEqual(self.book.__str__(), f"{self.author:30}|{self.title:30}|{self.year:5}|{self.publisher:20}|{self.address:30}")
 
     

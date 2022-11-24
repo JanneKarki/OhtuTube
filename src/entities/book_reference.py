@@ -98,7 +98,7 @@ class BookReference:
             publisher (): _description_
         """
         self._publisher = publisher
-    
+
     @property
     def address(self):
         """Method that return the address
@@ -106,7 +106,7 @@ class BookReference:
             str:  Address of publication
         """
         return self._address
-    
+
     @address.setter
     def address(self, address):
         """Method that sets the address
@@ -120,12 +120,12 @@ class BookReference:
             str: Bibtex form
         """ 
 
-        return f"""@book{{{self._reference_id},
-        author = \"{self._author}\",
-        title = \"{self._title}\",
-        year = \"{self._year}\",
-        publisher = \"{self._publisher}\",
-        address = \"{self._address}\"
+        return f"""@book{{{self.reference_id},
+        author = \"{self.author}\",
+        title = \"{self.title}\",
+        year = \"{self.year}\",
+        publisher = \"{self.publisher}\",
+        address = \"{self.address}\"
         }}"""
 
     def __str__(self):
@@ -133,14 +133,4 @@ class BookReference:
         Returns:
             str: Styled reference form
         """
-        return f"{self._author:20} | {self._title:20} | {self._year:5} | {self._publisher:20} | {self.address:20}"
-
-if __name__ == "__main__":
-    author = "Larman, Craig and Vodde, Bass"
-    reference_id = "LESS"
-    title = "Large-Scale Scrum: More with LeSS"
-    year = 2016
-    publisher = "Addison-Wesley"
-    address = "Reading, Massachusetts"
-    book = BookReference(reference_id, author, title, year, publisher, address)
-    print(book.bibtex)
+        return f"{self.author:20} | {self.title:20} | {self.year:5} | {self.publisher:20} | {self.address:20}"

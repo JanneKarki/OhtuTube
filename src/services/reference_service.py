@@ -15,12 +15,11 @@ class ReferenceService:
         """Collects entry inputs from the user"""
         print("---------------------------------------------------------------------------"+
             "------------------------------------------ ")
-        print("| If there are several authors or address, separate them with a comma like "+
-            "this: Example1, Example2, Example3        |")
+        print("| ADD NEW REFERENCE")
         print("---------------------------------------------------------------------------"+
             "------------------------------------------ ")
 
-        author = input("> Author: ")
+        author = input("> Author (Last name, First name): ")
         title = input("> Title: ")
         year = input("> Year: ")
         publisher = input("> Publisher: ")

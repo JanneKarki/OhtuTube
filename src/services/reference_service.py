@@ -32,7 +32,7 @@ class ReferenceService:
         return BookReference(reference_id, author, title, year, publisher, address)
 
     def confirm_entry(self):
-        """Prints the entry attributes for user see and confirm 
+        """Prints the entry attributes for user see and confirm
             before sending to the database"""
         while True:
             self.print_book_summary()
@@ -49,19 +49,19 @@ class ReferenceService:
         return self._references_repository.add_book_reference(book)
 
     def print_book_attr_titles(self):
-        """ Creates a row of titles of the book reference attributes 
+        """Creates a row of titles of the book reference attributes
         which can be used in the UI """
 
-        REFERENCE_ID = "Reference ID"
-        AUTHOR = "Author"
-        TITLE = "Title"
-        YEAR = "Year"
-        PUBLISHER = "Publisher"
-        ADDRESS = "Address"
+        reference_id = "Reference ID"
+        author = "Author"
+        title = "Title"
+        year = "Year"
+        publisher = "Publisher"
+        address = "Address"
 
         print(
-            f"{REFERENCE_ID:13} | {AUTHOR:19} | {TITLE:28} | " +
-            f"{YEAR:6} | {PUBLISHER:18} | {ADDRESS:18}"
+            f"{reference_id:13} | {author:19} | {title:28} | " +
+            f"{year:6} | {publisher:18} | {address:18}"
         )
         print(117 * "-")
 
@@ -73,7 +73,7 @@ class ReferenceService:
         print(117 * "-")
 
     def print_book_summary(self):
-        """Table of a single book reference with titles 
+        """Table of a single book reference with titles
             for the attributes"""
         print("")
         self.print_book_attr_titles()

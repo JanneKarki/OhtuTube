@@ -31,7 +31,6 @@ class Ui:
         """
         self.services.collect_inputs()
         self.services.confirm_entry()
-        self.services.save_reference_to_db()
 
     
     def end(self):

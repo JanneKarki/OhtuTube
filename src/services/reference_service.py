@@ -11,12 +11,14 @@ class ReferenceService:
         self._book = None
         self._references_repository = references_repository
 
-# 
     def collect_inputs(self):
         """Collects entry inputs from the user"""
-        print("--------------------------------------------------------------------------------------------------------------------- ")
-        print("| If there are several authors or address, separate them with a comma like this: Example1, Example2, Example3        |")
-        print("--------------------------------------------------------------------------------------------------------------------- ")
+        print("---------------------------------------------------------------------------"+
+            "------------------------------------------ ")
+        print("| If there are several authors or address, separate them with a comma like "+
+            "this: Example1, Example2, Example3        |")
+        print("---------------------------------------------------------------------------"+
+            "------------------------------------------ ")
 
         author = input("> Author: ")
         title = input("> Title: ")
@@ -36,8 +38,10 @@ class ReferenceService:
         """Prints the entry attributes for user see and confirm before sending to the database"""
         while True:
             print("")
-            print("Reference ID: | Author:            | Title:                       | Year:  | Publisher:         | Address:           |")
-            print("---------------------------------------------------------------------------------------------------------------------") 
+            print("Reference ID: | Author:            | Title:                       | Year:  | "+
+                "Publisher:         | Address:           |")
+            print("---------------------------------------------------------------------------"+
+                "------------------------------------------ ") 
             print(self._book)
             print("")
             answer = input("Do you want to save this item to database? (y/n): ")
@@ -45,8 +49,7 @@ class ReferenceService:
                 return self.save_reference_to_db(self._book)
             if answer == "n":
                 return
-            else:
-                print("Answer y(yes) or n(no)")   
+            print("Answer y(yes) or n(no)")   
 
 
     def save_reference_to_db(self, book):

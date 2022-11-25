@@ -21,7 +21,7 @@ def build(ctx):
 
 @task
 def start(ctx):
-    ctx.run("python3 src/index.py")
+    ctx.run("python3 src/index.py", pty=True)
 
 @task
 def lint(ctx):

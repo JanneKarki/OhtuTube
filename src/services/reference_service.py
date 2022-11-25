@@ -28,7 +28,29 @@ class ReferenceService:
         self._book = self.set_book(
             reference_id, author, title, year, publisher, address)
 
-    def set_book(self, reference_id, author, title, year, publisher, address):
+    def search_by_author(self):
+        """Collects author input from the user,
+           and prints the result
+        """
+        author = input("> Author (Last name, First name): ")
+        information = self._references_repository.get_book_references_by_author(author)
+
+        if len(information) > 0:
+            for info in information:
+                reference_id = info[0]
+                title = info[2]
+                year = info[3]
+                publisher = info[4]
+                address = info[5]
+                self._book = self.set_book(reference_id, author, title, year, publisher, address)
+                self.print_book_summary()
+        else:
+            print("\n")
+            print(f"References by {author} not found")
+            print("\n")
+
+    @classmethod
+    def set_book(cls, reference_id, author, title, year, publisher, address):
         return BookReference(reference_id, author, title, year, publisher, address)
 
     def confirm_entry(self):
@@ -49,7 +71,8 @@ class ReferenceService:
         """Sends the reference object to the database"""
         return self._references_repository.add_book_reference(book)
 
-    def print_book_attr_titles(self):
+    @classmethod
+    def print_book_attr_titles(cls):
         """Creates a row of titles of the book reference attributes
         which can be used in the UI """
 
@@ -66,7 +89,8 @@ class ReferenceService:
         )
         print(117 * "-")
 
-    def print_add_reference_title(self):
+    @classmethod
+    def print_add_reference_title(cls):
         """Title of Add new reference"""
 
         print(117 * "-")

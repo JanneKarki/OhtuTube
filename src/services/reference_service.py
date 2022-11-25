@@ -11,13 +11,18 @@ class ReferenceService:
         self._book = None
         self._references_repository = references_repository
 
-    def collect_inputs(self):
-        """Collects entry inputs from the user"""
+
+    def print_add_reference_title(self):
         print("---------------------------------------------------------------------------"+
             "------------------------------------------ ")
         print("| ADD NEW REFERENCE")
         print("---------------------------------------------------------------------------"+
             "------------------------------------------ ")
+
+    def collect_inputs(self):
+        """Collects entry inputs from the user"""
+
+        self.print_add_reference_title()
 
         author = input("> Author (Last name, First name): ")
         title = input("> Title: ")
@@ -33,16 +38,24 @@ class ReferenceService:
         return BookReference(reference_id, author, title, year, publisher, address)
 
 
+    def print_book_attr_titles(self):
+        print("Reference ID: | Author:            | Title:                       | Year:  | "+
+            "Publisher:         | Address:           |")
+        print("---------------------------------------------------------------------------"+
+            "------------------------------------------ ") 
+
+
+    def print_book_summary(self):
+        print("")
+        self.print_book_attr_titles()
+        print(self._book)
+        print("")
+
+
     def confirm_entry(self):
         """Prints the entry attributes for user see and confirm before sending to the database"""
         while True:
-            print("")
-            print("Reference ID: | Author:            | Title:                       | Year:  | "+
-                "Publisher:         | Address:           |")
-            print("---------------------------------------------------------------------------"+
-                "------------------------------------------ ") 
-            print(self._book)
-            print("")
+            self.print_book_summary()
             answer = input("Do you want to save this item to database? (y/n): ")
             if answer == "y":
                 return self.save_reference_to_db(self._book)

@@ -13,7 +13,7 @@ class ReferenceService:
 
 # 
     def collect_inputs(self):
-        """Asks the user for information"""
+        """Collects entry inputs from the user"""
         print("---------------------------------------------------------------------------------------------------------------")
         print("| If there are several authors or address, separate them with a comma like this: Example1, Example2, Example3 |")
         print("---------------------------------------------------------------------------------------------------------------")
@@ -33,6 +33,7 @@ class ReferenceService:
 
 
     def confirm_entry(self):
+        """Prints the entry attributes for user see and confirm before sending to the database"""
         while True:
             print(self._book)
             answer = input("Do you want to save this item to database? (y/n): ")
@@ -45,7 +46,7 @@ class ReferenceService:
 
 
     def save_reference_to_db(self, book):
-        """Saves the book to database"""
+        """Sends the reference object to the database"""
         return self._references_repository.add_book_reference(book)
 
 

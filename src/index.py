@@ -1,8 +1,8 @@
 from ui.ui import Ui
 
 def main():
-    ui = Ui()
-    ui.start()
+    _ui = Ui()
+    _ui.start()
 
 if __name__ == "__main__":
     main()

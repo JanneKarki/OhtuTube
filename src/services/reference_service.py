@@ -41,7 +41,8 @@ class ReferenceService:
             if answer == "y":
                 return self.save_reference_to_db(self._book)
             if answer == "n":
-                return
+                print("\n")
+                break
             print("Answer y(yes) or n(no)")
 
     def save_reference_to_db(self, book):

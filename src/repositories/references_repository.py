@@ -99,8 +99,8 @@ class ReferencesRepository:
                 OR year LIKE (CASE WHEN :search != '' THEN :search END)
                 OR publisher LIKE (CASE WHEN :search != '' THEN :search END)
                 OR address LIKE (CASE WHEN :search != '' THEN :search END)
-                OR reference_id LIKE (CASE WHEN :search != '' THEN :search END);
-            """,
+                OR reference_id LIKE (CASE WHEN :search != '' THEN :search END)
+                ORDER BY reference_datetime DESC;
             [f"%{search}%"]
         )
         results = references_database.fetchall()

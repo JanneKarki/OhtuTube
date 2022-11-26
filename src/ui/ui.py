@@ -1,5 +1,10 @@
-from ui.ui_menu import Menu
 from services.reference_service import ReferenceService    
+
+COMMANDS = ("""Commands:
+[1]Add new reference
+[2]Search reference by author
+[0]Exit""")
+
 
 class Ui:
     """Class responsible for UI"""
@@ -16,13 +21,31 @@ class Ui:
     
     def start(self):
         self.running = True
+        print("")
         print("Welcome to the OhtuTube reference application \n")
         self.menu_loop()
-    
+
+    def display_menu(self):
+        print("")
+        print(COMMANDS)
+        return self.menu_input()
+
+    def menu_input(self):
+        while True:
+            print("")
+            command = input()
+            if command == "0":
+                return 0
+            elif command == "1":
+                return 1
+            elif command == "2":
+                return 2
+            print("Command not recognized, please enter a valid command")
+
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
         while self.running:
-            command = Menu().display_menu()
+            command = self.display_menu()
             self.methods[command]()
 
     def display_add_reference(self):
@@ -40,7 +63,7 @@ class Ui:
 
         result = self.services.search_by_author(author)
 
-        print(result)
+        return result
 
     def confirm_entry(self, book):
         """Prints the entry attributes for user see and confirm

@@ -141,8 +141,8 @@ class BookReference:
             str: Styled reference form
         """
         return (
-        f"{self.author:30}|{self.title:30}|"+
-        f"{self.year:5}|{self.publisher:20}|{self.address:30}"
+        f"{self.reference_id:13} | {self.author:19} | {self.title:28} | "+
+        f"{self.year:6} | {self.publisher:18} | {self.address:18}"
         )
 
 if __name__ == "__main__":

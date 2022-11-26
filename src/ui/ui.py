@@ -8,6 +8,7 @@ class Ui:
         "Initialize UI"
         self.methods = {
             1: self.display_add_reference,
+            2: self.display_search_book_by_author,
             0: self.end
             }
         self.running = False
@@ -31,7 +32,10 @@ class Ui:
         """
         self.services.collect_inputs()
         self.services.confirm_entry()
-        self.services.save_reference_to_db()
+
+    def display_search_book_by_author(self):
+        """Display data by author inputs"""
+        self.services.search_by_author()
 
     
     def end(self):

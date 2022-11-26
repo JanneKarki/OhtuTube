@@ -73,6 +73,36 @@ class ReferencesRepository:
 
         return results
 
+    def get_book_references_by_author(self, author):
+        """ Gets and and returns all book references by selected author.
+
+        Args:
+            author (str): Author of the book.
+
+        Returns:
+            list: Returns a list of all book-references by author
+        """
+
+        references_database = self.connection.cursor()
+
+        references_database.execute(
+            """SELECT
+                reference_id,
+                author,
+                title,
+                year,
+                publisher,
+                address
+                FROM Books
+                WHERE author=?
+            """,
+            [author]
+        )
+
+        results = references_database.fetchall()
+
+        return results
+
 
     def delete_all_book_references(self):
         """ Removes all the book references from the database.

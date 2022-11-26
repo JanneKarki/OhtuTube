@@ -30,12 +30,47 @@ class Ui:
            confirms the entry before saving, 
            sends the reference object to the database.  
         """
-        self.services.collect_inputs()
-        self.services.confirm_entry()
+        book = self.collect_inputs()
+        self.confirm_entry(book)
 
     def display_search_book_by_author(self):
         """Display data by author inputs"""
-        self.services.search_by_author()
+
+        author = input("> Author (Last name, First name): ")
+
+        result = self.services.search_by_author(author)
+
+        print(result)
+
+    def confirm_entry(self, book):
+        """Prints the entry attributes for user see and confirm
+            before sending to the database"""
+        while True:
+
+            self.services.print_book_summary(book)
+            answer = input(
+                "Do you want to save this item to database? (y/n): ")
+            if answer == "y":
+                return self.services.save_reference_to_db(book)
+            if answer == "n":
+                print("\n")
+                break
+            print("Answer y(yes) or n(no)")
+
+    def collect_inputs(self):
+        """Collects entry inputs from the user"""
+        self.services.print_add_reference_title()
+
+        author = input("> Author (Last name, First name): ")
+        title = input("> Title: ")
+        year = input("> Year: ")
+        publisher = input("> Publisher: ")
+        address = input("> Address: ")
+        reference_id = input("> Create a unique reference id: ")
+
+        return self.services.set_book(
+            reference_id, author, title, year, publisher, address)
+
 
     
     def end(self):

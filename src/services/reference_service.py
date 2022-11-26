@@ -14,25 +14,11 @@ class ReferenceService:
         self._book = None
         self._references_repository = references_repository
 
-    def collect_inputs(self):
-        """Collects entry inputs from the user"""
-        self.print_add_reference_title()
-
-        author = input("> Author (Last name, First name): ")
-        title = input("> Title: ")
-        year = input("> Year: ")
-        publisher = input("> Publisher: ")
-        address = input("> Address: ")
-        reference_id = input("> Create a unique reference id: ")
-
-        self._book = self.set_book(
-            reference_id, author, title, year, publisher, address)
-
-    def search_by_author(self):
-        """Collects author input from the user,
+    def search_by_author(self, author):
+        """Gets book reference by author from the db
            and prints the result
         """
-        author = input("> Author (Last name, First name): ")
+        
         information = self._references_repository.get_book_references_by_author(author)
 
         if len(information) > 0:
@@ -42,8 +28,8 @@ class ReferenceService:
                 year = info[3]
                 publisher = info[4]
                 address = info[5]
-                self._book = self.set_book(reference_id, author, title, year, publisher, address)
-                self.print_book_summary()
+                book = self.set_book(reference_id, author, title, year, publisher, address)
+                self.print_book_summary(book)
         else:
             print("\n")
             print(f"References by {author} not found")
@@ -53,19 +39,6 @@ class ReferenceService:
     def set_book(cls, reference_id, author, title, year, publisher, address):
         return BookReference(reference_id, author, title, year, publisher, address)
 
-    def confirm_entry(self):
-        """Prints the entry attributes for user see and confirm
-            before sending to the database"""
-        while True:
-            self.print_book_summary()
-            answer = input(
-                "Do you want to save this item to database? (y/n): ")
-            if answer == "y":
-                return self.save_reference_to_db(self._book)
-            if answer == "n":
-                print("\n")
-                break
-            print("Answer y(yes) or n(no)")
 
     def save_reference_to_db(self, book):
         """Sends the reference object to the database"""
@@ -97,12 +70,12 @@ class ReferenceService:
         print("| ADD NEW REFERENCE")
         print(117 * "-")
 
-    def print_book_summary(self):
+    def print_book_summary(self, book):
         """Table of a single book reference with titles
             for the attributes"""
         print("")
         self.print_book_attr_titles()
-        print(self._book)
+        print(book)
         print("")
 
 

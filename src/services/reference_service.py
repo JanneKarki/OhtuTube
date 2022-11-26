@@ -30,6 +30,7 @@ class ReferenceService:
                 address = info[5]
                 book = self.set_book(reference_id, author, title, year, publisher, address)
                 self.print_book_summary(book)
+                return book
         else:
             print("\n")
             print(f"References by {author} not found")
@@ -78,5 +79,8 @@ class ReferenceService:
         print(book)
         print("")
 
+    def get_all_book_references(self):
+        result = self._references_repository.get_all_book_references()
+        return result
 
 reference_service = ReferenceService()

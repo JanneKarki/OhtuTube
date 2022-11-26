@@ -1,6 +1,9 @@
 class Menu:
+    def __init__(self,io):
+        self.io = io
+    
     def display_menu(self):
-        print("""Commands:
+        self.io.write("""Commands:
 [1]Add new reference
 [2]Search reference by author
 [0]Exit""")
@@ -9,7 +12,7 @@ class Menu:
     def menu_input(self):
         while True:
             print("")
-            command = input()
+            command = self.io.read()
             if command == "0":
                 return 0
             elif command == "1":

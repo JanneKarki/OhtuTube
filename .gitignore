@@ -6,3 +6,7 @@ src/data/database.sqlite
 src/data/test-database.sqlite
 src/entities/.book.py.swp
 *.swp
+log.html
+output.xml
+report.html
+

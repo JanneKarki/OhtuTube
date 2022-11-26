@@ -2,6 +2,7 @@ from entities.book_reference import BookReference
 from repositories.references_repository import (
     references_repository as default_references_repository
 )
+from ui.io import Io
 
 
 class ReferenceService:
@@ -9,21 +10,23 @@ class ReferenceService:
 
     def __init__(
         self,
-        references_repository=default_references_repository
+        references_repository=default_references_repository,
+        io=Io()
     ):
         self._book = None
         self._references_repository = references_repository
+        self.io = io
 
     def collect_inputs(self):
         """Collects entry inputs from the user"""
         self.print_add_reference_title()
 
-        author = input("> Author (Last name, First name): ")
-        title = input("> Title: ")
-        year = input("> Year: ")
-        publisher = input("> Publisher: ")
-        address = input("> Address: ")
-        reference_id = input("> Create a unique reference id: ")
+        author = self.io.read("> Author (Last name, First name): ")
+        title = self.io.read("> Title: ")
+        year = self.io.read("> Year: ")
+        publisher = self.io.read("> Publisher: ")
+        address = self.io.read("> Address: ")
+        reference_id = self.io.read("> Create a unique reference id: ")
 
         self._book = self.set_book(
             reference_id, author, title, year, publisher, address)
@@ -32,7 +35,7 @@ class ReferenceService:
         """Collects author input from the user,
            and prints the result
         """
-        author = input("> Author (Last name, First name): ")
+        author = self.io.read("> Author (Last name, First name): ")
         information = self._references_repository.get_book_references_by_author(author)
 
         if len(information) > 0:
@@ -58,7 +61,7 @@ class ReferenceService:
             before sending to the database"""
         while True:
             self.print_book_summary()
-            answer = input(
+            answer = self.io.read(
                 "Do you want to save this item to database? (y/n): ")
             if answer == "y":
                 return self.save_reference_to_db(self._book)

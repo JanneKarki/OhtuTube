@@ -32,7 +32,7 @@ class ReferenceService:
                 book = self.set_book(reference_id, author,
                                      title, year, publisher, address)
                 print(book)
-                print(" ")
+                print(117 * "-")
         else:
             print("\n")
             print(f"References with keyword {search} not found")

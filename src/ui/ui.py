@@ -1,5 +1,11 @@
-from ui.ui_menu import Menu
 from services.reference_service import ReferenceService    
+
+COMMANDS = ("""Commands:
+[1]Add new reference
+[2]Display all references
+[3]Search
+[0]Exit""")
+
 
 class Ui:
     """Class responsible for UI"""
@@ -8,7 +14,7 @@ class Ui:
         "Initialize UI"
         self.methods = {
             1: self.display_add_reference, 
-            2: self.display_search_book_by_DESC_datetime,
+            2: self.display_search_book_by_desc_datetime,
             3: self.display_search_book,
             0: self.end
             }
@@ -17,13 +23,33 @@ class Ui:
     
     def start(self):
         self.running = True
+        print("")
         print("Welcome to the OhtuTube reference application \n")
         self.menu_loop()
-    
+
+    def display_menu(self):
+        print("")
+        print(COMMANDS)
+        return self.menu_input()
+
+    def menu_input(self):
+        while True:
+            print("")
+            command = input()
+            if command == "0":
+                return 0
+            elif command == "1":
+                return 1
+            elif command == "2":
+                return 2
+            elif command == "3":
+                return 3
+            print("Command not recognized, please enter a valid command")
+
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
         while self.running:
-            command = Menu().display_menu()
+            command = self.display_menu()
             self.methods[command]()
 
     def display_add_reference(self):
@@ -39,14 +65,11 @@ class Ui:
 
         author = input("> Author (Last name, First name): ")
         result = self.services.search(author)
-
-        print(result)
+        return result
     
-    def display_search_book_by_DESC_datetime(self):
-        """Display all book references ordered by descending datetime
-        """
+    def display_search_book_by_desc_datetime(self):
         result = self.services.search_all_ordered_by_descending_datetime()
-        print(result)
+        return result
 
     def confirm_entry(self, book):
         """Prints the entry attributes for user see and confirm

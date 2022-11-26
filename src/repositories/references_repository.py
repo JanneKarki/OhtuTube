@@ -1,5 +1,6 @@
 from database_connection import get_database_connection
 
+
 class ReferencesRepository:
     """Class for managing Book-references database.
 
@@ -15,7 +16,7 @@ class ReferencesRepository:
         """
         self.connection = connection
 
-    def add_book_reference(self, book:object):
+    def add_book_reference(self, book: object):
         """Adds book reference to the database.
 
         Args:
@@ -35,7 +36,7 @@ class ReferencesRepository:
         references_database = self.connection.cursor()
 
         references_database.execute(
-                """INSERT INTO Books (
+            """INSERT INTO Books (
                     reference_id,
                     author,
                     title,
@@ -48,13 +49,11 @@ class ReferencesRepository:
             [reference_id, author, title, year, publisher, address]
         )
 
-    def get_all_book_references(self):
-        """ Gets and returns all the book-references from the database.
-
-        Returns:
-            list: Returns a list of all book-references
+    def get_all_book_references_order_by_desc_datetime(self):
+        """Gets and returns all book references sorted by descending datetime
+            Returns:
+                list: List of book references sorted by date
         """
-
         references_database = self.connection.cursor()
 
         references_database.execute(
@@ -64,17 +63,18 @@ class ReferencesRepository:
                 title,
                 year,
                 publisher,
-                address
+                address,
+                reference_datetime
                 FROM Books
+                ORDER BY reference_datetime DESC;
             """
         )
 
         results = references_database.fetchall()
-
         return results
 
-    def get_book_references_by_author(self, author):
-        """ Gets and and returns all book references by selected author.
+    def get_book_references_by_search(self, search):
+        """ Gets and returns all book references by selected author.
 
         Args:
             author (str): Author of the book.
@@ -84,7 +84,6 @@ class ReferencesRepository:
         """
 
         references_database = self.connection.cursor()
-
         references_database.execute(
             """SELECT
                 reference_id,
@@ -94,15 +93,18 @@ class ReferencesRepository:
                 publisher,
                 address
                 FROM Books
-                WHERE author=?
+                WHERE
+                author LIKE (CASE WHEN :search != '' THEN :search END)
+                OR title LIKE (CASE WHEN :search != '' THEN :search END)
+                OR year LIKE (CASE WHEN :search != '' THEN :search END)
+                OR publisher LIKE (CASE WHEN :search != '' THEN :search END)
+                OR address LIKE (CASE WHEN :search != '' THEN :search END)
+                OR reference_id LIKE (CASE WHEN :search != '' THEN :search END);
             """,
-            [author]
+            [f"%{search}%"]
         )
-
         results = references_database.fetchall()
-
         return results
-
 
     def delete_all_book_references(self):
         """ Removes all the book references from the database.

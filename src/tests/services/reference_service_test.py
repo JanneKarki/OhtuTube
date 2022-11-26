@@ -14,13 +14,13 @@ class TestReferenceService(unittest.TestCase):
 		reference_service.save_reference_to_db(self.book)
 
 	def test_save_book_db(self):
-		result = self.reference_service.get_all_book_references()
+		result = self.reference_service.get_all_book_references_order_by_desc_datetime()
 		self.assertEqual(len(result), 1)
 		self.assertEqual(result[0][1], self.book.author)
 
 	def test_search_by_author(self):
-		result = self.reference_service.search_by_author("Bergström, Gunilla")
-		self.assertEqual(result.author, "Bergström, Gunilla")
+		result = self.reference_service.references_search("Bergström, Gunilla")
+		self.assertEqual(result[0][1], "Bergström, Gunilla")
 
 
 

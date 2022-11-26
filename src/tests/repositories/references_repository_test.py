@@ -10,5 +10,5 @@ class TestReferencesRepository(unittest.TestCase):
         references_repository.add_book_reference(book)
 
     def test_number_of_records_in_books_is_correct(self):
-        data = self.references_repository.get_all_book_references()
+        data = self.references_repository.get_all_book_references_order_by_desc_datetime()
         self.assertEqual(len(data),1)

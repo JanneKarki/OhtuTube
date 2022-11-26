@@ -2,7 +2,8 @@ class Menu:
     def display_menu(self):
         print("""Commands:
 [1]Add new reference
-[2]Search reference by author
+[2]Display all references
+[3]Search
 [0]Exit""")
         return self.menu_input()
 
@@ -16,4 +17,6 @@ class Menu:
                 return 1
             elif command == "2":
                 return 2
+            elif command == "3":
+                return 3
             print("Command not recognized, please enter a valid command")

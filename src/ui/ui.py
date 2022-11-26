@@ -7,8 +7,9 @@ class Ui:
     def __init__(self):
         "Initialize UI"
         self.methods = {
-            1: self.display_add_reference,
-            2: self.display_search_book_by_author,
+            1: self.display_add_reference, 
+            2: self.display_search_book_by_DESC_datetime,
+            3: self.display_search_book,
             0: self.end
             }
         self.running = False
@@ -33,21 +34,26 @@ class Ui:
         book = self.collect_inputs()
         self.confirm_entry(book)
 
-    def display_search_book_by_author(self):
-        """Display data by author inputs"""
+    def display_search_book(self):
+        """Display all book references by author inputs"""
 
         author = input("> Author (Last name, First name): ")
+        result = self.services.search(author)
 
-        result = self.services.search_by_author(author)
-
+        print(result)
+    
+    def display_search_book_by_DESC_datetime(self):
+        """Display all book references ordered by descending datetime
+        """
+        result = self.services.search_all_ordered_by_descending_datetime()
         print(result)
 
     def confirm_entry(self, book):
         """Prints the entry attributes for user see and confirm
             before sending to the database"""
         while True:
-
-            self.services.print_book_summary(book)
+            self.services.print_book_summary()
+            print(book)
             answer = input(
                 "Do you want to save this item to database? (y/n): ")
             if answer == "y":

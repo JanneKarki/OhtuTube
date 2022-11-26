@@ -14,32 +14,57 @@ class ReferenceService:
         self._book = None
         self._references_repository = references_repository
 
-    def search_by_author(self, author):
+    def search(self, search):
         """Gets book reference by author from the db
            and prints the result
         """
-        
-        information = self._references_repository.get_book_references_by_author(author)
 
+        information = self.references_search(search)
+        self.print_book_summary()
         if len(information) > 0:
             for info in information:
                 reference_id = info[0]
+                author = info[1]
                 title = info[2]
                 year = info[3]
                 publisher = info[4]
                 address = info[5]
-                book = self.set_book(reference_id, author, title, year, publisher, address)
-                self.print_book_summary(book)
-                return book
+                book = self.set_book(reference_id, author,
+                                     title, year, publisher, address)
+                print(book)
+                print(" ")
         else:
             print("\n")
-            print(f"References by {author} not found")
+            print(f"References with keyword {search} not found")
+            print("\n")
+
+    def search_all_ordered_by_descending_datetime(self):
+        """Gets book reference by author from the db
+        and prints the result
+        """
+
+        information = self._references_repository.get_all_book_references_order_by_desc_datetime()
+        self.print_book_summary()
+        if len(information) > 0:
+            for info in information:
+                reference_id = info[0]
+                author = info[1]
+                title = info[2]
+                year = info[3]
+                publisher = info[4]
+                address = info[5]
+                book = self.set_book(reference_id, author,
+                                     title, year, publisher, address)
+                print(book)
+                print(117 * "-")
+        else:
+            print("\n")
+            print("References not found")
             print("\n")
 
     @classmethod
     def set_book(cls, reference_id, author, title, year, publisher, address):
         return BookReference(reference_id, author, title, year, publisher, address)
-
 
     def save_reference_to_db(self, book):
         """Sends the reference object to the database"""
@@ -71,16 +96,18 @@ class ReferenceService:
         print("| ADD NEW REFERENCE")
         print(117 * "-")
 
-    def print_book_summary(self, book):
+    def print_book_summary(self):
         """Table of a single book reference with titles
             for the attributes"""
-        print("")
+        print(" ")
         self.print_book_attr_titles()
-        print(book)
-        print("")
 
-    def get_all_book_references(self):
-        result = self._references_repository.get_all_book_references()
+    def get_all_book_references_order_by_desc_datetime(self):
+        result = self._references_repository.get_all_book_references_order_by_desc_datetime()
         return result
+
+    def references_search(self, search):
+        return self._references_repository.get_book_references_by_search(search)
+
 
 reference_service = ReferenceService()

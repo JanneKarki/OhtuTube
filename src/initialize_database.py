@@ -19,7 +19,8 @@ def create_tables(connection):
                     title text, 
                     year integer, 
                     publisher text,
-                    address text
+                    address text,
+                    reference_datetime DATETIME DEFAULT CURRENT_TIMESTAMP
                     )""")
 
 

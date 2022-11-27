@@ -6,7 +6,13 @@ HY Ohjelmistotuotantokurssin miniprojekti Syksy -22
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
 
 
-
+## Definition of Done
+- Functionality is integrated to the rest of the software
+- User story's acceptance criteria are manually tested
+- Code is tested with automated tests
+- Test Coverage is over 80% (UI excluded)
+- CI-enviroment tests are passed
+- Coding style follows best-pracites confirmed by pylint, score over 9
 
 ## Asennus
 

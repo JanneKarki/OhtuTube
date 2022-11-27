@@ -1,4 +1,5 @@
 from services.reference_service import ReferenceService    
+from ui.io import Io
 
 COMMANDS = ("""Commands:
 [1]Add new reference
@@ -10,7 +11,7 @@ COMMANDS = ("""Commands:
 class Ui:
     """Class responsible for UI"""
 
-    def __init__(self):
+    def __init__(self,io=Io()):
         "Initialize UI"
         self.methods = {
             1: self.display_add_reference, 
@@ -19,13 +20,12 @@ class Ui:
             0: self.end
             }
         self.running = False
-        self.services = ReferenceService()
+        self.services = ReferenceService(io)
         self.id = ""
     
     def start(self):
         self.running = True
-        print("")
-        print("Welcome to the OhtuTube reference application \n")
+        self.io.write("Welcome to the OhtuTube reference application \n")
         self.menu_loop()
 
     def display_menu(self):
@@ -113,6 +113,9 @@ class Ui:
         print("\nClosing application")
         self.running = False
         return
+
+    def stub(self):
+        pass
 
 # ui = Ui()
 # ui.start()

@@ -2,6 +2,7 @@ from entities.book_reference import BookReference
 from repositories.references_repository import (
     references_repository as default_references_repository
 )
+from ui.io import Io
 
 
 class ReferenceService:
@@ -9,10 +10,12 @@ class ReferenceService:
 
     def __init__(
         self,
-        references_repository=default_references_repository
+        references_repository=default_references_repository,
+        io=Io()
     ):
         self._book = None
         self._references_repository = references_repository
+        self.io = io
 
     def search(self, search):
         """Gets book reference by author from the db

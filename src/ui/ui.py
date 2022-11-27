@@ -22,6 +22,7 @@ class Ui:
         self.running = False
         self.services = ReferenceService(io)
         self.id = ""
+        self.io = io
     
     def start(self):
         self.running = True
@@ -29,13 +30,13 @@ class Ui:
         self.menu_loop()
 
     def display_menu(self):
-        print("")
-        print(COMMANDS)
+        self.io.write("")
+        self.io.write(COMMANDS)
         return self.menu_input()
 
     def menu_input(self):
         while True:
-            print("")
+            self.io.write("")
             command = input()
             if command == "0":
                 return 0
@@ -45,7 +46,7 @@ class Ui:
                 return 2
             elif command == "3":
                 return 3
-            print("Command not recognized, please enter a valid command")
+            self.io.write("Command not recognized, please enter a valid command")
 
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
@@ -64,7 +65,7 @@ class Ui:
     def display_search_book(self):
         """Display all book references by author inputs"""
 
-        author = input("> Author (Last name, First name): ")
+        author = self.io.read("> Author (Last name, First name): ")
         result = self.services.search(author)
         return result
     
@@ -77,8 +78,8 @@ class Ui:
             before sending to the database"""
         while True:
             self.services.print_book_summary()
-            print(book)
-            answer = input(
+            self.io.write(book)
+            answer = self.io.read(
                 "Do you want to save this item to database? (y/n): ")
             if answer == "y":
                 self.services.save_reference_to_db(book)
@@ -86,22 +87,22 @@ class Ui:
                 info = self.services.get_all_book_references_order_by_desc_datetime()
                 if self.id in info[0]:
                     status = "Added successfully!"
-                return print(status)
+                return self.io.write(status)
             if answer == "n":
-                print("\n")
+                self.io.write("\n")
                 break
-            print("Answer y(yes) or n(no)")
+            self.io.write("Answer y(yes) or n(no)")
 
     def collect_inputs(self):
         """Collects entry inputs from the user"""
         self.services.print_add_reference_title()
 
-        author = input("> Author (Last name, First name): ")
-        title = input("> Title: ")
-        year = input("> Year: ")
-        publisher = input("> Publisher: ")
-        address = input("> Address: ")
-        reference_id = input("> Create a unique reference id: ")
+        author = self.io.read("> Author (Last name, First name): ")
+        title = self.io.read("> Title: ")
+        year = self.io.read("> Year: ")
+        publisher = self.io.read("> Publisher: ")
+        address = self.io.read("> Address: ")
+        reference_id = self.io.read("> Create a unique reference id: ")
         self.id = reference_id
 
         return self.services.set_book(
@@ -110,7 +111,7 @@ class Ui:
 
     
     def end(self):
-        print("\nClosing application")
+        self.io.write("\nClosing application")
         self.running = False
         return
 

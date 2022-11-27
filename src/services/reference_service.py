@@ -34,12 +34,12 @@ class ReferenceService:
                 address = info[5]
                 book = self.set_book(reference_id, author,
                                      title, year, publisher, address)
-                print(book)
-                print(117 * "-")
+                self.io.write(book)
+                self.io.write(117 * "-")
         else:
-            print("\n")
-            print(f"References with keyword {search} not found")
-            print("\n")
+            self.io.write("\n")
+            self.io.write(f"References with keyword {search} not found")
+            self.io.write("\n")
 
     def search_all_ordered_by_descending_datetime(self):
         """Gets book reference by author from the db
@@ -58,12 +58,12 @@ class ReferenceService:
                 address = info[5]
                 book = self.set_book(reference_id, author,
                                      title, year, publisher, address)
-                print(book)
-                print(117 * "-")
+                self.io.write(book)
+                self.io.write(117 * "-")
         else:
-            print("\n")
-            print("References not found")
-            print("\n")
+            self.io.write("\n")
+            self.io.write("References not found")
+            self.io.write("\n")
 
     @classmethod
     def set_book(cls, reference_id, author, title, year, publisher, address):

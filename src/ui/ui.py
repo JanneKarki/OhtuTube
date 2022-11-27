@@ -20,6 +20,7 @@ class Ui:
             }
         self.running = False
         self.services = ReferenceService()
+        self.id = ""
     
     def start(self):
         self.running = True
@@ -80,7 +81,12 @@ class Ui:
             answer = input(
                 "Do you want to save this item to database? (y/n): ")
             if answer == "y":
-                return self.services.save_reference_to_db(book)
+                self.services.save_reference_to_db(book)
+                status = "Failed to add!"
+                info = self.services.get_all_book_references_order_by_desc_datetime()
+                if self.id in info[0]:
+                    status = "Added successfully!"
+                return print(status)
             if answer == "n":
                 print("\n")
                 break
@@ -96,6 +102,7 @@ class Ui:
         publisher = input("> Publisher: ")
         address = input("> Address: ")
         reference_id = input("> Create a unique reference id: ")
+        self.id = reference_id
 
         return self.services.set_book(
             reference_id, author, title, year, publisher, address)

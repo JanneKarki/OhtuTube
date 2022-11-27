@@ -10,5 +10,7 @@ class AppLibrary:
     
     def input_command(self, value):
         self.ui.io.command = str(value)
+
+    
     
 

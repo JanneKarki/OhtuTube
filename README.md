@@ -5,10 +5,14 @@ HY Ohjelmistotuotantokurssin miniprojekti Syksy -22
 
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
 
+### [Test Coverage ](https://github.com/JanneKarki/OhtuTube/blob/main/documents/coverage_28_11.png)of version 1.0
+
+## Releases
+[Release 1.0 - Sprint 1](https://github.com/JanneKarki/OhtuTube/releases/tag/Sprint1)
 
 ## Definition of Done
 - Functionality is integrated to the rest of the software
-- User story's acceptance criteria are manually tested
+- User story's acceptance criterias are manually tested
 - Code is tested with automated tests
 - Test Coverage is over 80% (UI excluded)
 - CI-enviroment tests are passed

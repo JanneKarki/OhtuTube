@@ -74,13 +74,13 @@ class ReferencesRepository:
         return results
 
     def get_book_references_by_search(self, search):
-        """ Gets and returns all book references by selected author.
+        """ Gets and returns all book references by a selected keyword.
 
         Args:
-            author (str): Author of the book.
+            search (str): Keyword to search.
 
         Returns:
-            list: Returns a list of all book-references by author
+            list: Returns a list of all book-references by keyword
         """
 
         references_database = self.connection.cursor()

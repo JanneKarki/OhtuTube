@@ -62,13 +62,13 @@ class Ui:
         self.confirm_entry(book)
 
     def display_search_book(self):
-        """Display all book references by author inputs"""
-
-        author = input("> Author (Last name, First name): ")
+        """Display all book references by keyword input"""
+        author = input("> Keyword: ")
         result = self.services.search(author)
         return result
     
     def display_search_book_by_desc_datetime(self):
+        """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
         return result
 

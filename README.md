@@ -18,33 +18,33 @@ HY Ohjelmistotuotantokurssin miniprojekti Syksy -22
 - CI-enviroment tests are passed
 - Coding style follows best-pracites confirmed by pylint, score over 9
 
-## Asennus
+## Installation
 
-Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+The application uses Poetry for dependency management, so it must be installed before running the application.
 
-1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:
+1. Install required dependencies with the command:
 ```bash
 poetry install
 ```
-2. Suorita alustustoimet ennen sovelluksen käynnistämistä komennolla:
+2. Initialize the application with the command:
 ```bash
 poetry run invoke build
 ```
-3. Käynnistä sovellus komennoilla:
+3. And finally run the application with the command:
 
 ```bash
 poetry run invoke start
 ```
 
-## Testaus
-Testaus voidaan suorittaa komennolla:
+## Testing
+Testing can be performed with the command:
 
 ```bash
 poetry run invoke test
 ```
 
-## Testikattavuus
-Testikattavuusraportin generointi tapahtuu komennolla:
+## Test coverage
+Test coverage report can be generated with the command:
 
 ```bash
 poetry run invoke coverage-report

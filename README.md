@@ -1,5 +1,5 @@
 # OhtuTube
-HY Ohjelmistotuotantokurssin miniprojekti Syksy -22
+University of Helsinki Software Engineering mini-project Autumn 2022
 
 ![workflow badge](https://github.com/smannist/ohtuvarasto/workflows/CI/badge.svg)
 

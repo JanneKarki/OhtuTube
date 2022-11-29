@@ -5,6 +5,8 @@ COMMANDS = ("""Commands:
 [1]Add new reference
 [2]Display all references
 [3]Search
+[4]Display selected references
+[5]Create .bib file from selected references
 [0]Exit""")
 
 
@@ -46,6 +48,10 @@ class Ui:
                 return 2
             elif command == "3":
                 return 3
+            elif command == "4":
+                return 4
+            elif command == "5":
+                return 5
             print("Command not recognized, please enter a valid command")
 
     def menu_loop(self):
@@ -61,6 +67,9 @@ class Ui:
         """
         book = self.collect_inputs()
         self.confirm_entry(book)
+    
+    def display_selected_references():
+        
 
     def display_search_book(self):
         """Display all book references by keyword input"""
@@ -97,6 +106,10 @@ class Ui:
         """Collects entry inputs from the user and check if the 
             input is valid and informs if the input is not valid"""
         self.services.print_add_reference_title()
+
+        reference_ids = {}
+        for reference in self.services.get_all_book_references_order_by_desc_datetime():
+            if reference[0] not in reference_ids: reference_ids[reference[0]] = reference
 
         while True:
             author = input("> Author (Last name, First name): ")
@@ -141,14 +154,16 @@ class Ui:
                 break
 
         while True:
-            info = self.services.get_all_book_references_order_by_desc_datetime()
+            
             reference_id = input("> Create a unique reference id: ")
             stat = True
             if reference_id.isspace():
                 stat = False
-            if stat == True and reference_id != "" and reference_id not in info[0]:
-                break
-            print("Error, field is empty or id already taken!")
+            if stat == True and reference_id != "" and reference_id:
+                if reference_id in reference_ids:
+                            print("Error, field is empty or id already taken!")
+                else: break
+            
 
         self.id = reference_id
         return self.services.set_book(

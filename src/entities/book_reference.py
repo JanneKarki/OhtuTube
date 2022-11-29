@@ -144,13 +144,3 @@ class BookReference:
         f"{self.reference_id:13} | {self.author:19} | {self.title:28} | "+
         f"{self.year:6} | {self.publisher:18} | {self.address:18}"
         )
-
-if __name__ == "__main__":
-    AUTHOR = "Larman, Craig and Vodde, Bass"
-    REFERENCE_ID = "LESS"
-    TITLE = "Large-Scale Scrum: More with LeSS"
-    YEAR = 2016
-    PUBLISHER = "Addison-Wesley"
-    ADDRESS = "Reading, Massachusetts"
-    book = BookReference(REFERENCE_ID, AUTHOR, TITLE, YEAR, PUBLISHER, ADDRESS)
-    print(book)

@@ -48,14 +48,13 @@ class ReferencesRepository:
                 """,
             [reference_id, author, title, year, publisher, address]
         )
-
+        
     def get_all_book_references_order_by_desc_datetime(self):
         """Gets and returns all book references sorted by descending datetime
             Returns:
                 list: List of book references sorted by date
         """
         references_database = self.connection.cursor()
-
         references_database.execute(
             """SELECT
                 reference_id,
@@ -111,10 +110,7 @@ class ReferencesRepository:
         """ Removes all the book references from the database.
         """
         cursor = self.connection.cursor()
-
         cursor.execute("DELETE FROM Books")
-
         self.connection.commit()
-
 
 references_repository = ReferencesRepository(get_database_connection())

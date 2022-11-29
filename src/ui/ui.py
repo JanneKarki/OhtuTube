@@ -1,3 +1,4 @@
+from re import search
 from services.reference_service import ReferenceService    
 
 COMMANDS = ("""Commands:
@@ -96,18 +97,51 @@ class Ui:
         """Collects entry inputs from the user"""
         self.services.print_add_reference_title()
 
-        author = input("> Author (Last name, First name): ")
-        title = input("> Title: ")
-        year = input("> Year: ")
-        publisher = input("> Publisher: ")
-        address = input("> Address: ")
-        reference_id = input("> Create a unique reference id: ")
-        self.id = reference_id
+        while True:
+            author = input("> Author (Last name, First name): ")
+            #Does not check that there is no space before and after the comma!
+            if search(",", author):
+                break
+            print("Error, enter the author like this: Bond, James")
 
+        while True:
+            title = input("> Title: ")
+            if title == "" or title.isspace() or title.isspace():
+                print("Error, field is empty!")
+            else:
+                break
+
+        while True:
+            year = input("> Year: ")
+            if year.isnumeric() and len(year) == 4 and year != "":
+                break
+            print("Error, enter the year like this: 2014")
+
+        while True:
+            publisher = input("> Publisher: ")
+            if publisher == "" or publisher.isspace():
+                print("Error, field is empty!")
+            else:
+                break
+
+        while True:
+            address = input("> Address: ")
+            if address == "" or address.isspace():
+                print("Error, field is empty!")
+            else:
+                break
+
+        while True:
+            #Does not check if there is only a space!
+            info = self.services.get_all_book_references_order_by_desc_datetime()
+            reference_id = input("> Create a unique reference id: ")
+            if reference_id != "" and reference_id not in info[0]:
+                break
+            print("Error, field is empty or id already taken!")
+
+        self.id = reference_id
         return self.services.set_book(
             reference_id, author, title, year, publisher, address)
-
-
     
     def end(self):
         print("\nClosing application")

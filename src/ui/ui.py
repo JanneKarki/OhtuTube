@@ -94,13 +94,22 @@ class Ui:
             print("Answer y(yes) or n(no)")
 
     def collect_inputs(self):
-        """Collects entry inputs from the user"""
+        """Collects entry inputs from the user and check if the 
+            input is valid and informs if the input is not valid"""
         self.services.print_add_reference_title()
 
         while True:
             author = input("> Author (Last name, First name): ")
-            #Does not check that there is no space before and after the comma!
+            status = False
             if search(",", author):
+                copy = author.split(",")
+                for i in copy:
+                    if i.isspace() or i == "":
+                        status = False
+                        break
+                    else:
+                        status = True
+            if status == True:
                 break
             print("Error, enter the author like this: Bond, James")
 
@@ -132,10 +141,12 @@ class Ui:
                 break
 
         while True:
-            #Does not check if there is only a space!
             info = self.services.get_all_book_references_order_by_desc_datetime()
             reference_id = input("> Create a unique reference id: ")
-            if reference_id != "" and reference_id not in info[0]:
+            stat = True
+            if reference_id.isspace():
+                stat = False
+            if stat == True and reference_id != "" and reference_id not in info[0]:
                 break
             print("Error, field is empty or id already taken!")
 

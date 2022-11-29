@@ -33,12 +33,11 @@ class ReferenceService:
                                      title, year, publisher, address)
                 print(book)
                 print(117 * "-")
-                return book
         else:
             print("\n")
             print(f"References with keyword {search} not found")
             print("\n")
-            return None
+        return information
 
     def search_all_ordered_by_descending_datetime(self):
         """Gets book reference by author from the db
@@ -59,12 +58,11 @@ class ReferenceService:
                                      title, year, publisher, address)
                 print(book)
                 print(117 * "-")
-                return book
         else:
             print("\n")
             print("References not found")
             print("\n")
-            return None
+        return information
 
     @classmethod
     def set_book(cls, reference_id, author, title, year, publisher, address):

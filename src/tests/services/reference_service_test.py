@@ -25,8 +25,8 @@ class TestReferenceService(unittest.TestCase):
 		self.assertEqual(result[0][1], "Bergström, Gunilla")
 
 	def test_search_returns_correct_value(self):
-		result = self.reference_service.search_all_ordered_by_descending_datetime()
-		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula", self.time)]
+		result = self.reference_service.search("Bergström, Gunilla")
+		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula")]
 		self.assertEqual(result, correct)
 
 	def test_search_keyword_not_found(self):

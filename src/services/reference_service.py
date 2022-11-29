@@ -3,6 +3,9 @@ from repositories.references_repository import (
     references_repository as default_references_repository
 )
 
+from simple_term_menu import TerminalMenu
+
+
 
 class ReferenceService:
     """ Application logic """

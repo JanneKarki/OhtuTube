@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.8"
 python-dotenv = "^0.21.0"
 invoke = "^1.7.3"
+simple-term-menu = "^1.5.2"
 
 
 [tool.poetry.group.dev.dependencies]

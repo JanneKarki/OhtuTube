@@ -1,18 +1,19 @@
 import unittest
 from datetime import datetime
 from entities.book_reference import BookReference
-from services.reference_service import reference_service
-from repositories.references_repository import references_repository
+from services.reference_service import ReferenceService
+from repositories.references_repository import ReferencesRepository
 
 
 
 
 class TestReferenceService(unittest.TestCase):
 	def setUp(self):
-		references_repository.delete_all_book_references()
-		self.reference_service = reference_service
+		self.references_repository = ReferencesRepository()
+		self.references_repository.delete_all_book_references()
+		self.reference_service = ReferenceService(self.references_repository)
 		self.book = BookReference("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula")
-		reference_service.save_reference_to_db(self.book)
+		self.reference_service.save_reference_to_db(self.book)
 		self.time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
 	def test_save_book_db(self):
@@ -39,6 +40,6 @@ class TestReferenceService(unittest.TestCase):
 		self.assertEqual(result, correct)
 	
 	def test_if_no_references_are_found_return_none(self):
-		references_repository.delete_all_book_references()
+		self.references_repository.delete_all_book_references()
 		result = self.reference_service.search_all_ordered_by_descending_datetime()
 		self.assertEqual(result, [])

@@ -1,7 +1,5 @@
 from entities.book_reference import BookReference
-from repositories.references_repository import (
-    references_repository as default_references_repository
-)
+from repositories.references_repository import ReferencesRepository
 
 
 class ReferenceService:
@@ -9,7 +7,7 @@ class ReferenceService:
 
     def __init__(
         self,
-        references_repository=default_references_repository
+        references_repository=ReferencesRepository
     ):
         self._book = None
         self._references_repository = references_repository

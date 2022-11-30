@@ -27,11 +27,15 @@ def create_tables(connection):
     connection.commit()
 
 
-def initialize_database():
-    connection = get_database_connection()
-    drop_tables(connection)
-    create_tables(connection)
-
+def initialize_database(test_db=None):
+    if not test_db:
+        connection = get_database_connection()
+        drop_tables(connection)
+        create_tables(connection)
+    else:
+        connection = get_database_connection(test_db)
+        drop_tables(connection)
+        create_tables(connection)
 
 if __name__ == "__main__":
     initialize_database()

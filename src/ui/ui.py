@@ -1,5 +1,5 @@
 from re import search
-from services.reference_service import ReferenceService    
+
 
 COMMANDS = ("""Commands:
 [1]Add new reference
@@ -11,7 +11,7 @@ COMMANDS = ("""Commands:
 class Ui:
     """Class responsible for UI"""
 
-    def __init__(self, io):
+    def __init__(self, io, services):
         "Initialize UI"
         self.io = io
         self.methods = {
@@ -21,7 +21,7 @@ class Ui:
             0: self.end
             }
         self.running = False
-        self.services = ReferenceService()
+        self.services = services
         self.id = ""
     
     def start(self):
@@ -84,9 +84,10 @@ class Ui:
                 self.services.save_reference_to_db(book)
                 status = "Failed to add!"
                 info = self.services.get_all_book_references_order_by_desc_datetime()
-                if self.id in info[0]:
-                    status = "Added successfully! \n"
-                return self.io.write(status)
+                if info:
+                    if self.id in info[0]:
+                        status = "Added successfully!"
+                    return self.io.write(status)
             if answer == "n":
                 print("\n")
                 break
@@ -141,11 +142,13 @@ class Ui:
 
         while True:
             info = self.services.get_all_book_references_order_by_desc_datetime()
+        
+
             reference_id = self.io.read("> Create a unique reference id: ")
             stat = True
             if reference_id.isspace():
                 stat = False
-            if stat == True and reference_id != "" and reference_id not in info[0]:
+            if stat == True and reference_id != "" and reference_id: #not in info[0]:
                 break
             self.io.write("Error, field is empty or id already taken!")
 

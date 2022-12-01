@@ -3,7 +3,7 @@ Library  ../ReferencesLibrary.py
 
 
 *** Keywords ***
-Book Inputs
+Add Book Reference
     [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
     Input  ${menu}
     Input  ${author}
@@ -16,7 +16,32 @@ Book Inputs
     Input  ${exit}
     Start App
 
+
+Collect Book Inputs
+    [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
+    Input  ${menu}
+    Input  ${author}
+    Input  ${title}
+    Input  ${year}
+    Input  ${publisher}
+    Input  ${address}
+    Input  ${id}
+    Input  ${yes}
+    Input  ${exit}
+    Start App
+    
 ##
+
+
+# Add Book Reference
+#     [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
+#     Book Inputs  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
+
+
+
+
+
+
 
 Input Author
     [Arguments]  ${author} 

@@ -34,7 +34,6 @@ class ReferencesLibrary:
 
 
 
-
 	# def create_book_reference(self):
 
 	# 	return self._references_service.set_book(reference_id, author, title, year, publisher, address)

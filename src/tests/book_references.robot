@@ -11,16 +11,21 @@ Resource  resource.robot
 
 Add Book Reference With Correct Inputs
     Add Book Reference    1    Metz, Cade    Genius makers    2021    Penguin    London    metz2021    y    0
-    Output Should Contain  Added successfully!
+    Output Should Contain    Added successfully!
 
-Add Book Reference With Incorrect Year
-    # miten silputa Add Book Reference osiin tätä testiä varten
-    Input  1
-    Input   Metz, Cade
-    Input  Genius makers
-    Input Year  fff
-    Output Should Contain  Error, enter the year like this: 2014
-	
+Add Book Reference With Incorrect Inputs
+    Add Book Reference    1    Metz Cade    Genius makers    2021    Penguin    London    metz2021    y    0
+    Output Should Contain    Error, enter the author like this: Bond, James
+
+# Add Book Reference With Incorrect Year
+#     # miten silputa Add Book Reference osiin tätä testiä varten
+#     Input  1
+#     Input   Metz, Cade
+#     Input  Genius makers
+#     Input Year  fff
+#     Output Should Contain  Error, enter the year like this: 2014
+
+
 
 ###
 
@@ -71,9 +76,6 @@ Add Book Reference With Incorrect Year
 
 
 *** Keywords ***
-Add Book Reference
-    [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
-    Book Inputs  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
 
 
 # Create Book Reference

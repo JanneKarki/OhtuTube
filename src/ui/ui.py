@@ -100,45 +100,39 @@ class Ui:
 
         while True:
             author = self.io.read("> Author (Last name, First name): ")
-            status = False
-            if search(",", author):
-                copy = author.split(",")
-                for i in copy:
-                    if i.isspace() or i == "":
-                        status = False
-                        break
-                    else:
-                        status = True
-            if status == True:
+            if self.author_is_valid(author):
                 break
-            self.io.write("Error, enter the author like this: Bond, James")
+            else:
+                self.io.write("Error, enter the author like this: Bond, James")
 
         while True:
             title = self.io.read("> Title: ")
-            if title == "" or title.isspace() or title.isspace():
-                self.io.write("Error, field is empty!")
-            else:
+            if self.title_is_valid(title):
                 break
+            else:
+                self.io.write("Error, field is empty!")
 
         while True:
             year = self.io.read("> Year: ")
-            if year.isnumeric() and len(year) == 4 and year != "":
+            if self.year_is_valid(year):
                 break
-            self.io.write("Error, enter the year like this: 2014")
+            else:
+                self.io.write("Error, enter the year like this: 2014")
 
         while True:
             publisher = self.io.read("> Publisher: ")
-            if publisher == "" or publisher.isspace():
-                self.io.write("Error, field is empty!")
-            else:
+            if self.publisher_is_valid(publisher):
                 break
-
+            else:
+                self.io.write("Error, field is empty!")
+            
         while True:
             address = self.io.read("> Address: ")
-            if address == "" or address.isspace():
-                self.io.write("Error, field is empty!")
-            else:
+            if self.address_is_valid(address):
                 break
+            else:
+                self.io.write("Error, field is empty!")
+
 
         while True:
             info = self.services.get_all_book_references_order_by_desc_datetime()
@@ -155,6 +149,38 @@ class Ui:
         self.id = reference_id
         return self.services.set_book(
             reference_id, author, title, year, publisher, address)
+
+    def author_is_valid(self, author):
+        if search(",", author):
+            copy = author.split(",")
+            for i in copy:
+                if i.isspace() or i == "":
+                    return False
+            return True
+
+    def title_is_valid(self, title):
+        if title == "" or title.isspace():
+            return False
+        return True
+
+    def year_is_valid(self, year):
+        if year.isnumeric() and len(year) == 4 and year != "":
+            return True
+        return False
+
+    def publisher_is_valid(self, publisher):
+        if publisher == "" or publisher.isspace():
+            return False
+        return True
+
+    def address_is_valid(self, address):
+        if address == "" or address.isspace():
+            return False
+        return True
+        
+
+    def id_is_unique(self, id):
+        pass
     
     def end(self):
         self.io.write("\n Closing application")

@@ -135,16 +135,14 @@ class Ui:
 
 
         while True:
-            info = self.services.get_all_book_references_order_by_desc_datetime()
-        
-
             reference_id = self.io.read("> Create a unique reference id: ")
-            stat = True
-            if reference_id.isspace():
-                stat = False
-            if stat == True and reference_id != "" and reference_id: #not in info[0]:
+            if not reference_id or reference_id.isspace():
+                self.io.write("Incorrect input!")
+                continue
+            if self.id_is_unique(reference_id):
                 break
-            self.io.write("Error, field is empty or id already taken!")
+            else:
+                self.io.write("Id is already taken!")
 
         self.id = reference_id
         return self.services.set_book(
@@ -180,7 +178,17 @@ class Ui:
         
 
     def id_is_unique(self, id):
-        pass
+        info = self.services.get_all_book_references_order_by_desc_datetime()
+        if not info:
+            return True
+        else:
+            if id.isspace() or id == "":
+                return False
+            for references in info:
+                if references[0] == id:
+                    return False
+        return True
+            
     
     def end(self):
         self.io.write("\n Closing application")

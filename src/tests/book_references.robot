@@ -5,9 +5,21 @@ Resource  resource.robot
 
 
 *** Test Cases ***
-Add Book Reference
-    Book Inputs  1  Seppo, Taalasmaa  Salattu  1212  WSOY  AA  9232  y  0
-	Output Should Contain  Added successfully!
+# Add Book Reference 
+#     Book Inputs  1  Seppo, Taalasmaa  Salattu  1212  WSOY  AA  9232  y  0
+# 	Output Should Contain  Added successfully!
+
+Add Book Reference With Correct Inputs
+    Add Book Reference    1    Metz, Cade    Genius makers    2021    Penguin    London    metz2021    y    0
+    Output Should Contain  Added successfully!
+
+Add Book Reference With Incorrect Year
+    # miten silputa Add Book Reference osiin tätä testiä varten
+    Input  1
+    Input   Metz, Cade
+    Input  Genius makers
+    Input Year  fff
+    Output Should Contain  Error, enter the year like this: 2014
 	
 
 ###
@@ -27,18 +39,18 @@ Add Book Reference
 #     # Menu Should Appear
 
 
-Add Reference To Database 
-    Input    1
-    Input Author    Metz, Cade
-    Input Title    Genius makers
-    Input Year    2021
-    Input Publisher    Penguin
-    Input Address    London
-    Input ReferenceID    metz2021
-    Input    y
-    Output Should Contain    Added successfully!
-    Input    0
-    Start App
+# Add Reference To Database 
+#     Input    1
+#     Input Author    Metz, Cade
+#     Input Title    Genius makers
+#     Input Year    2021
+#     Input Publisher    Penguin
+#     Input Address    London
+#     Input ReferenceID    metz2021
+#     Input    y
+#     Output Should Contain    Added successfully!
+#     Input    0
+#     Start App
     
     
 
@@ -59,7 +71,9 @@ Add Reference To Database
 
 
 *** Keywords ***
-
+Add Book Reference
+    [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
+    Book Inputs  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
 
 
 # Create Book Reference

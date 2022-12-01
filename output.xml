@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.10.4 on darwin)" generated="20221201 22:49:55.499" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests">
+<suite id="s1-s1" name="Book References" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests/book_references.robot">
+<test id="s1-s1-t1" name="Add Book Reference With Correct Inputs" line="12">
+<kw name="Input" library="ReferencesLibrary">
+<arg>1</arg>
+<status status="PASS" starttime="20221201 22:49:55.560" endtime="20221201 22:49:55.565"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Metz, Cade</arg>
+<status status="PASS" starttime="20221201 22:49:55.565" endtime="20221201 22:49:55.565"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Genius makers</arg>
+<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>2021</arg>
+<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Penguin</arg>
+<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>London</arg>
+<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>metz2021</arg>
+<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>y</arg>
+<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>0</arg>
+<status status="PASS" starttime="20221201 22:49:55.568" endtime="20221201 22:49:55.568"/>
+</kw>
+<kw name="Add Book Reference" library="resource">
+<msg timestamp="20221201 22:49:55.568" level="FAIL">Keyword 'resource.Add Book Reference' expected 9 arguments, got 0.</msg>
+<status status="FAIL" starttime="20221201 22:49:55.568" endtime="20221201 22:49:55.569"/>
+</kw>
+<kw name="Output Should Contain" library="ReferencesLibrary">
+<arg>Added successfully!</arg>
+<status status="NOT RUN" starttime="20221201 22:49:55.569" endtime="20221201 22:49:55.569"/>
+</kw>
+<kw name="Start App" library="ReferencesLibrary">
+<status status="NOT RUN" starttime="20221201 22:49:55.569" endtime="20221201 22:49:55.569"/>
+</kw>
+<status status="FAIL" starttime="20221201 22:49:55.559" endtime="20221201 22:49:55.569">Keyword 'resource.Add Book Reference' expected 9 arguments, got 0.</status>
+</test>
+<status status="FAIL" starttime="20221201 22:49:55.533" endtime="20221201 22:49:55.570"/>
+</suite>
+<status status="FAIL" starttime="20221201 22:49:55.506" endtime="20221201 22:49:55.571"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Book References">Tests.Book References</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

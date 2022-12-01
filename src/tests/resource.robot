@@ -10,45 +10,13 @@ Execute
     Input Exit Command
     Start App
 
-Add Book Reference
-    [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
-    Input  ${menu}
-    Input  ${author}
-    Input  ${title}
-    Input  ${year}
-    Input  ${publisher}
-    Input  ${address}
-    Input  ${id}
-    Input  ${yes}
-    Input  ${exit}
-    Start App
-
-
-Collect Book Inputs
-    [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
-    Input  ${menu}
-    Input  ${author}
-    Input  ${title}
-    Input  ${year}
-    Input  ${publisher}
-    Input  ${address}
-    Input  ${id}
-    Input  ${yes}
-    Input  ${exit}
-    Start App
+Select Add New Book Reference
+    Input    1
     
-##
 
 
-# Add Book Reference
-#     [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
-#     Book Inputs  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
-
-
-
-
-
-
+Confirm Summary
+    Input    y
 
 Input Author
     [Arguments]  ${author} 
@@ -74,8 +42,7 @@ Input ReferenceID
     [Arguments]  ${id} 
     Input    ${id}
 
-Book Reference Inputs
-    [Arguments]  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}
+Input Book Reference
     Input Author
     Input Title
     Input Year
@@ -83,7 +50,6 @@ Book Reference Inputs
     Input Address
     Input ReferenceID
 
-Entry Should Succeed With Summary
-    Output Should Contain    Reference ID  | Author              | Title                        | Year   | Publisher          | Address 
-    # Output Should Contain    ${id}    ${author}    ${title}    ${year}    ${publisher}    ${address}
-    # Output Should Contain    ${id:13} | ${author:19} | ${title:28} | ${year:6} | ${publisher:18} | ${address:18}                
+# Entry Should Succeed With Summary
+#     Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London
+            

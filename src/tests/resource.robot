@@ -3,6 +3,13 @@ Library  ../ReferencesLibrary.py
 
 
 *** Keywords ***
+Input Exit Command
+    Input    0
+
+Execute
+    Input Exit Command
+    Start App
+
 Add Book Reference
     [Arguments]  ${menu}  ${author}  ${title}  ${year}  ${publisher}  ${address}  ${id}  ${yes}  ${exit}
     Input  ${menu}

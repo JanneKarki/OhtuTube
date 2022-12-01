@@ -1,70 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.1 (Python 3.10.4 on darwin)" generated="20221201 22:49:55.499" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.1 (Python 3.10.4 on darwin)" generated="20221201 23:02:12.527" rpa="false" schemaversion="3">
 <suite id="s1" name="Tests" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests">
 <suite id="s1-s1" name="Book References" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests/book_references.robot">
 <test id="s1-s1-t1" name="Add Book Reference With Correct Inputs" line="12">
 <kw name="Input" library="ReferencesLibrary">
 <arg>1</arg>
-<status status="PASS" starttime="20221201 22:49:55.560" endtime="20221201 22:49:55.565"/>
+<status status="PASS" starttime="20221201 23:02:12.587" endtime="20221201 23:02:12.591"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>Metz, Cade</arg>
-<status status="PASS" starttime="20221201 22:49:55.565" endtime="20221201 22:49:55.565"/>
+<status status="PASS" starttime="20221201 23:02:12.591" endtime="20221201 23:02:12.592"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>Genius makers</arg>
-<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+<status status="PASS" starttime="20221201 23:02:12.592" endtime="20221201 23:02:12.592"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>2021</arg>
-<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+<status status="PASS" starttime="20221201 23:02:12.592" endtime="20221201 23:02:12.594"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>Penguin</arg>
-<status status="PASS" starttime="20221201 22:49:55.566" endtime="20221201 22:49:55.566"/>
+<status status="PASS" starttime="20221201 23:02:12.594" endtime="20221201 23:02:12.594"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>London</arg>
-<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+<status status="PASS" starttime="20221201 23:02:12.594" endtime="20221201 23:02:12.594"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>metz2021</arg>
-<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+<status status="PASS" starttime="20221201 23:02:12.595" endtime="20221201 23:02:12.595"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>y</arg>
-<status status="PASS" starttime="20221201 22:49:55.567" endtime="20221201 22:49:55.567"/>
+<status status="PASS" starttime="20221201 23:02:12.595" endtime="20221201 23:02:12.595"/>
 </kw>
 <kw name="Input" library="ReferencesLibrary">
 <arg>0</arg>
-<status status="PASS" starttime="20221201 22:49:55.568" endtime="20221201 22:49:55.568"/>
+<status status="PASS" starttime="20221201 23:02:12.595" endtime="20221201 23:02:12.596"/>
 </kw>
-<kw name="Add Book Reference" library="resource">
-<msg timestamp="20221201 22:49:55.568" level="FAIL">Keyword 'resource.Add Book Reference' expected 9 arguments, got 0.</msg>
-<status status="FAIL" starttime="20221201 22:49:55.568" endtime="20221201 22:49:55.569"/>
+<kw name="Start App" library="ReferencesLibrary">
+<msg timestamp="20221201 23:02:12.598" level="INFO">---------------------------------------------------------------------------------------------------------------------
+| ADD NEW REFERENCE
+---------------------------------------------------------------------------------------------------------------------
+ 
+Reference ID  | Author              | Title                        | Year   | Publisher          | Address           
+---------------------------------------------------------------------------------------------------------------------</msg>
+<status status="PASS" starttime="20221201 23:02:12.596" endtime="20221201 23:02:12.599"/>
 </kw>
 <kw name="Output Should Contain" library="ReferencesLibrary">
 <arg>Added successfully!</arg>
-<status status="NOT RUN" starttime="20221201 22:49:55.569" endtime="20221201 22:49:55.569"/>
+<status status="PASS" starttime="20221201 23:02:12.599" endtime="20221201 23:02:12.599"/>
+</kw>
+<status status="PASS" starttime="20221201 23:02:12.587" endtime="20221201 23:02:12.600"/>
+</test>
+<test id="s1-s1-t2" name="Add Book Reference With Incorrect Year" line="30">
+<kw name="Input" library="ReferencesLibrary">
+<arg>1</arg>
+<status status="PASS" starttime="20221201 23:02:12.600" endtime="20221201 23:02:12.605"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Metz, Cade</arg>
+<status status="PASS" starttime="20221201 23:02:12.605" endtime="20221201 23:02:12.605"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Genius makers</arg>
+<status status="PASS" starttime="20221201 23:02:12.606" endtime="20221201 23:02:12.606"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>fff</arg>
+<status status="PASS" starttime="20221201 23:02:12.606" endtime="20221201 23:02:12.607"/>
+</kw>
+<kw name="Output Should Contain" library="ReferencesLibrary">
+<arg>Error, enter the year like this: 2014</arg>
+<msg timestamp="20221201 23:02:12.607" level="FAIL">Output "Error, enter the year like this: 2014" is not in []</msg>
+<status status="FAIL" starttime="20221201 23:02:12.607" endtime="20221201 23:02:12.608"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>2021</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.608" endtime="20221201 23:02:12.608"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>Penguin</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.608" endtime="20221201 23:02:12.608"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>London</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.609" endtime="20221201 23:02:12.609"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>metz2021</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.609" endtime="20221201 23:02:12.609"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>y</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.609" endtime="20221201 23:02:12.609"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>0</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.609" endtime="20221201 23:02:12.609"/>
 </kw>
 <kw name="Start App" library="ReferencesLibrary">
-<status status="NOT RUN" starttime="20221201 22:49:55.569" endtime="20221201 22:49:55.569"/>
+<status status="NOT RUN" starttime="20221201 23:02:12.609" endtime="20221201 23:02:12.609"/>
 </kw>
-<status status="FAIL" starttime="20221201 22:49:55.559" endtime="20221201 22:49:55.569">Keyword 'resource.Add Book Reference' expected 9 arguments, got 0.</status>
+<kw name="Output Should Contain" library="ReferencesLibrary">
+<arg>Added successfully!</arg>
+<status status="NOT RUN" starttime="20221201 23:02:12.610" endtime="20221201 23:02:12.610"/>
+</kw>
+<status status="FAIL" starttime="20221201 23:02:12.600" endtime="20221201 23:02:12.610">Output "Error, enter the year like this: 2014" is not in []</status>
 </test>
-<status status="FAIL" starttime="20221201 22:49:55.533" endtime="20221201 22:49:55.570"/>
+<status status="FAIL" starttime="20221201 23:02:12.560" endtime="20221201 23:02:12.611"/>
 </suite>
-<status status="FAIL" starttime="20221201 22:49:55.506" endtime="20221201 22:49:55.571"/>
+<status status="FAIL" starttime="20221201 23:02:12.535" endtime="20221201 23:02:12.612"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="0" fail="1" skip="0" id="s1-s1" name="Book References">Tests.Book References</stat>
+<stat pass="1" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="1" skip="0" id="s1-s1" name="Book References">Tests.Book References</stat>
 </suite>
 </statistics>
 <errors>

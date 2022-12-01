@@ -19,22 +19,28 @@ Add Book Reference With Correct Inputs
     Input    metz2021    
     Input    y    
     Input    0
-    Output Should Contain    Added successfully!
     Start App
+    Output Should Contain    Added successfully!
+
 
 # Add Book Reference With Incorrect Inputs
 #     Add Book Reference    1    Metz Cade    Genius makers    2021    Penguin    London    metz2021    y    0
 #     Output Should Contain    Error, enter the author like this: Bond, James
 
-# Add Book Reference With Incorrect Year
-#     Input  1
-#     Input   Metz, Cade
-#     Input  Genius makers
-#     Input Year  fff
-#     Output Should Contain  Error, enter the year like this: 2014
-#     Input Year  2022
-
-#     Start App 
+Add Book Reference With Incorrect Year
+    Input   1
+    Input   Metz, Cade
+    Input   Genius makers
+    Input   fff
+    Output Should Contain    Error, enter the year like this: 2014
+    Input    2021      
+    Input    Penguin
+    Input    London    
+    Input    metz2021    
+    Input    y    
+    Input    0
+    Start App
+    Output Should Contain    Added successfully!
 
 
 

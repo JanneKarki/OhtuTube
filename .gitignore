@@ -8,6 +8,6 @@ src/entities/.book.py.swp
 *.swp
 
 # Robot logs etc
-log.html
-output.xml
-report.html
+/log.html
+/output.xml
+/report.html

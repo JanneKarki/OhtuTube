@@ -1,5 +1,5 @@
 from re import search
-from services.reference_service import ReferenceService    
+
 
 COMMANDS = ("""Commands:
 [1]Add new reference
@@ -13,8 +13,9 @@ COMMANDS = ("""Commands:
 class Ui:
     """Class responsible for UI"""
 
-    def __init__(self):
+    def __init__(self, io, services):
         "Initialize UI"
+        self.io = io
         self.methods = {
             1: self.display_add_reference, 
             2: self.display_search_book_by_desc_datetime,
@@ -22,24 +23,22 @@ class Ui:
             0: self.end
             }
         self.running = False
-        self.services = ReferenceService()
+        self.services = services
         self.id = ""
     
     def start(self):
         self.running = True
-        print("")
-        print("Welcome to the OhtuTube reference application \n")
+
+        self.io.write("\n Welcome to the OhtuTube reference application \n")
         self.menu_loop()
 
     def display_menu(self):
-        print("")
-        print(COMMANDS)
+        self.io.write(COMMANDS)
         return self.menu_input()
 
     def menu_input(self):
         while True:
-            print("")
-            command = input()
+            command = self.io.read("")
             if command == "0":
                 return 0
             elif command == "1":
@@ -52,7 +51,7 @@ class Ui:
                 return 4
             elif command == "5":
                 return 5
-            print("Command not recognized, please enter a valid command")
+            self.io.write("Command not recognized, please enter a valid command")
 
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
@@ -73,7 +72,7 @@ class Ui:
 
     def display_search_book(self):
         """Display all book references by keyword input"""
-        author = input("> Keyword: ")
+        author = self.io.read("> Keyword: ")
         result = self.services.search(author)
         return result
     
@@ -87,20 +86,21 @@ class Ui:
             before sending to the database"""
         while True:
             self.services.print_book_summary()
-            print(book)
-            answer = input(
-                "Do you want to save this item to database? (y/n): ")
+            self.io.write(book)
+            answer = self.io.read(
+                "\n Do you want to save this item to database? (y/n): ")
             if answer == "y":
                 self.services.save_reference_to_db(book)
                 status = "Failed to add!"
                 info = self.services.get_all_book_references_order_by_desc_datetime()
-                if self.id in info[0]:
-                    status = "Added successfully!"
-                return print(status)
+                if info:
+                    if self.id in info[0]:
+                        status = "Added successfully!"
+                    return self.io.write(status)
             if answer == "n":
                 print("\n")
                 break
-            print("Answer y(yes) or n(no)")
+            self.io.write("Answer y(yes) or n(no)")
 
     def collect_inputs(self):
         """Collects entry inputs from the user and check if the 
@@ -112,7 +112,7 @@ class Ui:
             if reference[0] not in reference_ids: reference_ids[reference[0]] = reference
 
         while True:
-            author = input("> Author (Last name, First name): ")
+            author = self.io.read("> Author (Last name, First name): ")
             status = False
             if search(",", author):
                 copy = author.split(",")
@@ -124,38 +124,40 @@ class Ui:
                         status = True
             if status == True:
                 break
-            print("Error, enter the author like this: Bond, James")
+            self.io.write("Error, enter the author like this: Bond, James")
 
         while True:
-            title = input("> Title: ")
+            title = self.io.read("> Title: ")
             if title == "" or title.isspace() or title.isspace():
-                print("Error, field is empty!")
+                self.io.write("Error, field is empty!")
             else:
                 break
 
         while True:
-            year = input("> Year: ")
+            year = self.io.read("> Year: ")
             if year.isnumeric() and len(year) == 4 and year != "":
                 break
-            print("Error, enter the year like this: 2014")
+            self.io.write("Error, enter the year like this: 2014")
 
         while True:
-            publisher = input("> Publisher: ")
+            publisher = self.io.read("> Publisher: ")
             if publisher == "" or publisher.isspace():
-                print("Error, field is empty!")
+                self.io.write("Error, field is empty!")
             else:
                 break
 
         while True:
-            address = input("> Address: ")
+            address = self.io.read("> Address: ")
             if address == "" or address.isspace():
-                print("Error, field is empty!")
+                self.io.write("Error, field is empty!")
             else:
                 break
 
         while True:
-            
-            reference_id = input("> Create a unique reference id: ")
+            info = self.services.get_all_book_references_order_by_desc_datetime()
+        
+
+            reference_id = self.io.read("> Create a unique reference id: ")
             stat = True
             if reference_id.isspace():
                 stat = False
@@ -163,16 +165,13 @@ class Ui:
                 if reference_id in reference_ids:
                             print("Error, field is empty or id already taken!")
                 else: break
-            
+            self.io.write("Error, field is empty or id already taken!")
 
         self.id = reference_id
         return self.services.set_book(
             reference_id, author, title, year, publisher, address)
     
     def end(self):
-        print("\nClosing application")
+        self.io.write("\n Closing application")
         self.running = False
         return
-
-# ui = Ui()
-# ui.start()

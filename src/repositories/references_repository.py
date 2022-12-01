@@ -8,13 +8,16 @@ class ReferencesRepository:
         connection: database-connection.
     """
 
-    def __init__(self, connection):
+    def __init__(self, database_path=None):
         """Consturctor for the class.
 
         Args:
             connection (object): Database connection-object.
         """
-        self.connection = connection
+        if not database_path:
+            self.connection = get_database_connection()
+        else:
+            self.connection = get_database_connection(database_path)
 
     def add_book_reference(self, book: object):
         """Adds book reference to the database.
@@ -113,4 +116,3 @@ class ReferencesRepository:
         cursor.execute("DELETE FROM Books")
         self.connection.commit()
 
-references_repository = ReferencesRepository(get_database_connection())

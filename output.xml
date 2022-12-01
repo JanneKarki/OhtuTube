@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.10.4 on darwin)" generated="20221201 17:13:18.910" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests">
+<suite id="s1-s1" name="Book References" source="/Users/johannalehto/johanna-dev/OhtuTube/src/tests/book_references.robot">
+<test id="s1-s1-t1" name="Add Book Reference" line="8">
+<kw name="Book Inputs" library="resource">
+<arg>1</arg>
+<arg>Seppo, Taalasmaa</arg>
+<arg>Salattu</arg>
+<arg>1212</arg>
+<arg>WSOY</arg>
+<arg>AA</arg>
+<arg>9232</arg>
+<arg>y</arg>
+<arg>0</arg>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${menu}</arg>
+<status status="PASS" starttime="20221201 17:13:18.965" endtime="20221201 17:13:18.969"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${author}</arg>
+<status status="PASS" starttime="20221201 17:13:18.969" endtime="20221201 17:13:18.969"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${title}</arg>
+<status status="PASS" starttime="20221201 17:13:18.969" endtime="20221201 17:13:18.969"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${year}</arg>
+<status status="PASS" starttime="20221201 17:13:18.969" endtime="20221201 17:13:18.970"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${publisher}</arg>
+<status status="PASS" starttime="20221201 17:13:18.970" endtime="20221201 17:13:18.970"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${address}</arg>
+<status status="PASS" starttime="20221201 17:13:18.970" endtime="20221201 17:13:18.970"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${id}</arg>
+<status status="PASS" starttime="20221201 17:13:18.970" endtime="20221201 17:13:18.970"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${yes}</arg>
+<status status="PASS" starttime="20221201 17:13:18.971" endtime="20221201 17:13:18.971"/>
+</kw>
+<kw name="Input" library="ReferencesLibrary">
+<arg>${exit}</arg>
+<status status="PASS" starttime="20221201 17:13:18.971" endtime="20221201 17:13:18.971"/>
+</kw>
+<kw name="Start App" library="ReferencesLibrary">
+<msg timestamp="20221201 17:13:18.972" level="INFO">---------------------------------------------------------------------------------------------------------------------
+| ADD NEW REFERENCE
+---------------------------------------------------------------------------------------------------------------------
+ 
+Reference ID  | Author              | Title                        | Year   | Publisher          | Address           
+---------------------------------------------------------------------------------------------------------------------</msg>
+<status status="PASS" starttime="20221201 17:13:18.971" endtime="20221201 17:13:18.973"/>
+</kw>
+<status status="PASS" starttime="20221201 17:13:18.964" endtime="20221201 17:13:18.973"/>
+</kw>
+<kw name="Output Should Contain" library="ReferencesLibrary">
+<arg>Added successfully!</arg>
+<status status="PASS" starttime="20221201 17:13:18.973" endtime="20221201 17:13:18.973"/>
+</kw>
+<status status="PASS" starttime="20221201 17:13:18.964" endtime="20221201 17:13:18.973"/>
+</test>
+<status status="PASS" starttime="20221201 17:13:18.939" endtime="20221201 17:13:18.974"/>
+</suite>
+<status status="PASS" starttime="20221201 17:13:18.914" endtime="20221201 17:13:18.975"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Book References">Tests.Book References</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

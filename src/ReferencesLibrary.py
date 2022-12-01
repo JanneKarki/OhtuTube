@@ -11,7 +11,7 @@ class ReferencesLibrary:
 		self.refrences_repository = ReferencesRepository(self.test_database)
 		self._references_service = ReferenceService(self.refrences_repository)
 		self._io = StubIO()
-		
+
 		self._ui = Ui(self._io, self._references_service)
 
 		initialize_database(self.test_database)
@@ -29,9 +29,6 @@ class ReferencesLibrary:
 			raise AssertionError(f"Output \"{value}\" is not in {str(outputs)}")
 
 	def add_book_reference(self, reference_id, author, title, year, publisher, address):
-		book = self._references_service.set_book(reference_id, author, title, year, publisher, address)
+		book = self._references_service.set_book(
+			reference_id, author, title, year, publisher, address)
 		self._references_service.save_reference_to_db(book)
-
-	
-
-

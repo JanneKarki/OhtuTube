@@ -120,4 +120,4 @@ class ReferencesRepository:
         cursor.execute("DELETE FROM Books")
 
         self.connection.commit()
-
+        

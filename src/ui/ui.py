@@ -1,3 +1,4 @@
+from services.generate_reference_id import GenerateReferenceID
 from re import search
 
 
@@ -22,6 +23,7 @@ class Ui:
             }
         self.running = False
         self.services = services
+        self.generate_ref_id = GenerateReferenceID()
         self.id = ""
     
     def start(self):
@@ -133,8 +135,8 @@ class Ui:
             else:
                 self.io.write("Error, field is empty!")
 
-
-        reference_id = self.services.generate_reference_id(author,year,title)
+        info = self.services.search_all_ordered_by_descending_datetime()
+        reference_id = self.generate_ref_id.generate_reference_id(author,year,title,info)
 
         self.id = reference_id
         return self.services.set_book(

@@ -107,6 +107,9 @@ class ReferenceService:
         result = self._references_repository.get_all_book_references_order_by_desc_datetime()
         return result
 
+    def references_search(self, search):
+        return self._references_repository.get_book_references_by_search(search)
+
     def generate_reference_id(self, author, year, title):
         """ Generates reference ID """
 

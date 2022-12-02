@@ -11,4 +11,4 @@ src/entities/.book.py.swp
 /log.html
 /output.xml
 /report.html
-test_database.db
+/test_database.db

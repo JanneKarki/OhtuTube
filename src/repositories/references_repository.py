@@ -115,4 +115,4 @@ class ReferencesRepository:
         cursor = self.connection.cursor()
         cursor.execute("DELETE FROM Books")
         self.connection.commit()
-
+        

@@ -34,8 +34,8 @@ See Summary Of The Entry
     Input Correct Book Reference Values
     Confirm Summary 
     Execute
-#    Entry Should Succeed With Summary
-    Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London            
+    Entry Should Succeed With Summary
+    # Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London            
 
 
 *** Keywords ***
@@ -49,7 +49,8 @@ Input Correct Book Reference Values
     Input ReferenceID   metz2021  
 
 Entry Should Succeed With Summary
-    Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London            
+    [Arguments]  ${SUMMARY}
+    Output Should Contain    ${SUMMARY}
       
 
 

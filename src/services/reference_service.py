@@ -21,14 +21,7 @@ class ReferenceService:
         self.print_book_summary()
         if len(information) > 0:
             for info in information:
-                reference_id = info[0]
-                author = info[1]
-                title = info[2]
-                year = info[3]
-                publisher = info[4]
-                address = info[5]
-                book = self.set_book(reference_id, author,
-                                     title, year, publisher, address)
+                book = self.set_book(info)
                 print(book)
                 print(117 * "-")
         else:
@@ -46,14 +39,7 @@ class ReferenceService:
         self.print_book_summary()
         if len(information) > 0:
             for info in information:
-                reference_id = info[0]
-                author = info[1]
-                title = info[2]
-                year = info[3]
-                publisher = info[4]
-                address = info[5]
-                book = self.set_book(reference_id, author,
-                                     title, year, publisher, address)
+                book = self.set_book(info)
                 print(book)
                 print(117 * "-")
         else:
@@ -63,7 +49,14 @@ class ReferenceService:
         return information
 
     @classmethod
-    def set_book(cls, reference_id, author, title, year, publisher, address):
+    def set_book(cls, book_information):
+        reference_id = book_information[0]
+        author = book_information[1]
+        title = book_information[2]
+        year = book_information[3]
+        publisher = book_information[4]
+        address = book_information[5]
+        
         return BookReference(reference_id, author, title, year, publisher, address)
 
     def save_reference_to_db(self, book):

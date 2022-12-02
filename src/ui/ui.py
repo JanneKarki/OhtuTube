@@ -134,15 +134,7 @@ class Ui:
                 self.io.write("Error, field is empty!")
 
 
-        while True:
-            reference_id = self.io.read("> Create a unique reference id: ")
-            if not reference_id or reference_id.isspace():
-                self.io.write("Incorrect input!")
-                continue
-            if self.id_is_unique(reference_id):
-                break
-            else:
-                self.io.write("Id is already taken!")
+        reference_id = self.services.generate_reference_id(author,year,title)
 
         self.id = reference_id
         return self.services.set_book(

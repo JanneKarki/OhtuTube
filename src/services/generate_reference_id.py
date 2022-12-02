@@ -1,4 +1,5 @@
-import string, random
+import string
+import random
 
 class GenerateReferenceID:
 
@@ -13,7 +14,7 @@ class GenerateReferenceID:
         reference_id_in_db = self.is_duplicate_reference_id(reference_id, info)
 
         # if reference id already exists, add random string to end
-        while(reference_id_in_db):
+        while reference_id_in_db:
             letters = string.ascii_lowercase
             random_number = random.randint(0,100)
 
@@ -32,5 +33,5 @@ class GenerateReferenceID:
         for rf_id in info:
             if reference_id == rf_id[0]:
                 return True
-        
+
         return False

@@ -10,7 +10,7 @@ class StubIO:
         return ""
 
     def write(self, prompt):
-        self.outputs.append(prompt)
+        self.outputs.append(str(prompt))
 
     def add_input(self, value):
         self.inputs.append(value)

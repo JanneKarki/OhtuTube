@@ -21,8 +21,7 @@ Add Book Reference With Incorrect Year
     Input Year    fff
     Input Year    2021    
     Input Publisher    Penguin
-    Input Address    London    
-    Input ReferenceID   metz2021     
+    Input Address    London     
     Confirm Summary  
     Execute
     Output Should Contain    Error, enter the year like this: 2014
@@ -46,10 +45,9 @@ Input Correct Book Reference Values
     Input Year    2021    
     Input Publisher    Penguin
     Input Address    London    
-    Input ReferenceID   metz2021  
 
 Entry Should Succeed With Summary
-    Output Should Contain  metz2021 ${SPACE} ${SPACE} ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
+    Output Should Contain  metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
       
 
 

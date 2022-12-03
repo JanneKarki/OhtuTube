@@ -24,9 +24,12 @@ jobs:
         run: |
           poetry install
           poetry add pylint --group dev
+          poetry add robotframework
       - name: Initialize database
         run: python3 src/initialize_database.py
       - name: Run tests
-        run: poetry run coverage run --branch -m pytest
+        run: |
+          poetry run coverage run --branch -m pytest
+          poetry run robot src/tests
       - name: Run pylint
         run: poetry run pylint src

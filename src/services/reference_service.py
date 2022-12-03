@@ -54,7 +54,7 @@ class ReferenceService:
         the_line = "-"
         height, width = 5, 10
         text = (
-            """Toggle selection by RIGHT ARROW, RETURN: LEFT ARROW, UP and DOWN ARROWS.""")
+            """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS.""")
         win.addstr(
             1, width, text)
         win.addstr(2, width, 117*"-")

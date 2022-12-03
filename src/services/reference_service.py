@@ -109,5 +109,4 @@ class ReferenceService:
     def references_search(self, search):
         return self._references_repository.get_book_references_by_search(search)
 
-
 reference_service = ReferenceService()

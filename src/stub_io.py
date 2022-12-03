@@ -5,6 +5,7 @@ class StubIO:
         self.outputs = []
 
     def read(self, prompt):
+        # pylint: disable=unused-argument
         if len(self.inputs) > 0:
             return self.inputs.pop(0)
         return ""

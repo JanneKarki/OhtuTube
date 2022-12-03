@@ -147,7 +147,7 @@ class BookReference:
         title = \"{self.title}\",
         year = \"{self.year}\",
         publisher = \"{self.publisher}\",
-        address = \"{self.address}\"\n}}"""
+        address = \"{self.address}\"}}"""
 
     def __str__(self):
         """Method that returns reference in styled form

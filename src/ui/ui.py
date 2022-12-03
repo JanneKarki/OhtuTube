@@ -2,13 +2,18 @@ from services.generate_reference_id import GenerateReferenceID
 from re import search
 
 
-COMMANDS = ("""Commands:
-[1]Add new reference
+COMMANDS = ("Commands:"
++"\n"
++"-"*117+
+"\n"+
+"""[1]Add new reference
 [2]Display all references
 [3]Search
 [4]Display selected references
 [5]Create .bib file from selected references
-[0]Exit""")
+[0]Exit
+"""+"-"*117
+)
 
 
 class Ui:

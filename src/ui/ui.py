@@ -20,6 +20,8 @@ class Ui:
             1: self.display_add_reference, 
             2: self.display_search_book_by_desc_datetime,
             3: self.display_search_book,
+            4: self.display_selected_references,
+            5: self.generate_bib_file,
             0: self.end
             }
         self.running = False
@@ -67,15 +69,20 @@ class Ui:
         book = self.collect_inputs()
         self.confirm_entry(book)
     
-    def display_selected_references():
-        
-
     def display_search_book(self):
         """Display all book references by keyword input"""
         author = self.io.read("> Keyword: ")
         result = self.services.search(author)
         return result
+
+    def display_selected_references(self):
+        """Display all selected references"""
+        self.services.show_selected_references()
     
+    def generate_bib_file(self):
+        """Creates Bibtex file from selected references"""
+        self.services.create_bib_file()
+
     def display_search_book_by_desc_datetime(self):
         """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
@@ -85,7 +92,7 @@ class Ui:
         """Prints the entry attributes for user see and confirm
             before sending to the database"""
         while True:
-            self.services.print_book_summary()
+            print(self.services.print_book_attr_titles())
             self.io.write(book)
             answer = self.io.read(
                 "\n Do you want to save this item to database? (y/n): ")

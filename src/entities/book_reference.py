@@ -5,13 +5,14 @@ class BookReference:
     """
 
     def __init__(self,
-        reference_id: str,
-        author: str,
-        title: str,
-        year: int,
-        publisher: str,
-        address: str
-        ):
+                 reference_id: str,
+                 author: str,
+                 title: str,
+                 year: int,
+                 publisher: str,
+                 address: str,
+                 selected: bool
+                 ):
         """Class constructor to create a new Book reference
         Args:
             author (str): Author of the book.
@@ -25,6 +26,7 @@ class BookReference:
         self._year = year
         self._publisher = publisher
         self._address = address
+        self._selected = selected
 
     @property
     def reference_id(self):
@@ -121,6 +123,19 @@ class BookReference:
         self._address = address
 
     @property
+    def selected(self):
+        """Methods that returns True if book reference is selected
+        Returns:
+            bool: True if book reference is selected
+        """
+        return self._selected
+
+    @selected.setter
+    def selected(self, selection_bool):
+        """Method that sets selected True if book reference is selected"""
+        self._selected = selection_bool
+
+    @property
     def bibtex(self):
         """Method that returns bibtex form
         Returns:
@@ -132,15 +147,19 @@ class BookReference:
         title = \"{self.title}\",
         year = \"{self.year}\",
         publisher = \"{self.publisher}\",
-        address = \"{self.address}\"
-        }}"""
+        address = \"{self.address}\"\n}}"""
 
     def __str__(self):
         """Method that returns reference in styled form
         Returns:
             str: Styled reference form
         """
+        if self._selected:
+            return (
+                f"   YES   | {self.reference_id:13} | {self.author:19} | {self.title:28} | " +
+                f"{self.year:6} | {self.publisher:18} | {self.address:18}"
+            )
         return (
-        f"{self.reference_id:13} | {self.author:19} | {self.title:28} | "+
-        f"{self.year:6} | {self.publisher:18} | {self.address:18}"
+            f"    NO   | {self.reference_id:13} | {self.author:19} | {self.title:28} | " +
+            f"{self.year:6} | {self.publisher:18} | {self.address:18}"
         )

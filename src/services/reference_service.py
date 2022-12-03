@@ -14,13 +14,13 @@ class ReferenceService:
     ):
         self._references_repository = references_repository
         self._book_references = {}
-        self.maximum_row = None
+        self.maximum_row = 5
         self.current_book_number = 5
         self.current_row = 5
 
     def reset(self):
         self._book_references = {}
-        self.maximum_row = None
+        self.maximum_row = 5
         self.current_book_number = 5
         self.current_row = 5
 
@@ -28,7 +28,6 @@ class ReferenceService:
         """Gets book references by keyword from the db
            and shows the results
         """
-        self.reset()
         information = self.references_search(search)
         if information:
             self.create_book_references(information)
@@ -41,7 +40,6 @@ class ReferenceService:
 
     def search_all_ordered_by_descending_datetime(self):
         """Gets all book references from the db and shows the results"""
-        self.reset()
         self._book_references = {}
         information = self.get_all_book_references_order_by_desc_datetime()
         if information:
@@ -113,8 +111,7 @@ class ReferenceService:
 
     def create_book_references(self, database_book_references):
         information = database_book_references
-        self.current_row = 5
-        self.maximum_row = 5
+        self.reset()
         if information:
             for info in information:
                 reference_id = info[0]
@@ -130,7 +127,6 @@ class ReferenceService:
                 self.maximum_row += 2
 
     def show_selected_references(self):
-        self.reset()
         information = self._references_repository.get_selected_book_references()
         if information:
             self.create_book_references(information)

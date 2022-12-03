@@ -147,9 +147,10 @@ class ReferenceService:
             information = self._references_repository.get_selected_book_references()
             self.create_book_references(information)
             for book in self._book_references.items():
-                bibtex_form = book.bibtex
-                myfile.write(bibtex_form)
-                myfile.write("\n")
+                if book:
+                    bibtex_form = book.bibtex
+                    myfile.write(bibtex_form)
+                    myfile.write("\n")
 
     def fetch_all_book_references(self):
         information = self._references_repository.get_all_book_references_order_by_desc_datetime()

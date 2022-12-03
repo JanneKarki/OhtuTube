@@ -115,7 +115,7 @@ class ReferenceService:
         information = database_book_references
         self.current_row = 5
         self.maximum_row = 5
-        if len(information) > 0:
+        if information:
             for info in information:
                 reference_id = info[0]
                 author = info[1]
@@ -147,10 +147,9 @@ class ReferenceService:
             information = self._references_repository.get_selected_book_references()
             self.create_book_references(information)
             for book in self._book_references.items():
-                if book:
-                    bibtex_form = book.bibtex
-                    myfile.write(bibtex_form)
-                    myfile.write("\n")
+                bibtex_form = book[1].bibtex
+                myfile.write(bibtex_form)
+                myfile.write("\n")
 
     def fetch_all_book_references(self):
         information = self._references_repository.get_all_book_references_order_by_desc_datetime()

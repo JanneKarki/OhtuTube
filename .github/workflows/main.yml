@@ -30,6 +30,7 @@ jobs:
       - name: Run tests
         run: |
           poetry run coverage run --branch -m pytest
+          poetry shell
           robot src/tests
       - name: Run pylint
         run: poetry run pylint src

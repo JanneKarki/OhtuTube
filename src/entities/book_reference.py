@@ -11,7 +11,7 @@ class BookReference:
                  year: int,
                  publisher: str,
                  address: str,
-                 selected: bool
+                 selected = False
                  ):
         """Class constructor to create a new Book reference
         Args:

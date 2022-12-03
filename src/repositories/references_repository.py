@@ -37,7 +37,7 @@ class ReferencesRepository:
         address = book.address
 
         references_database = self.connection.cursor()
-        
+
         references_database.execute(
             """INSERT INTO Books (
                     reference_id,
@@ -51,7 +51,7 @@ class ReferencesRepository:
                 """,
             [reference_id, author, title, year, publisher, address]
         )
-        
+
 
 
     def get_all_book_references_order_by_desc_datetime(self):

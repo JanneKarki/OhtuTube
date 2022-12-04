@@ -16,6 +16,9 @@ Execute
 
 Select Add New Book Reference
     Input    1
+
+Select Search
+    Input    3
     
 
 

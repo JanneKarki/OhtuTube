@@ -10,8 +10,7 @@ class BookReference:
                  title: str,
                  year: int,
                  publisher: str,
-                 address: str,
-                 selected = False
+                 address: str
                  ):
         """Class constructor to create a new Book reference
         Args:
@@ -26,7 +25,7 @@ class BookReference:
         self._year = year
         self._publisher = publisher
         self._address = address
-        self._selected = selected
+        self._selected = False
 
     @property
     def reference_id(self):

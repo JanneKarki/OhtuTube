@@ -28,8 +28,7 @@ class ReferenceService:
             self.create_book_references(information)
             return information
         print("\n")
-        print(f"References with keyword {search} not found")
-        print("\n")
+        print(f"There is not references with keyword \"{search}\"")
         return None
 
     def search_all_ordered_by_descending_datetime(self):
@@ -58,6 +57,7 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
+        print(" ")
         print("There isn't any book references selected.")
         return None
 
@@ -75,15 +75,16 @@ class ReferenceService:
                 myfile.write("\n")
 
     def create_book(self, info):
-        reference_id = info[0]
-        author = info[1]
-        title = info[2]
-        year = info[3]
-        publisher = info[4]
-        address = info[5]
-        selected = info[6]
-        return self.set_book(reference_id, author,
-                             title, year, publisher, address, selected)
+        book_content = {
+            "reference_id": info[0],
+            "author": info[1],
+            "title": info[2],
+            "year": info[3],
+            "publisher": info[4],
+            "address": info[5],
+            "selected": info[6]
+        }
+        return self.set_book(book_content)
 
     def fetch_all_book_references(self):
         self.reset()
@@ -96,8 +97,17 @@ class ReferenceService:
                 book_number += 2
 
     @classmethod
-    def set_book(cls, reference_id, author, title, year, publisher, address, selected=False):
-        return BookReference(reference_id, author, title, year, publisher, address, selected)
+    def set_book(cls, book_content):
+        reference_id = book_content["reference_id"]
+        author = book_content["author"]
+        title = book_content["title"]
+        year = book_content["year"]
+        publisher = book_content["publisher"]
+        address = book_content["address"]
+        selected = book_content["selected"]
+        book =  BookReference(reference_id, author, title, year, publisher, address)
+        book.selected = selected
+        return book
 
     def save_reference_to_db(self, book):
         """Sends the reference object to the database"""

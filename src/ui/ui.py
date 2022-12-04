@@ -88,13 +88,13 @@ class Ui:
         """Display all book references by keyword input"""
         author = self.io.read("> Keyword: ")
         result = self.services.search(author)
-        if not self.test: self.terminal(self.services)
+        if not self.test and result: self.terminal(self.services)
         return result
 
     def display_selected_references(self):
         """Display all selected references"""
-        self.services.show_selected_references()
-        if not self.test: self.terminal(self.services)
+        result = self.services.show_selected_references()
+        if not self.test and result: self.terminal(self.services)
 
     def generate_bib_file(self):
         """Creates Bibtex file from selected references"""
@@ -103,7 +103,7 @@ class Ui:
     def display_search_book_by_desc_datetime(self):
         """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
-        if not self.test: self.terminal(self.services)
+        if not self.test and result: self.terminal(self.services)
         return result
 
     def confirm_entry(self, book):

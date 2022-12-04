@@ -13,6 +13,7 @@ class ReferencesLibrary:
         self._io = StubIO()
 
         self._ui = Ui(self._io, self._references_service)
+        self._ui.set_test()
 
         initialize_database(self.test_database)
 

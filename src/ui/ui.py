@@ -37,6 +37,7 @@ class Ui:
         self.generate_ref_id = GenerateReferenceID()
         self.id = ""
         self.terminal = Terminal
+        self.test = False
 
     def start(self):
         self.running = True
@@ -66,6 +67,9 @@ class Ui:
             self.io.write(
                 "Command not recognized, please enter a valid command")
 
+    def set_test(self):
+        self.test = True
+        
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
         while self.running:
@@ -84,13 +88,13 @@ class Ui:
         """Display all book references by keyword input"""
         author = self.io.read("> Keyword: ")
         result = self.services.search(author)
-        self.terminal(self.services)
+        if not self.test: self.terminal(self.services)
         return result
 
     def display_selected_references(self):
         """Display all selected references"""
         self.services.show_selected_references()
-        self.terminal(self.services)
+        if not self.test: self.terminal(self.services)
 
     def generate_bib_file(self):
         """Creates Bibtex file from selected references"""
@@ -99,7 +103,7 @@ class Ui:
     def display_search_book_by_desc_datetime(self):
         """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
-        self.terminal(self.services)
+        if not self.test: self.terminal(self.services)
         return result
 
     def confirm_entry(self, book):

@@ -30,9 +30,9 @@ Search Book References With Parameter
     [Documentation]    Search book reference from database with Author
     Save Two Book References
     Select Search
-    Input Author  Bond, James
+    Input Query   Genius
     Execute
-    Output Should Contain  jj
+    Entry Should Succeed With Summary
     
 See Summary Of The Entry
     [Documentation]    UI displaying summary of the reference entry
@@ -41,7 +41,6 @@ See Summary Of The Entry
     Confirm Summary 
     Execute
     Entry Should Succeed With Summary
-    # Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London            
 
 
 *** Keywords ***
@@ -63,17 +62,16 @@ Save Two Book References
     Input Address    London    
     Confirm Summary  
     Select Add New Book Reference
-    Input Author    vn, ery
-    Input Title    cvbcvus makers
-    Input Year    1212
-    Input Publisher    xcvnguin
-    Input Address    zxcvzxcvon
-    Input    y
+    Input Author    Evans, Claire L.
+    Input Title    Broad band
+    Input Year    2018
+    Input Publisher    Portfolio/Penguin
+    Input Address    New York
+    Confirm Summary 
 
 
 Entry Should Succeed With Summary
-    Output Should Contain  metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
-      
+    Output Should Contain    ${SUMMARY}  
 
 
     

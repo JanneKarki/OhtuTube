@@ -1,5 +1,3 @@
-import curses
-from curses import wrapper
 import os
 from entities.book_reference import BookReference
 from repositories.references_repository import ReferencesRepository
@@ -29,10 +27,10 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
-        else:
-            print("\n")
-            print(f"References with keyword {search} not found")
-            print("\n")
+        print("\n")
+        print(f"References with keyword {search} not found")
+        print("\n")
+        return None
 
     def search_all_ordered_by_descending_datetime(self):
         """Gets all book references from the db and shows the results"""
@@ -41,8 +39,8 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
-        else:
-            print("There isn't any book references added.")
+        print("There isn't any book references added.")
+        return None
 
     def get_book_references_and_max_row(self):
         return (self._book_references, self.maximum_row)
@@ -60,8 +58,8 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
-        else:
-            print("There isn't any book references selected.")
+        print("There isn't any book references selected.")
+        return None
 
     def create_bib_file(self):
         self.reset()

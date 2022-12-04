@@ -26,13 +26,26 @@ Add Book Reference With Incorrect Year
     Execute
     Output Should Contain    Error, enter the year like this: 2014
 
-Search Book References With Parameter
+Search Book References List Of One Book With Parameter
     [Documentation]    Search book reference from database with Author
-    Save Two Book References
+    Select Add New Book Reference
+    Input Correct Book Reference Values 
+    Confirm Summary   
     Select Search
     Input Query   Genius
     Execute
-    Entry Should Succeed With Summary
+    Output Should Contain    ${SUMMARY1}
+
+
+Search Book References List Of Several Books With Parameter
+    [Documentation]    Search book reference from database with Author
+    Save Two Book References
+    Select Search
+    Input Query   Claire
+    Execute
+    Output Should Contain    ${SUMMARY1} 
+    Output Should Contain    ${SUMMARY2} 
+    Output Should Contain    ${SUMMARY2} 
     
 See Summary Of The Entry
     [Documentation]    UI displaying summary of the reference entry

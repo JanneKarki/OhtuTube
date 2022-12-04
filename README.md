@@ -52,4 +52,3 @@ Test coverage report can be generated with the command:
 poetry run invoke coverage-report
 ```
 
-

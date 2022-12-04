@@ -4,7 +4,6 @@ from database_connection import get_database_connection
 def drop_tables(parameter):
 
     cursor = parameter.cursor()
-    print(parameter)
     cursor.execute("DROP TABLE IF EXISTS Books")
 
     parameter.commit()
@@ -25,6 +24,7 @@ def create_tables(connection):
 
 
     connection.commit()
+    print("Succesfully created table Books")
 
 
 def initialize_database(test_db=None):

@@ -3,7 +3,7 @@ Library  ../ReferencesLibrary.py
 
 *** Variables ***
 # tämä ei ole nyt toimiva saati oikein 
-${SUMMARY} =metz2021${SPACE*6}| Metz, Cade${SPACE*10}| Genius makers${SPACE*10}| 2021${SPACE*3}| Penguin${SPACE*12}| London${SPACE*12}
+#${SUMMARY} =metz2021${SPACE*6}| Metz, Cade${SPACE*10}| Genius makers${SPACE*10}| 2021${SPACE*3}| Penguin${SPACE*12}| London${SPACE*12}
 
 
 *** Keywords ***

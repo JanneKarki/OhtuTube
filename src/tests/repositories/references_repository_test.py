@@ -1,7 +1,8 @@
 import unittest
-from repositories.references_repository import ReferencesRepository
-from entities.book_reference import BookReference
 from datetime import datetime
+from entities.book_reference import BookReference
+from services.reference_service import ReferenceService
+from repositories.references_repository import ReferencesRepository
 
 class TestReferencesRepository(unittest.TestCase):
     def setUp(self):

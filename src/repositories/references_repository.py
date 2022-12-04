@@ -146,5 +146,5 @@ class ReferencesRepository:
         """ Removes all the book references from the database.
         """
         cursor = self.connection.cursor()
-        cursor.execute("DELETE * FROM Books")
+        cursor.execute("DELETE FROM Books;")
         self.connection.commit()

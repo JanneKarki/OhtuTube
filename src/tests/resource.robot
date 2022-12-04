@@ -2,8 +2,7 @@
 Library  ../ReferencesLibrary.py
 
 *** Variables ***
-# tämä ei ole nyt toimiva saati oikein 
-${SUMMARY} =metz2021${SPACE*6}| Metz, Cade${SPACE*10}| Genius makers${SPACE*10}| 2021${SPACE*3}| Penguin${SPACE*12}| London${SPACE*12}
+${SUMMARY}    metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
 
 
 *** Keywords ***
@@ -16,6 +15,9 @@ Execute
 
 Select Add New Book Reference
     Input    1
+
+Select Search
+    Input    3
     
 
 
@@ -53,6 +55,10 @@ Input Book Reference
     Input Publisher
     Input Address
     Input ReferenceID
+
+Input Query
+    [Arguments]  ${query} 
+    Input    ${query}
 
 # Entry Should Succeed With Summary
 #     Output Should Contain    metz2021      | Metz, Cade          | Genius makers                | 2021   | Penguin            | London

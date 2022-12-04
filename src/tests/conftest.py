@@ -1,5 +1,5 @@
-from build import build
+from initialize_database import initialize_database
 
 
 def pytest_configure():
-    build()
+    initialize_database()

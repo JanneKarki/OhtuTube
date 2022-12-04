@@ -169,8 +169,7 @@ class Ui:
                 self.io.write("Error, field is empty!")
 
         info = self.services.get_all_book_references_order_by_desc_datetime()
-        reference_id = self.generate_ref_id.generate_reference_id(
-            author, year, title, info)
+        reference_id = self.generate_ref_id.generate_reference_id(author,year,title,info)
 
         self.id = reference_id
         return self.services.set_book(

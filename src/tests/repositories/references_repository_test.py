@@ -4,7 +4,7 @@ from entities.book_reference import BookReference
 
 class TestReferencesRepository(unittest.TestCase):
     def setUp(self):
-        self.references_repository = ReferencesRepository()
+        self.references_repository = ReferencesRepository("test_database.db")
         self.references_repository.delete_all_book_references()
         
         book = BookReference("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula")

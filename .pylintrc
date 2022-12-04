@@ -10,7 +10,7 @@ fail-under=10.0
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=CVS,ui,tests,config.py, database_connection.py
+ignore=CVS,ui,tests,config.py, database_connection.py, ReferencesLibrary.py
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
@@ -355,7 +355,8 @@ good-names=i,
            ex,
            Run,
            _,
-           id
+           id,
+           ReferencesLibrary
 
 # Good variable names regexes, separated by a comma. If names match any regex,
 # they will always be accepted

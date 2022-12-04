@@ -15,14 +15,11 @@ class ReferenceService:
         self._references_repository = references_repository
         self._book_references = {}
         self.maximum_row = 5
-        self.current_book_number = 5
-        self.current_row = 5
+        self.information = None
 
     def reset(self):
         self._book_references = {}
         self.maximum_row = 5
-        self.current_book_number = 5
-        self.current_row = 5
 
     def search(self, search):
         """Gets book references by keyword from the db
@@ -31,8 +28,7 @@ class ReferenceService:
         information = self.references_search(search)
         if information:
             self.create_book_references(information)
-            print("")
-            wrapper(self.run_terminal)
+            return information
         else:
             print("\n")
             print(f"References with keyword {search} not found")
@@ -44,85 +40,18 @@ class ReferenceService:
         information = self.get_all_book_references_order_by_desc_datetime()
         if information:
             self.create_book_references(information)
-            wrapper(self.run_terminal)
+            return information
         else:
             print("There isn't any book references added.")
 
-    def print_terminal_menu(self, win):
-        the_line = "-"
-        height, width = 5, 10
-        text = (
-            """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS.""")
-        win.addstr(
-            1, width, text)
-        win.addstr(2, width, 117*"-")
-        win.addstr(3, width, self.print_book_attr_titles())
-        win.addstr(4, width, 117*"-")
-        self.current_book_number = max(self.current_book_number, 5)
-        for book_number in range(self.current_book_number, self.maximum_row, 2):
-            try:
-                if self.current_row == height:
-                    win.attron(curses.color_pair(1))
-                    win.addstr(height, width, str(
-                        self._book_references[book_number]))
-                    win.attroff(curses.color_pair(1))
-                    win.addstr(height+1, width, str(the_line*117))
-                else:
-                    win.addstr(height, width, str(
-                        self._book_references[book_number]))
-                    win.addstr(height+1, width, str(the_line*117))
-            except curses.error:
-                pass
-            win.refresh()
-            height += 2
-        win.refresh()
+    def get_book_references_and_max_row(self):
+        return (self._book_references, self.maximum_row)
 
-    def run_terminal(self, win):
-        curses.curs_set(0)
-        curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
-
-        self.print_terminal_menu(win)
-        while self.current_book_number <= self.maximum_row:
-            try:
-                key = win.getch()
-            except KeyError:
-                key = None
-            if key == curses.KEY_UP:
-                self.current_book_number -= 2
-            elif key == curses.KEY_DOWN:
-                self.current_book_number += 2
-            elif key == curses.KEY_LEFT:
-                break
-            elif key == curses.KEY_RIGHT:
-                if self._book_references[self.current_book_number].selected:
-                    self._book_references[self.current_book_number].selected = False
-                    reference_id = self._book_references[self.current_book_number].reference_id
-                    self._references_repository.update_selected(
-                        option=False, reference_id=reference_id)
-                else:
-                    self._book_references[self.current_book_number].selected = True
-                    reference_id = self._book_references[self.current_book_number].reference_id
-                    self._references_repository.update_selected(
-                        option=True, reference_id=reference_id)
-            elif key == curses.KEY_ENTER or key in [10, 13]:
-                break
-            self.print_terminal_menu(curses.newwin(0, 0))
-            win.refresh()
-
-    def create_book_references(self, database_book_references):
-        information = database_book_references
+    def create_book_references(self, information):
         self.reset()
         if information:
             for info in information:
-                reference_id = info[0]
-                author = info[1]
-                title = info[2]
-                year = info[3]
-                publisher = info[4]
-                address = info[5]
-                selected = info[6]
-                book = self.set_book(reference_id, author,
-                                     title, year, publisher, address, selected)
+                book = self.create_book(info)
                 self._book_references[self.maximum_row] = book
                 self.maximum_row += 2
 
@@ -130,7 +59,7 @@ class ReferenceService:
         information = self._references_repository.get_selected_book_references()
         if information:
             self.create_book_references(information)
-            wrapper(self.run_terminal)
+            return information
         else:
             print("There isn't any book references selected.")
 
@@ -147,20 +76,24 @@ class ReferenceService:
                 myfile.write(bibtex_form)
                 myfile.write("\n")
 
+    def create_book(self, info):
+        reference_id = info[0]
+        author = info[1]
+        title = info[2]
+        year = info[3]
+        publisher = info[4]
+        address = info[5]
+        selected = info[6]
+        return self.set_book(reference_id, author,
+                             title, year, publisher, address, selected)
+
     def fetch_all_book_references(self):
+        self.reset()
         information = self._references_repository.get_all_book_references_order_by_desc_datetime()
         book_number = 5
         if len(information) > 0:
             for info in information:
-                reference_id = info[0]
-                author = info[1]
-                title = info[2]
-                year = info[3]
-                publisher = info[4]
-                address = info[5]
-                selected = info[6]
-                book = self.set_book(reference_id, author,
-                                     title, year, publisher, address, selected)
+                book = self.create_book(info)
                 self._book_references[book_number] = book
                 book_number += 2
 
@@ -171,6 +104,12 @@ class ReferenceService:
     def save_reference_to_db(self, book):
         """Sends the reference object to the database"""
         self._references_repository.add_book_reference(book)
+
+    def update_selected_reference(self, book):
+        reference_id = book.reference_id
+        option = book.selected
+        self._references_repository.update_selected(
+            option, reference_id=reference_id)
 
     @classmethod
     def print_book_attr_titles(cls):
@@ -201,5 +140,6 @@ class ReferenceService:
 
     def references_search(self, search):
         return self._references_repository.get_book_references_by_search(search)
+
 
 reference_service = ReferenceService()

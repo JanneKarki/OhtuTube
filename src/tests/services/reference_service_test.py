@@ -27,19 +27,19 @@ class TestReferenceService(unittest.TestCase):
 
 	def test_search_returns_correct_value(self):
 		result = self.reference_service.search("Bergström, Gunilla")
-		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula")]
+		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula", 0)]
 		self.assertEqual(result, correct)
 
 	def test_search_keyword_not_found(self):
 		result = self.reference_service.search("Halme, Toni")
-		result = self.assertEqual(result, [])
+		result = self.assertEqual(result, None)
 
 	def test_all_references_are_returned_correctly(self):
 		result = self.reference_service.search_all_ordered_by_descending_datetime()
-		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula", self.time)]
+		correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula", 0, self.time)]
 		self.assertEqual(result, correct)
 	
 	def test_if_no_references_are_found_return_none(self):
 		self.references_repository.delete_all_book_references()
 		result = self.reference_service.search_all_ordered_by_descending_datetime()
-		self.assertEqual(result, [])
+		self.assertEqual(result, None)

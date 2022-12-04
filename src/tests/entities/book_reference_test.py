@@ -36,12 +36,12 @@ class TestBookReference(unittest.TestCase):
         title = \"Large-Scale Scrum: More with LeSS\",
         year = \"2016\",
         publisher = \"Addison-Wesley\",
-        address = \"Reading, Massachusetts\"
-        }"""
+        address = \"Reading, Massachusetts\"}"""
+
         self.assertEqual(bibtex, bibtex_model)
 
     def test__str__call(self):
-        self.assertEqual(self.book.__str__(), f"{self.reference_id:13} | {self.author:19} | {self.title:28} | "+
+        self.assertEqual(self.book.__str__(), f"    NO   | {self.reference_id:13} | {self.author:19} | {self.title:28} | "+
             f"{self.year:6} | {self.publisher:18} | {self.address:18}")
         
         

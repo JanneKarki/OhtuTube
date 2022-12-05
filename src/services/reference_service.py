@@ -27,8 +27,9 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
+
+        print(f"No references found  with keyword \"{search}\"")
         print("\n")
-        print(f"There is not references with keyword \"{search}\"")
         return None
 
     def search_all_ordered_by_descending_datetime(self):
@@ -38,7 +39,7 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
-        print("There isn't any book references added.")
+        print("No book references has been added.")
         return None
 
     def get_book_references_and_max_row(self):
@@ -57,8 +58,7 @@ class ReferenceService:
         if information:
             self.create_book_references(information)
             return information
-        print(" ")
-        print("There isn't any book references selected.")
+        print("No book references has been selected")
         return None
 
     def create_bib_file(self):
@@ -75,16 +75,15 @@ class ReferenceService:
                 myfile.write("\n")
 
     def create_book(self, info):
-        book_content = {
-            "reference_id": info[0],
-            "author": info[1],
-            "title": info[2],
-            "year": info[3],
-            "publisher": info[4],
-            "address": info[5],
-            "selected": info[6]
-        }
-        return self.set_book(book_content)
+        reference_id = info[0]
+        author = info[1]
+        title = info[2]
+        year = info[3]
+        publisher = info[4]
+        address = info[5]
+        selected = info[6]
+        return self.set_book(reference_id, author,
+                             title, year, publisher, address, selected)
 
     def fetch_all_book_references(self):
         self.reset()
@@ -96,18 +95,8 @@ class ReferenceService:
                 self._book_references[book_number] = book
                 book_number += 2
 
-    @classmethod
-    def set_book(cls, book_content):
-        reference_id = book_content["reference_id"]
-        author = book_content["author"]
-        title = book_content["title"]
-        year = book_content["year"]
-        publisher = book_content["publisher"]
-        address = book_content["address"]
-        selected = book_content["selected"]
-        book =  BookReference(reference_id, author, title, year, publisher, address)
-        book.selected = selected
-        return book
+    def set_book(reference_id, author, title, year, publisher, address, selected=False):
+        return BookReference(reference_id, author, title, year, publisher, address, selected)
 
     def save_reference_to_db(self, book):
         """Sends the reference object to the database"""

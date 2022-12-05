@@ -69,7 +69,7 @@ class Ui:
 
     def set_test(self):
         self.test = True
-        
+
     def menu_loop(self):
         """Basic menu loop functionality. Always returns to this"""
         while self.running:
@@ -88,22 +88,25 @@ class Ui:
         """Display all book references by keyword input"""
         author = self.io.read("> Keyword: ")
         result = self.services.search(author)
-        if not self.test and result: self.terminal(self.services)
+        if not self.test and result:
+            self.terminal(self.services)
         return result
 
     def display_selected_references(self):
         """Display all selected references"""
         result = self.services.show_selected_references()
-        if not self.test and result: self.terminal(self.services)
+        if not self.test and result:
+            self.terminal(self.services)
 
     def generate_bib_file(self):
         """Creates Bibtex file from selected references"""
         self.services.create_bib_file()
-        
+
     def display_search_book_by_desc_datetime(self):
         """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
-        if not self.test and result: self.terminal(self.services)
+        if not self.test and result:
+            self.terminal(self.services)
         return result
 
     def confirm_entry(self, book):
@@ -173,7 +176,8 @@ class Ui:
                 self.io.write("Error, field is empty!")
 
         info = self.services.get_all_book_references_order_by_desc_datetime()
-        reference_id = self.generate_ref_id.generate_reference_id(author,year,title,info)
+        reference_id = self.generate_ref_id.generate_reference_id(
+            author, year, title, info)
 
         self.id = reference_id
         return self.services.set_book(

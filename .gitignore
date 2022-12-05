@@ -6,7 +6,7 @@ src/data/database.sqlite
 src/data/test-database.sqlite
 src/entities/.book.py.swp
 *.swp
-
+*.__pycache__
 # Robot logs etc
 /log.html
 /output.xml

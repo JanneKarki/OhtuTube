@@ -35,7 +35,6 @@ class ReferencesRepository:
         year = book.year
         publisher = book.publisher
         address = book.address
-
         references_database = self.connection.cursor()
 
         references_database.execute(
@@ -60,7 +59,6 @@ class ReferencesRepository:
                 list: List of book references sorted by date
         """
         references_database = self.connection.cursor()
-
         references_database.execute(
             """SELECT
                 reference_id,
@@ -69,9 +67,34 @@ class ReferencesRepository:
                 year,
                 publisher,
                 address,
+                selected,
                 reference_datetime
                 FROM Books
                 ORDER BY reference_datetime DESC;
+            """
+        )
+
+        results = references_database.fetchall()
+        return results
+
+    def get_selected_book_references(self):
+        """Gets and returns all book references sorted by descending datetime
+            Returns:
+                list: List of book references sorted by date
+        """
+        references_database = self.connection.cursor()
+        references_database.execute(
+            """SELECT
+                reference_id,
+                author,
+                title,
+                year,
+                publisher,
+                address,
+                selected,
+                reference_datetime
+                FROM Books
+                WHERE selected=True;
             """
         )
 
@@ -96,7 +119,8 @@ class ReferencesRepository:
                 title,
                 year,
                 publisher,
-                address
+                address,
+                selected
                 FROM Books
                 WHERE
                 author LIKE (CASE WHEN :search != '' THEN :search END)
@@ -105,6 +129,7 @@ class ReferencesRepository:
                 OR publisher LIKE (CASE WHEN :search != '' THEN :search END)
                 OR address LIKE (CASE WHEN :search != '' THEN :search END)
                 OR reference_id LIKE (CASE WHEN :search != '' THEN :search END)
+                OR selected LIKE (CASE WHEN :search != '' THEN :search END)
                 ORDER BY reference_datetime DESC;
             """,
             [f"%{search}%"]
@@ -112,12 +137,14 @@ class ReferencesRepository:
         results = references_database.fetchall()
         return results
 
+    def update_selected(self, option, reference_id):
+        sql = "UPDATE Books SET selected=? WHERE reference_id=?;"
+        references_db = self.connection.cursor()
+        references_db.execute(sql, [option, reference_id])
+
     def delete_all_book_references(self):
         """ Removes all the book references from the database.
         """
         cursor = self.connection.cursor()
-
-        cursor.execute("DELETE FROM Books")
-
+        cursor.execute("DELETE FROM Books;")
         self.connection.commit()
-        

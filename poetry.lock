@@ -260,6 +260,14 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "wrapper"
+version = "1.1.0b1"
+description = "A wrapper around several APIs.\n    \n    Response is a request object, which is much extendable for custom error handling.\n    \n    The Available APIs are:\n    \n        EANData\n        Locu\n        Spoonacular\n        Walmart\n        Zomato"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "wrapt"
 version = "1.14.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -429,6 +437,9 @@ tomlkit = [
 typing-extensions = [
     {file = "typing_extensions-4.4.0-py3-none-any.whl", hash = "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"},
     {file = "typing_extensions-4.4.0.tar.gz", hash = "sha256:1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc93087aa"},
+]
+wrapper = [
+    {file = "Wrapper-1.1.0b1.tar.gz", hash = "sha256:42356d0a14321da066a5719dd2e6d83fad063d7aacbd2a03891c207f9930cd3a"},
 ]
 wrapt = [
     {file = "wrapt-1.14.1-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:1b376b3f4896e7930f1f772ac4b064ac12598d1c38d04907e696cc4d794b43d3"},

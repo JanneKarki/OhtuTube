@@ -45,7 +45,6 @@ Search Book References List Of Several Books With Parameter
     Execute
     Output Should Contain    ${SUMMARY1} 
     Output Should Contain    ${SUMMARY2} 
-    Output Should Contain    ${SUMMARY2} 
     
 See Summary Of The Entry
     [Documentation]    UI displaying summary of the reference entry
@@ -81,12 +80,6 @@ Save Two Book References
     Input Publisher    Portfolio/Penguin
     Input Address    New York
     Confirm Summary 
-
-
-Entry Should Succeed With Summary
-    Output Should Contain      ${SPACE}${SPACE}${SPACE} NO ${SPACE}${SPACE}| metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
-      
-
 
     
     

@@ -62,4 +62,4 @@ Input Query
     Input    ${query}
 
 Entry Should Succeed With Summary
-    Output Should Contain  ${SPACE}${SPACE}${SPACE} NO ${SPACE}${SPACE}| metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
+    Output Should Contain    ${SUMMARY1}  

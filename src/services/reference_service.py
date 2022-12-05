@@ -95,7 +95,7 @@ class ReferenceService:
                 self._book_references[book_number] = book
                 book_number += 2
 
-    def set_book(reference_id, author, title, year, publisher, address, selected=False):
+    def set_book(self, reference_id, author, title, year, publisher, address, selected=False):
         return BookReference(reference_id, author, title, year, publisher, address, selected)
 
     def save_reference_to_db(self, book):

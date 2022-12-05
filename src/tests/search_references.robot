@@ -13,9 +13,7 @@ Search Book References List Of One Book With Parameter
     Select Search
     Input Query   Genius
     Execute
-    Entry Should Succeed With Summary
-    Output Should Contain    jj
-
+    Output Should Contain  ${SUMMARY1}
 
 Search Book References List Of Several Books With Parameter
     [Documentation]    Search book reference from database with Author
@@ -23,7 +21,7 @@ Search Book References List Of Several Books With Parameter
     Select Search
     Input Query   Claire
     Execute
-    Output Should Contain    ${SUMMARY2} 
+    Output Should Contain    ${SUMMARY1} 
 
 
 *** Keywords ***

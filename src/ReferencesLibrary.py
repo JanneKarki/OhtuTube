@@ -31,14 +31,5 @@ class ReferencesLibrary:
                 f"Output \"{value}\" is not in {str(outputs)}")
 
     def add_book_reference(self, reference_id, author, title, year, publisher, address):
-        book_content = {
-            "reference_id": reference_id,
-            "author": author,
-            "title": title,
-            "year": year,
-            "publisher": publisher,
-            "address": address,
-            "selected": False,
-        }
-        book = self._references_service.set_book(book_content)
+        book = self._references_service.set_book(reference_id, author, title, year, publisher, address)
         self._references_service.save_reference_to_db(book)

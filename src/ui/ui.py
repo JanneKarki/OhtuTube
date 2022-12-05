@@ -100,7 +100,7 @@ class Ui:
 
     def generate_bib_file(self):
         """Creates Bibtex file from selected references"""
-        self.services.create_bib_file()
+        self.io.write(self.services.create_bib_file())
 
     def display_search_book_by_desc_datetime(self):
         """Display all book references ordered by time of creation"""

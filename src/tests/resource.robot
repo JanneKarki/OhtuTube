@@ -20,7 +20,8 @@ Select Add New Book Reference
 Select Search
     Input    3
     
-
+Select Create Bibtex
+    Input    5
 
 Confirm Summary
     Input    y

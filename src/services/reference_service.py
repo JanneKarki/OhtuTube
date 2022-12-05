@@ -73,6 +73,7 @@ class ReferenceService:
                 bibtex_form = book[1].bibtex
                 myfile.write(bibtex_form)
                 myfile.write("\n")
+        return "Bibtex-file created!"
 
     def create_book(self, info):
         reference_id = info[0]

@@ -33,3 +33,11 @@ class ReferencesLibrary:
     def add_book_reference(self, reference_id, author, title, year, publisher, address):
         book = self._references_service.set_book(reference_id, author, title, year, publisher, address)
         self._references_service.save_reference_to_db(book)
+
+
+    def search_output_should_contain_value_with_parameter(self, value, parameter):
+        result = self._ui.display_search_book(parameter)
+        if result:
+            if not value in result[0][1]:
+                raise AssertionError(
+                    f"Output \"{value}\" is not in {str(result)}")

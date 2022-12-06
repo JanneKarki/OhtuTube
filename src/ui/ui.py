@@ -84,10 +84,11 @@ class Ui:
         book = self.collect_inputs()
         self.confirm_entry(book)
 
-    def display_search_book(self):
+    def display_search_book(self, keyword=None):
         """Display all book references by keyword input"""
-        author = self.io.read("> Keyword: ")
-        result = self.services.search(author)
+        if not keyword:
+            keyword = self.io.read("> Keyword: ")
+        result = self.services.search(keyword)
         if not self.test and result:
             self.terminal(self.services)
         return result

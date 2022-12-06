@@ -123,8 +123,9 @@ class Ui:
                 status = "Failed to add!"
                 info = self.services.get_all_book_references_order_by_desc_datetime()
                 if info:
-                    if self.id in info[0]:
-                        status = "Added successfully!"
+                    for item in info:
+                        if self.id in item:
+                            status = "Added successfully!"
                     return self.io.write(status)
             if answer == "n":
                 print("\n")

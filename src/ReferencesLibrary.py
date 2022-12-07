@@ -4,6 +4,14 @@ from stub_io import StubIO
 from ui.ui import Ui
 from initialize_database import initialize_database
 
+COLUMNS = {"id" : 0,
+            "author" : 1,
+            "title" : 2,
+            "year" : 3,
+            "publisher" : 4,
+            "address"   : 5
+
+}
 
 class ReferencesLibrary:
     def __init__(self):
@@ -35,17 +43,20 @@ class ReferencesLibrary:
         self._references_service.save_reference_to_db(book)
 
 
-    def search_output_should_contain_value_with_parameter(self, value, parameter):
-        result = self._ui.display_search_book(parameter)
-        if result:
-            if not value in result[0][1]:
-                raise AssertionError(
-                    f"Output \"{value}\" is not in {str(result)}")
-
-    def search_output_should_not_contain_unmatching_results(self, value, parameter):
+    def search_output_should_contain_value_with_parameter(self, value, parameter, column):
+        column = COLUMNS[column]
         results = self._ui.display_search_book(parameter)
         if results:
             for result in results:
-                if value not in result[1]:
+                if not value in result[column]:
+                    raise AssertionError(
+                        f"Output \"{value}\" is not in {str(result)}")
+
+    def search_output_should_not_contain_unmatching_results(self, value, parameter, column):
+        column = COLUMNS[column]
+        results = self._ui.display_search_book(parameter)
+        if results:
+            for result in results:
+                if value not in result[column]:
                     raise AssertionError(
                     f"Search with \"{value}\" included unmatching results ")

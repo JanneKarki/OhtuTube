@@ -5,8 +5,13 @@ Resource  resource.robot
 ${LastnameMetz}    Metz
 ${AuthorEvans}    Evans, Claire L.
 ${AuthorMetz}    Metz, Cade
-${Year2021}    2021
+${Year2021}    str(2021)
 ${Title}
+${ColumnAuthor}    author
+${ColumnTitle}    title
+${ColumnYear}    year
+${ColumnPublisher}    publisher
+${ColumnAddress}    address
 
 
 
@@ -14,20 +19,25 @@ ${Title}
 
 
 Search Book References List Of Several Books With Author
-    [Documentation]    Search book reference from database with Author
+    [Documentation]    Search book reference from the database with Author
     Save Four Book References
     Execute
-    Search Output Should Contain Value With Parameter    ${AuthorEvans}    ${AuthorEvans}
-     Search Output Should Not Contain Unmatching Results    ${AuthorEvans}    ${AuthorEvans}
+    Search Output Should Contain Value With Parameter    ${AuthorEvans}    ${AuthorEvans}    ${ColumnAuthor}
+     Search Output Should Not Contain Unmatching Results    ${AuthorEvans}    ${AuthorEvans}    ${ColumnAuthor}
 
 Search Book References with Lastname
-    [Documentation]    Search book reference from database with Lastname
+    [Documentation]    Search book reference from the database with Lastname
     Save Four Book References 
     Execute
-    Search Output Should Contain Value With Parameter   ${AuthorMetz}    ${LastnameMetz}
-    Search Output Should Not Contain Unmatching Results    ${AuthorMetz}    ${LastnameMetz}
+    Search Output Should Contain Value With Parameter   ${AuthorMetz}    ${LastnameMetz}    ${ColumnAuthor}
+    Search Output Should Not Contain Unmatching Results    ${AuthorMetz}    ${LastnameMetz}    ${ColumnAuthor}
 
-
+Search Book References with Year
+    [Documentation]    Search book reference from the database with Year
+    Save Four Book References 
+    Execute
+    Search Output Should Contain Value With Parameter   ${Year2021}    ${Year2021}     ${ColumnYear}
+    Search Output Should Not Contain Unmatching Results    ${Year2021}     ${Year2021}     ${ColumnYear}
 
 
 *** Keywords ***

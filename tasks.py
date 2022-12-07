@@ -26,3 +26,8 @@ def start(ctx):
 @task
 def lint(ctx):
     ctx.run("pylint src", pty=True)
+
+
+@task
+def robot(ctx):
+    ctx.run("robot src/tests", pty=True)

@@ -177,9 +177,31 @@ class Ui:
             else:
                 self.io.write("Error, field is empty!")
 
-        info = self.services.get_all_book_references_order_by_desc_datetime()
-        reference_id = self.generate_ref_id.generate_reference_id(
-            author, year, title, info)
+        creating_reference_id  = True
+
+        while(creating_reference_id):
+            answer = self.io.read("> Do you want to manually create reference id? (y/n): ")
+            if answer == "y":
+                while(True):
+                    reference_id = self.io.read("> Reference ID:")
+
+                    if self.id_is_unique(reference_id) and self.id_is_valid(reference_id) and reference_id.islower():
+                        creating_reference_id = False
+                        break
+
+                    if not self.id_is_valid(reference_id):
+                        self.io.write("Error, Reference ID should not contain spaces")
+
+                    if not reference_id.islower():
+                        self.io.write("Error, Reference ID should not contain uppercase letters")
+
+                    if not self.id_is_unique(reference_id):
+                        self.io.write("Error, Reference ID is already taken")
+
+            if answer == "n":
+                info = self.services.get_all_book_references_order_by_desc_datetime()
+                reference_id = self.generate_ref_id.generate_reference_id(author, year, title, info)
+                break
 
         self.id = reference_id
         return self.services.set_book(
@@ -217,12 +239,18 @@ class Ui:
         info = self.services.get_all_book_references_order_by_desc_datetime()
         if not info:
             return True
-        else:
-            if id.isspace() or id == "":
+        for references in info:
+            if references[0] == id:
                 return False
-            for references in info:
-                if references[0] == id:
-                    return False
+        return True
+
+    def id_is_valid(self, id):
+        if " " in id:
+            return False
+
+        if id == "" or id.isspace():
+            return False
+
         return True
 
     def end(self):

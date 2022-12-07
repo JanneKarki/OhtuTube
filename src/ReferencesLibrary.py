@@ -41,3 +41,11 @@ class ReferencesLibrary:
             if not value in result[0][1]:
                 raise AssertionError(
                     f"Output \"{value}\" is not in {str(result)}")
+
+    def search_output_should_not_contain_unmatching_results(self, value, parameter):
+        results = self._ui.display_search_book(parameter)
+        if results:
+            for result in results:
+                if value not in result[1]:
+                    raise AssertionError(
+                    f"Search with \"{value}\" included unmatching results ")

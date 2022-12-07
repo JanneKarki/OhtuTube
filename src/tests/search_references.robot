@@ -8,6 +8,7 @@ ${AuthorMetz}    Metz, Cade
 ${Year2021}    str(2021)
 ${TitleTirakirja}    Tirakirja
 ${PublisherPWS}    PWS
+${AddressLondon}    London
 
 ${columnId}    id
 ${ColumnAuthor}    author
@@ -56,6 +57,12 @@ Search Book References with Publisher
     Search Output Should Contain Value With Parameter   ${PublisherPWS}     ${PublisherPWS}      ${ColumnPublisher}
     Search Output Should Not Contain Unmatching Results    ${PublisherPWS}     ${PublisherPWS}      ${ColumnPublisher}
 
+Search Book References with Address
+    [Documentation]    Search book reference from the database with Address
+    Save Four Book References 
+    Execute
+    Search Output Should Contain Value With Parameter   ${AddressLondon}      ${AddressLondon}       ${ColumnAddress}
+    Search Output Should Not Contain Unmatching Results    ${AddressLondon}      ${AddressLondon}       ${ColumnAddress}
 
 
 *** Keywords ***

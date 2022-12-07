@@ -18,4 +18,5 @@ Input Book Reference
     Input Title    Genius makers    
     Input Year    2021    
     Input Publisher    Penguin
-    Input Address    London    
+    Input Address    London
+    Reject Manual Id

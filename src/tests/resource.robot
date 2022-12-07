@@ -26,6 +26,9 @@ Select Create Bibtex
 Confirm Summary
     Input    y
 
+Reject Manual Id
+    Input    n
+
 Input Author
     [Arguments]  ${author} 
     Input  ${author}

@@ -14,7 +14,8 @@ Add Book Reference With Incorrect Year
     Input Year    fff
     Input Valid Year
     Input Valid Publisher
-    Input Valid Address 
+    Input Valid Address
+    Reject Manual Id
     Confirm Summary  
     Execute
     Output Should Contain    Error, enter the year like this: 2014
@@ -26,7 +27,8 @@ Add Book Reference with Incorrect Author
     Input Valid Title
     Input Valid Year
     Input Valid Publisher
-    Input Valid Address 
+    Input Valid Address
+    Reject Manual Id
     Confirm Summary  
     Execute
     Output Should Contain    Error, enter the author like this: Bond, James
@@ -38,7 +40,8 @@ Add Book Reference with Empty Title
     Input Valid Title
     Input Valid Year
     Input Valid Publisher
-    Input Valid Address 
+    Input Valid Address
+    Reject Manual Id 
     Confirm Summary  
     Execute
     Output Should Contain    Error, field is empty!
@@ -50,7 +53,8 @@ Add Book Reference with Empty Publisher
     Input Valid Year
     Input Empty Publisher
     Input Valid Publisher
-    Input Valid Address 
+    Input Valid Address
+    Reject Manual Id
     Confirm Summary  
     Execute
     Output Should Contain    Error, field is empty!
@@ -63,6 +67,7 @@ Add Book Reference with Empty Address
     Input Valid Publisher
     Input Empty Address
     Input Valid Address
+    Reject Manual Id
     Confirm Summary  
     Execute
     Output Should Contain    Error, field is empty!

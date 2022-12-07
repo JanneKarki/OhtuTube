@@ -27,7 +27,7 @@ Search Book References List Of Several Books With Author
     Save Four Book References
     Execute
     Search Output Should Contain Value With Parameter    ${AuthorEvans}    ${AuthorEvans}    ${ColumnAuthor}
-     Search Output Should Not Contain Unmatching Results    ${AuthorEvans}    ${AuthorEvans}    ${ColumnAuthor}
+    Search Output Should Not Contain Unmatching Results    ${AuthorEvans}    ${AuthorEvans}    ${ColumnAuthor}
 
 Search Book References with Lastname
     [Documentation]    Search book reference from the database with Lastname
@@ -73,7 +73,8 @@ Save Four Book References
     Input Title    Genius makers
     Input Year    2021
     Input Publisher    Penguin
-    Input Address    London 
+    Input Address    London
+    Reject Manual Id 
     Confirm Summary      
     Select Add New Book Reference
     Input Author    Evans, Claire L.
@@ -81,6 +82,7 @@ Save Four Book References
     Input Year    2018
     Input Publisher    Portfolio/Penguin
     Input Address    New York
+    Reject Manual Id 
     Confirm Summary
     Select Add New Book Reference
     Input Author    Sipser, Michael
@@ -88,6 +90,7 @@ Save Four Book References
     Input Year    1997
     Input Publisher    PWS
     Input Address     Massachusetts
+    Reject Manual Id 
     Confirm Summary
     Select Add New Book Reference
     Input Author    Laaksonen, Antti
@@ -95,4 +98,5 @@ Save Four Book References
     Input Year    2021
     Input Publisher    Self-publishing
     Input Address    Helsinki
+    Reject Manual Id 
     Confirm Summary

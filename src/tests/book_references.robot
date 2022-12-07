@@ -21,7 +21,8 @@ Add Book Reference With Incorrect Year
     Input Year    fff
     Input Year    2021    
     Input Publisher    Penguin
-    Input Address    London     
+    Input Address    London
+    Reject Manual Id
     Confirm Summary  
     Execute
     Output Should Contain    Error, enter the year like this: 2014
@@ -62,7 +63,8 @@ Input Correct Book Reference Values
     Input Title    Genius makers    
     Input Year    2021    
     Input Publisher    Penguin
-    Input Address    London    
+    Input Address    London
+    Reject Manual Id 
 
 
 Save Two Book References
@@ -71,7 +73,8 @@ Save Two Book References
     Input Title    Genius makers    
     Input Year    2021    
     Input Publisher    Penguin
-    Input Address    London    
+    Input Address    London
+    Reject Manual Id
     Confirm Summary  
     Select Add New Book Reference
     Input Author    Evans, Claire L.
@@ -79,6 +82,7 @@ Save Two Book References
     Input Year    2018
     Input Publisher    Portfolio/Penguin
     Input Address    New York
+    Reject Manual Id
     Confirm Summary 
 
     

@@ -12,9 +12,11 @@ University of Helsinki Software Engineering mini-project Autumn 2022
 ## Releases
 [Release 1.0 - Sprint 1](https://github.com/JanneKarki/OhtuTube/releases/tag/Sprint1)
 
+[Release 1.1 - Sprint 2](https://github.com/JanneKarki/OhtuTube/releases/tag/Sprint2)
+
 ## Definition of Done
 - Functionality is integrated to the rest of the software
-- User story's acceptance criterias are manually tested
+- User story's acceptance criterias are tested by Robot framework
 - Code is tested with automated tests
 - Test Coverage is over 80% (UI excluded)
 - CI-enviroment tests are passed

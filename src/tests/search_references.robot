@@ -6,7 +6,10 @@ ${LastnameMetz}    Metz
 ${AuthorEvans}    Evans, Claire L.
 ${AuthorMetz}    Metz, Cade
 ${Year2021}    str(2021)
-${Title}
+${TitleTirakirja}    Tirakirja
+${PublisherPWS}    PWS
+
+${columnId}    id
 ${ColumnAuthor}    author
 ${ColumnTitle}    title
 ${ColumnYear}    year
@@ -32,12 +35,27 @@ Search Book References with Lastname
     Search Output Should Contain Value With Parameter   ${AuthorMetz}    ${LastnameMetz}    ${ColumnAuthor}
     Search Output Should Not Contain Unmatching Results    ${AuthorMetz}    ${LastnameMetz}    ${ColumnAuthor}
 
+Search Book References with Title
+    [Documentation]    Search book reference from the database with Title
+    Save Four Book References 
+    Execute
+    Search Output Should Contain Value With Parameter   ${TitleTirakirja}    ${TitleTirakirja}     ${ColumnTitle}
+    Search Output Should Not Contain Unmatching Results    ${TitleTirakirja}     ${TitleTirakirja}     ${ColumnTitle}
+
 Search Book References with Year
     [Documentation]    Search book reference from the database with Year
     Save Four Book References 
     Execute
-    Search Output Should Contain Value With Parameter   ${Year2021}    ${Year2021}     ${ColumnYear}
+    Search Output Should Contain Value With Parameter   ${Year2021}    ${Year2021}     ${ColumnYear} 
     Search Output Should Not Contain Unmatching Results    ${Year2021}     ${Year2021}     ${ColumnYear}
+
+Search Book References with Publisher
+    [Documentation]    Search book reference from the database with Publisher
+    Save Four Book References 
+    Execute
+    Search Output Should Contain Value With Parameter   ${PublisherPWS}     ${PublisherPWS}      ${ColumnPublisher}
+    Search Output Should Not Contain Unmatching Results    ${PublisherPWS}     ${PublisherPWS}      ${ColumnPublisher}
+
 
 
 *** Keywords ***

@@ -9,7 +9,6 @@ Bibtex File Is Created
     Confirm Summary
     Select Create Bibtex
     Execute
-
     Output Should Contain  Bibtex-file created!
 
 *** Keywords ***

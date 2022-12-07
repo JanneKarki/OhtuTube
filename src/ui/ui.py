@@ -177,10 +177,13 @@ class Ui:
             else:
                 self.io.write("Error, field is empty!")
 
+        info = self.services.get_all_book_references_order_by_desc_datetime()
+        reference_id = self.generate_ref_id.generate_reference_id(author, year, title, info)
+
         creating_reference_id  = True
 
         while(creating_reference_id):
-            answer = self.io.read("> Do you want to manually create reference id? (y/n): ")
+            answer = self.io.read(f"> Automatically generated id: {reference_id}. Do you want to manually create reference id? (y/n): ")
             if answer == "y":
                 while(True):
                     reference_id = self.io.read("> Reference ID:")
@@ -199,8 +202,6 @@ class Ui:
                         self.io.write("Error, Reference ID is already taken")
 
             if answer == "n":
-                info = self.services.get_all_book_references_order_by_desc_datetime()
-                reference_id = self.generate_ref_id.generate_reference_id(author, year, title, info)
                 break
 
         self.id = reference_id

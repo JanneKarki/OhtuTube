@@ -1,21 +1,22 @@
-
 from re import search
 import curses
 from curses import wrapper
 from services.generate_reference_id import GenerateReferenceID
 
-COMMANDS = ("Commands:"
-            + "\n"
-            + "-"*117 +
-            "\n" +
-            """[1]Add new reference
+COMMANDS = (
+    "Commands:"
+    + "\n"
+    + "-" * 117
+    + "\n"
+    + """[1]Add new reference
 [2]Display all references
 [3]Search
 [4]Display selected references
 [5]Create .bib file from selected references
 [0]Exit
-"""+"-"*117
-            )
+"""
+    + "-" * 117
+)
 
 
 class Ui:
@@ -30,7 +31,7 @@ class Ui:
             3: self.display_search_book,
             4: self.display_selected_references,
             5: self.generate_bib_file,
-            0: self.end
+            0: self.end,
         }
         self.running = False
         self.services = services
@@ -64,8 +65,7 @@ class Ui:
                 return 4
             elif command == "5":
                 return 5
-            self.io.write(
-                "Command not recognized, please enter a valid command")
+            self.io.write("Command not recognized, please enter a valid command")
 
     def set_test(self):
         self.test = True
@@ -77,9 +77,9 @@ class Ui:
             self.methods[command]()
 
     def display_add_reference(self):
-        """Collects entry inputs from the user, 
-           confirms the entry before saving, 
-           sends the reference object to the database.  
+        """Collects entry inputs from the user,
+        confirms the entry before saving,
+        sends the reference object to the database.
         """
         book = self.collect_inputs()
         self.confirm_entry(book)
@@ -112,12 +112,13 @@ class Ui:
 
     def confirm_entry(self, book):
         """Prints the entry attributes for user see and confirm
-            before sending to the database"""
+        before sending to the database"""
         while True:
             print(self.services.print_book_attr_titles())
             self.io.write(book)
             answer = self.io.read(
-                "\n Do you want to save this item to database? (y/n): ")
+                "\n Do you want to save this item to database? (y/n): "
+            )
             if answer == "y":
                 self.services.save_reference_to_db(book)
                 status = "Failed to add!"
@@ -133,8 +134,8 @@ class Ui:
             self.io.write("Answer y(yes) or n(no)")
 
     def collect_inputs(self):
-        """Collects entry inputs from the user and check if the 
-            input is valid and informs if the input is not valid"""
+        """Collects entry inputs from the user and check if the
+        input is valid and informs if the input is not valid"""
         self.services.print_add_reference_title()
 
         reference_ids = {}
@@ -178,17 +179,26 @@ class Ui:
                 self.io.write("Error, field is empty!")
 
         info = self.services.get_all_book_references_order_by_desc_datetime()
-        reference_id = self.generate_ref_id.generate_reference_id(author, year, title, info)
+        reference_id = self.generate_ref_id.generate_reference_id(
+            author, year, title, info
+        )
 
-        creating_reference_id  = True
+        creating_reference_id = True
 
-        while(creating_reference_id):
-            answer = self.io.read(f"> Automatically generated id: {reference_id}. Do you want to manually create reference id? (y/n): ")
+        while creating_reference_id:
+            answer = self.io.read(
+                f"> Automatically generated id: {reference_id}."
+                +"Do you want to manually create reference id? (y/n): "
+            )
             if answer == "y":
-                while(True):
+                while True:
                     reference_id = self.io.read("> Reference ID:")
 
-                    if self.id_is_unique(reference_id) and self.id_is_valid(reference_id) and reference_id.islower():
+                    if (
+                        self.id_is_unique(reference_id)
+                        and self.id_is_valid(reference_id)
+                        and reference_id.islower()
+                    ):
                         creating_reference_id = False
                         break
 
@@ -196,7 +206,9 @@ class Ui:
                         self.io.write("Error, Reference ID should not contain spaces")
 
                     if not reference_id.islower():
-                        self.io.write("Error, Reference ID should not contain uppercase letters")
+                        self.io.write(
+                            "Error, Reference ID should not contain uppercase letters"
+                        )
 
                     if not self.id_is_unique(reference_id):
                         self.io.write("Error, Reference ID is already taken")
@@ -206,7 +218,8 @@ class Ui:
 
         self.id = reference_id
         return self.services.set_book(
-            reference_id, author, title, year, publisher, address)
+            reference_id, author, title, year, publisher, address
+        )
 
     def author_is_valid(self, author):
         if search(",", author):
@@ -236,20 +249,20 @@ class Ui:
             return False
         return True
 
-    def id_is_unique(self, id):
+    def id_is_unique(self, unique_id):
         info = self.services.get_all_book_references_order_by_desc_datetime()
         if not info:
             return True
         for references in info:
-            if references[0] == id:
+            if references[0] == unique_id:
                 return False
         return True
 
-    def id_is_valid(self, id):
-        if " " in id:
+    def id_is_valid(self, unique_id):
+        if " " in unique_id:
             return False
 
-        if id == "" or id.isspace():
+        if unique_id == "" or id.isspace():
             return False
 
         return True
@@ -279,26 +292,22 @@ class Terminal:
         win.clear()
         the_line = "-"
         height, width = 5, 10
-        text = (
-            """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS.""")
-        win.addstr(
-            1, width, text)
-        win.addstr(2, width, 117*"-")
+        text = """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS."""
+        win.addstr(1, width, text)
+        win.addstr(2, width, 117 * "-")
         win.addstr(3, width, self.print_book_attr_titles())
-        win.addstr(4, width, 117*"-")
+        win.addstr(4, width, 117 * "-")
         self.current_book_number = max(self.current_book_number, 5)
         for book_number in range(self.current_book_number, self.maximum_row, 2):
             try:
                 if self.current_row == height:
                     win.attron(curses.color_pair(1))
-                    win.addstr(height, width, str(
-                        self._book_references[book_number]))
+                    win.addstr(height, width, str(self._book_references[book_number]))
                     win.attroff(curses.color_pair(1))
-                    win.addstr(height+1, width, str(the_line*117))
+                    win.addstr(height + 1, width, str(the_line * 117))
                 else:
-                    win.addstr(height, width, str(
-                        self._book_references[book_number]))
-                    win.addstr(height+1, width, str(the_line*117))
+                    win.addstr(height, width, str(self._book_references[book_number]))
+                    win.addstr(height + 1, width, str(the_line * 117))
             except curses.error:
                 pass
             win.refresh()
@@ -308,7 +317,7 @@ class Terminal:
     @classmethod
     def print_book_attr_titles(cls):
         """Creates a row of titles of the book reference attributes
-        which can be used in the UI """
+        which can be used in the UI"""
 
         reference_id = "Reference ID"
         author = "Author"
@@ -317,8 +326,8 @@ class Terminal:
         publisher = "Publisher"
         address = "Address"
         return (
-            f"  Select | {reference_id:13} | {author:19} | {title:28} | " +
-            f"{year:6} | {publisher:18} | {address:18}"
+            f"  Select | {reference_id:13} | {author:19} | {title:28} | "
+            + f"{year:6} | {publisher:18} | {address:18}"
         )
 
     def run_terminal(self, win):

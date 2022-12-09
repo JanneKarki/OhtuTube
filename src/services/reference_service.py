@@ -62,10 +62,9 @@ class ReferenceService:
         return None
 
     def create_bib_file(self):
-        self.reset()
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "..", "generated_file.bib"))
+            basepath, "../bibfile/generated_file.bib"))
         with open(filepath, "w", encoding="utf-8") as myfile:
             information = self._references_repository.get_selected_book_references()
             self.create_book_references(information)
@@ -74,6 +73,15 @@ class ReferenceService:
                 myfile.write(bibtex_form)
                 myfile.write("\n")
         return "Bibtex-file created!"
+
+    def read_bib_file(self):
+        basepath = os.path.dirname(__file__)
+        filepath = os.path.abspath(os.path.join(
+            basepath, "../bibfile/generated_file.bib"))
+        result = None
+        with open(filepath, "r", encoding="utf-8") as myfile:
+            result = myfile.read()
+        return result
 
     def create_book(self, info):
         reference_id = info[0]

@@ -35,6 +35,7 @@ class ReferencesRepository:
         year = book.year
         publisher = book.publisher
         address = book.address
+        selected = book.selected
         references_database = self.connection.cursor()
 
         references_database.execute(
@@ -44,11 +45,12 @@ class ReferencesRepository:
                     title,
                     year,
                     publisher,
-                    address
+                    address,
+                    selected
                     )
-                    values (?,?,?,?,?,?)
+                    values (?,?,?,?,?,?,?)
                 """,
-            [reference_id, author, title, year, publisher, address]
+            [reference_id, author, title, year, publisher, address, selected]
         )
 
 

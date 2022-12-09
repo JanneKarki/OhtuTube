@@ -11,7 +11,7 @@ class BookReference:
                  year: int,
                  publisher: str,
                  address: str,
-                 selected = False
+                 selected=False
                  ):
         """Class constructor to create a new Book reference
         Args:
@@ -143,11 +143,12 @@ class BookReference:
         """
 
         return f"""@book{{{self.reference_id},
-        author = \"{self.author}\",
-        title = \"{self.title}\",
-        year = \"{self.year}\",
-        publisher = \"{self.publisher}\",
-        address = \"{self.address}\"}}"""
+        author = {{\"{self.author}\"}},
+        title = {{\"{self.title}\"}},
+        year = {{\"{self.year}\"}},
+        publisher = {{\"{self.publisher}\"}},
+        address = {{\"{self.address}\"}}
+        }}"""
 
     def __str__(self):
         """Method that returns reference in styled form

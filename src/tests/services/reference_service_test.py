@@ -48,8 +48,26 @@ class TestReferenceService(unittest.TestCase):
 
     def test_bib_generate_correctly(self):
         self.reference_service.create_bib_file()
-        self.assertEqual(str(self.reference_service.read_bib_file()).strip(), str(self.book.bibtex))
+        self.assertEqual(
+            str(self.reference_service.read_bib_file()).strip(), str(self.book.bibtex))
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
             basepath, "../../generated_file.bib"))
         os.remove(filepath)
+
+    def test_fetch_all_book_references(self):
+        self.book = BookReference("IDTEST2", "Bergström, Gunilla",
+                                  "Mikko Mallikas on oikukas vai", 1996, "Tammi", "Kontula", selected=True)
+        self.reference_service.save_reference_to_db(self.book)
+        self.assertEqual(
+            len(self.reference_service.fetch_all_book_references()), 2)
+
+    def test_empty_show_selected_references_isnone(self):
+        self.references_repository.delete_all_book_references()
+        self.assertEqual(
+            self.reference_service.show_selected_references(), None)
+
+    def test_show_selected_references_hasselection(self):
+        correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas",
+                    1997, "Tammi", "Kontula", 1, self.time)]
+        self.assertEqual(self.reference_service.show_selected_references(), correct)

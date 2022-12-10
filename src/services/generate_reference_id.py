@@ -3,9 +3,6 @@ import random
 
 class GenerateReferenceID:
 
-    def __init__(self):
-        pass
-
     def generate_reference_id(self, author, year, title, info):
         """ Generates reference ID """
 
@@ -24,7 +21,6 @@ class GenerateReferenceID:
             reference_id = reference_id + random_string
 
             reference_id_in_db = self.is_duplicate_reference_id(reference_id, info)
-
         return reference_id
 
     def is_duplicate_reference_id(self, reference_id, info):
@@ -33,5 +29,4 @@ class GenerateReferenceID:
         for rf_id in info:
             if reference_id == rf_id[0]:
                 return True
-
         return False

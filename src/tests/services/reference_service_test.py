@@ -51,5 +51,5 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(str(self.reference_service.read_bib_file()).strip(), str(self.book.bibtex))
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../../bibfile/generated_file.bib"))
+            basepath, "../../generated_file.bib"))
         os.remove(filepath)

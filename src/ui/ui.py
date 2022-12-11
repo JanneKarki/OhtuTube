@@ -335,7 +335,7 @@ class Terminal:
         curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
 
         self.print_terminal_menu(win)
-        while self.current_book_number <= self.maximum_row:
+        while self.current_book_number < self.maximum_row:
             book = self._book_references[self.current_book_number]
             try:
                 key = win.getch()

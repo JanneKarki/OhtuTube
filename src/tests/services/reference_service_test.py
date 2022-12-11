@@ -4,6 +4,7 @@ from datetime import datetime
 from entities.book_reference import BookReference
 from services.reference_service import ReferenceService
 from repositories.references_repository import ReferencesRepository
+from tests.services.bibfile import bibfile
 
 
 class TestReferenceService(unittest.TestCase):
@@ -15,6 +16,7 @@ class TestReferenceService(unittest.TestCase):
                                   "Mikko Mallikas on oikukas", 1997, "Tammi", "Kontula", selected=True)
         self.reference_service.save_reference_to_db(self.book)
         self.time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        self.bibfile = bibfile()
 
     def test_save_book_db(self):
         result = self.reference_service.get_all_book_references_order_by_desc_datetime()
@@ -71,3 +73,10 @@ class TestReferenceService(unittest.TestCase):
         correct = [("IDTEST", "Bergström, Gunilla", "Mikko Mallikas on oikukas",
                     1997, "Tammi", "Kontula", 1, self.time)]
         self.assertEqual(self.reference_service.show_selected_references(), correct)
+
+
+    def test_import_references_to_database(self):
+        self.references_repository.delete_all_book_references()
+        self.reference_service.import_references_from_bibfile(self.bibfile)
+        data = self.reference_service.fetch_all_book_references()
+        self.assertEqual(len(data), 2)

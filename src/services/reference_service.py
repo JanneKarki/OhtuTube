@@ -115,6 +115,9 @@ class ReferenceService:
         """Sends the reference object to the database"""
         self._references_repository.add_book_reference(book)
 
+    def delete_all_book(self):
+        self._references_repository.delete_all_book_references()
+
     def update_selected_reference(self, book):
         reference_id = book.reference_id
         option = book.selected

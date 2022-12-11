@@ -16,17 +16,21 @@ class ReadBibfileService:
             references.append((ref_id, author, title, year, publisher, address))
         return references
 
-        
+
     def read_id(self, string):
         reference_id = ""
         for index, char in enumerate(string):
             if char == "{":
-                for id_char in range(index, len(string)-2):
-                    index += 1
-                    if id_char == " ":
-                        break
-                    reference_id += string[index]
+                print(index)
+                start = index
+                break
+        for index in range(start, len(string)):
+            if string[index] == ",":
+                end = index
+                reference_id = string[start+1:end]
+                break
         return reference_id
+        
 
     def read_str_input(self, string):
         string_input = ""
@@ -37,17 +41,19 @@ class ReadBibfileService:
                 end = index
                 string_input += string[start+1:end]
                 break
-                    
+
         return string_input[1:-1]
 
     def read_int_input(self, integer):
         integer_input = ""
         for index, char in enumerate(integer):
             if char == "{":
-                index += 1
-                for id_char in range(index+1, len(integer)-3):
-                    index +=1
-                    if id_char == "}":
-                        break
-                    integer_input += integer[index]
+                print(index)
+                start = index
+                break
+        for index in range(start, len(integer)):
+            if integer[index] == "}":
+                end = index
+                integer_input = integer[start+2:end-1]
+                break
         return integer_input

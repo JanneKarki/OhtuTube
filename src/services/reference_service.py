@@ -164,7 +164,7 @@ class ReferenceService:
                                             reference[4],
                                             reference[5])
             self.save_reference_to_db(reference_object)
-            
+
         return "References imported!"
 
 

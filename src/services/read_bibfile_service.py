@@ -21,7 +21,6 @@ class ReadBibfileService:
         reference_id = ""
         for index, char in enumerate(string):
             if char == "{":
-                print(index)
                 start = index
                 break
         for index in range(start, len(string)):
@@ -48,7 +47,6 @@ class ReadBibfileService:
         integer_input = ""
         for index, char in enumerate(integer):
             if char == "{":
-                print(index)
                 start = index
                 break
         for index in range(start, len(integer)):

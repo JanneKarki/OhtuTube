@@ -63,6 +63,9 @@ class ReferenceService:
         print("No book references has been selected")
         return None
 
+    def remove_selected_references(self):
+        self._references_repository.delete_selected_book_references()
+
     def create_bib_file(self):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(

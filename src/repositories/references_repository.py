@@ -79,6 +79,12 @@ class ReferencesRepository:
         results = references_database.fetchall()
         return results
 
+    def delete_selected_book_references(self):
+        references_database = self.connection.cursor()
+        references_database.execute(
+            """DELETE FROM Books WHERE selected=True;"""
+        )
+
     def get_selected_book_references(self):
         """Gets and returns all book references sorted by descending datetime
             Returns:

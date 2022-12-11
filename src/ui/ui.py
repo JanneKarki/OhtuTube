@@ -237,9 +237,19 @@ class Ui:
         self.services.import_references_from_bibfile()
 
     def remove_reference(self):
-        return
+        """Remove selected references"""
+        while True:
+            answer = self.IO.read("Do you want to remove selected references? y/n: ")
+            if answer == "y":
+                self.services.remove_selected_references()
+                self.IO.write("Delete complete!")
+                break
+            elif answer == "n":
+                break
+            self.IO.write("Answer y or n")
 
     def empty_database(self):
+        """Remove all references"""
         while True:
             answer = self.IO.read("Do you want to remove all references? y/n: ")
             if answer == "y":

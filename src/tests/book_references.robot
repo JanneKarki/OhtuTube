@@ -55,6 +55,20 @@ See Summary Of The Entry
     Execute
     Entry Should Succeed With Summary
 
+Add Book Reference With Manually Written Id
+    [Documentation]    Test sets reference id manually
+    Select Add New Book Reference
+    Input Author    Metz, Cade
+    Input Title    Genius makers    
+    Input Year    2021    
+    Input Publisher    Penguin
+    Input Address    London
+    Accept Manual Id
+    Input ReferenceID    mcg21
+    Confirm Summary
+    Execute
+    Output Should Contain    Added successfully!
+
 
 *** Keywords ***
 

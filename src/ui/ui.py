@@ -13,6 +13,7 @@ COMMANDS = (
 [3]Search
 [4]Display selected references
 [5]Create .bib file from selected references
+[6]Import references from bibtex-file
 [0]Exit
 """
     + "-" * 117
@@ -31,6 +32,7 @@ class Ui:
             3: self.display_search_book,
             4: self.display_selected_references,
             5: self.generate_bib_file,
+            6: self.import_references,
             0: self.end,
         }
         self.running = False
@@ -65,6 +67,8 @@ class Ui:
                 return 4
             elif command == "5":
                 return 5
+            elif command == "6":
+                return 6
             self.IO.write("Command not recognized, please enter a valid command")
 
     def set_test(self):
@@ -220,6 +224,9 @@ class Ui:
         return self.services.set_book(
             reference_id, author, title, year, publisher, address
         )
+
+    def import_references(self):
+        self.services.import_references_from_bibfile()
 
     def author_is_valid(self, author):
         if search(",", author):

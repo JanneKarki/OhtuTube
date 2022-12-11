@@ -1,7 +1,8 @@
 import os
 from entities.book_reference import BookReference
 from repositories.references_repository import ReferencesRepository
-
+from services.read_bibfile_service import ReadBibfileService
+from bib_config import bib_file_path
 
 class ReferenceService:
     """ Application logic """
@@ -10,6 +11,7 @@ class ReferenceService:
         self,
         references_repository=ReferencesRepository
     ):
+        self.read_bibfile_service = ReadBibfileService()
         self._references_repository = references_repository
         self._book_references = {}
         self.maximum_row = 5
@@ -64,7 +66,8 @@ class ReferenceService:
     def create_bib_file(self):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../generated_file.bib"))
+            basepath, bib_file_path()))
+        print(bib_file_path())
         with open(filepath, "w", encoding="utf-8") as myfile:
             information = self._references_repository.get_selected_book_references()
             self.create_book_references(information)
@@ -77,7 +80,7 @@ class ReferenceService:
     def read_bib_file(self):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../generated_file.bib"))
+            basepath, bib_file_path()))
         result = None
         with open(filepath, "r", encoding="utf-8") as myfile:
             result = myfile.read()
@@ -147,6 +150,21 @@ class ReferenceService:
 
     def references_search(self, search):
         return self._references_repository.get_book_references_by_search(search)
+
+
+    def import_references_from_bibfile(self, bibfile=None):
+        if not bibfile:
+            bibfile = self.read_bib_file()
+        references = self.read_bibfile_service.decode_bibfile(bibfile)
+        for reference in references:
+            reference_object = self.set_book(reference[0],
+                                            reference[1],
+                                            reference[2],
+                                            reference[3],
+                                            reference[4],
+                                            reference[5])
+            self.save_reference_to_db(reference_object)
+
 
 
 reference_service = ReferenceService()

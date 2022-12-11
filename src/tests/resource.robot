@@ -26,6 +26,9 @@ Select Create Bibtex
 Confirm Summary
     Input    y
 
+Accept Manual Id
+    Input    y
+
 Reject Manual Id
     Input    n
 

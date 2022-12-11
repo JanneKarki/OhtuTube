@@ -240,13 +240,14 @@ class Ui:
         return
 
     def empty_database(self):
-        answer = self.IO.read("Do you want to remove all references? y/n: ")
-        if answer == "y":
-            self.services.delete_all_book()
-            self.IO.write("All the references deleted")
-        elif answer == "n":
-            return
-        else:
+        while True:
+            answer = self.IO.read("Do you want to remove all references? y/n: ")
+            if answer == "y":
+                self.services.delete_all_book()
+                self.IO.write("All the references deleted")
+                break
+            elif answer == "n":
+                break
             self.IO.write("Answer y or n")
 
     def author_is_valid(self, author):

@@ -2,6 +2,7 @@ from re import search
 import curses
 from curses import wrapper
 from services.generate_reference_id import GenerateReferenceID
+from repositories.references_repository import ReferencesRepository
 
 COMMANDS = (
     "Commands:"
@@ -14,6 +15,8 @@ COMMANDS = (
 [4]Display selected references
 [5]Create .bib file from selected references
 [6]Import references from bibtex-file
+[7]Remove reference
+[8]Empty database
 [0]Exit
 """
     + "-" * 117
@@ -33,6 +36,8 @@ class Ui:
             4: self.display_selected_references,
             5: self.generate_bib_file,
             6: self.import_references,
+            7: self.remove_reference,
+            8: self.empty_database,
             0: self.end,
         }
         self.running = False
@@ -69,6 +74,10 @@ class Ui:
                 return 5
             elif command == "6":
                 return 6
+            elif command == "7":
+                return 7
+            elif command == "8":
+                return 8
             self.IO.write("Command not recognized, please enter a valid command")
 
     def set_test(self):
@@ -227,6 +236,12 @@ class Ui:
 
     def import_references(self):
         self.services.import_references_from_bibfile()
+
+    def remove_reference(self):
+        return
+
+    def empty_database(self):
+        return
 
     def author_is_valid(self, author):
         if search(",", author):

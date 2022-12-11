@@ -143,11 +143,11 @@ class BookReference:
         """
 
         return f"""@book{{{self.reference_id},
-        author = {{\"{self.author}\"}},
-        title = {{\"{self.title}\"}},
-        year = {{\"{self.year}\"}},
-        publisher = {{\"{self.publisher}\"}},
-        address = {{\"{self.address}\"}}
+        author = {{{self.author}}},
+        title = {{{self.title}}},
+        year = {{{self.year}}},
+        publisher = {{{self.publisher}}},
+        address = {{{self.address}}}
         }}"""
 
     def __str__(self):

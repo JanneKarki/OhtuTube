@@ -40,11 +40,11 @@ class TestBookReference(unittest.TestCase):
     def test_bibtex(self):
         bibtex = self.book.bibtex
         bibtex_model = """@book{LESS,
-        author = {\"Larman, Craig and Vodde, Bass\"},
-        title = {\"Large-Scale Scrum: More with LeSS\"},
-        year = {\"2016\"},
-        publisher = {\"Addison-Wesley\"},
-        address = {\"Reading, Massachusetts\"}
+        author = {Larman, Craig and Vodde, Bass},
+        title = {Large-Scale Scrum: More with LeSS},
+        year = {2016},
+        publisher = {Addison-Wesley},
+        address = {Reading, Massachusetts}
         }"""
 
         self.assertEqual(bibtex, bibtex_model)

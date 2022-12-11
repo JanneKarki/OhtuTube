@@ -2,7 +2,6 @@ from re import search
 import curses
 from curses import wrapper
 from services.generate_reference_id import GenerateReferenceID
-from repositories.references_repository import ReferencesRepository
 
 COMMANDS = (
     "Commands:"
@@ -241,7 +240,7 @@ class Ui:
         return
 
     def empty_database(self):
-        return
+        self.services.delete_all_book()
 
     def author_is_valid(self, author):
         if search(",", author):

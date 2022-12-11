@@ -1,7 +1,7 @@
 import os
 from entities.book_reference import BookReference
 from repositories.references_repository import ReferencesRepository
-
+from bib_config import bib_file_path
 
 class ReferenceService:
     """ Application logic """
@@ -64,7 +64,8 @@ class ReferenceService:
     def create_bib_file(self):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../generated_file.bib"))
+            basepath, bib_file_path()))
+        print(bib_file_path())
         with open(filepath, "w", encoding="utf-8") as myfile:
             information = self._references_repository.get_selected_book_references()
             self.create_book_references(information)
@@ -77,7 +78,7 @@ class ReferenceService:
     def read_bib_file(self):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../generated_file.bib"))
+            basepath, bib_file_path()))
         result = None
         with open(filepath, "r", encoding="utf-8") as myfile:
             result = myfile.read()

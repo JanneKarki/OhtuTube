@@ -52,6 +52,7 @@ class ReferencesLibrary:
                     raise AssertionError(
                         f"Output \"{value}\" is not in {str(result)}")
 
+
     def search_output_should_not_contain_unmatching_results(self, value, parameter, column):
         column = COLUMNS[column]
         results = self._ui.display_search_book(parameter)
@@ -60,3 +61,9 @@ class ReferencesLibrary:
                 if value not in result[column]:
                     raise AssertionError(
                     f"Search with \"{value}\" included unmatching results ")
+
+
+    def database_should_be_empty(self):
+        results = self._ui.display_search_book_by_desc_datetime()
+        if results:
+            raise AssertionError("Database is not empty!")

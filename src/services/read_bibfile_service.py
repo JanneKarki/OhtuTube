@@ -26,9 +26,9 @@ class ReadBibfileService:
         for index in range(start, len(string)):
             if string[index] == ",":
                 end = index
-                reference_id = string[start+1:end]
+                reference_id = string[start:end]
                 break
-        return reference_id
+        return reference_id[1:]
 
 
     def read_str_input(self, string):
@@ -38,10 +38,12 @@ class ReadBibfileService:
                 start = index
             if char == "}":
                 end = index
-                string_input += string[start+1:end]
+                string_input = string[start:end]
                 break
+        string_input = string_input.replace("{", "")
+        string_input = string_input.replace('"', "")
 
-        return string_input[1:-1]
+        return string_input
 
     def read_int_input(self, integer):
         integer_input = ""
@@ -52,6 +54,9 @@ class ReadBibfileService:
         for index in range(start, len(integer)):
             if integer[index] == "}":
                 end = index
-                integer_input = integer[start+2:end-1]
+                integer_input = integer[start:end]
                 break
+        integer_input = integer_input.replace("{", "")
+        integer_input = integer_input.replace('"', "")
+
         return integer_input

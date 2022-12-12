@@ -67,3 +67,4 @@ Test coverage report can be generated with the command:
 ```bash
 poetry run invoke coverage-report
 ```
+

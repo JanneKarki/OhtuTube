@@ -23,11 +23,16 @@ Select Search
 Select Create Bibtex
     Input    5
 
+Select Import References
+    Input    6
+
+Select Remove Reference
+    Input    7
+
 Select Empty Database
     Input    8
 
-Select Import References
-    Input    6
+
 
 Confirm
     Input    y

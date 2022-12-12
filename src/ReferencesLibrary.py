@@ -38,8 +38,8 @@ class ReferencesLibrary:
             raise AssertionError(
                 f"Output \"{value}\" is not in {str(outputs)}")
 
-    def add_book_reference(self, reference_id, author, title, year, publisher, address):
-        book = self._references_service.set_book(reference_id, author, title, year, publisher, address)
+    def add_book_reference(self, reference_id, author, title, year, publisher, address, selected):
+        book = self._references_service.set_book(reference_id, author, title, year, publisher, address, selected)
         self._references_service.save_reference_to_db(book)
 
 
@@ -67,3 +67,11 @@ class ReferencesLibrary:
         results = self._ui.display_search_book_by_desc_datetime()
         if results:
             raise AssertionError("Database is not empty!")
+
+
+    def reference_not_in_database(self, parameter, column):
+        column = COLUMNS[column]
+        result = self._ui.display_search_book(parameter)
+        print(result)
+        if result:
+            raise AssertionError("Reference is still in the database!")

@@ -29,7 +29,7 @@ class ReadBibfileService:
                 reference_id = string[start+1:end]
                 break
         return reference_id
-        
+
 
     def read_str_input(self, string):
         string_input = ""

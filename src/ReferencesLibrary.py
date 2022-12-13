@@ -15,7 +15,7 @@ COLUMNS = {"id" : 0,
 
 class ReferencesLibrary:
     def __init__(self):
-        self.test_database = "test_database.db"
+        self.test_database = "test_database.sqlite"
         self.refrences_repository = ReferencesRepository(self.test_database)
         self._references_service = ReferenceService(self.refrences_repository)
         self._io = StubIO()

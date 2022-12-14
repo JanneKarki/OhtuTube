@@ -32,6 +32,9 @@ Select Remove Reference
 Select Empty Database
     Input    8
 
+Select Change Language
+    Input    9
+
 
 
 Confirm

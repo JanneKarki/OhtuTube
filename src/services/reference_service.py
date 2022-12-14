@@ -3,6 +3,7 @@ from entities.book_reference import BookReference
 from repositories.references_repository import ReferencesRepository
 from services.read_bibfile_service import ReadBibfileService
 from bib_config import bib_file_path
+from ui.language_display import english_attr, finnish_attr
 
 class ReferenceService:
     """ Application logic """
@@ -78,7 +79,7 @@ class ReferenceService:
                 bibtex_form = book[1].bibtex
                 myfile.write(bibtex_form)
                 myfile.write("\n")
-        return "Bibtex-file created!"
+        return "bibtex created"
 
     def read_bib_file(self):
         basepath = os.path.dirname(__file__)
@@ -127,17 +128,20 @@ class ReferenceService:
         self._references_repository.update_selected(
             option, reference_id=reference_id)
 
-    @classmethod
-    def print_book_attr_titles(cls):
+    def print_book_attr_titles(self, lan):
         """Creates a row of titles of the book reference attributes
         which can be used in the UI """
+        if lan == 1:
+            attr_ref = english_attr
+        else:
+            attr_ref = finnish_attr
 
-        reference_id = "Reference ID"
-        author = "Author"
-        title = "Title"
-        year = "Year"
-        publisher = "Publisher"
-        address = "Address"
+        reference_id = attr_ref["reference_id"]
+        author = attr_ref["author"]
+        title = attr_ref["title"]
+        year = attr_ref["year"]
+        publisher = attr_ref["publisher"]
+        address = attr_ref["address"]
         return (
             f"  Select | {reference_id:13} | {author:19} | {title:28} | " +
             f"{year:6} | {publisher:18} | {address:18}"

@@ -84,6 +84,7 @@ class Ui:
 
     def display_search_book(self, keyword=None):
         """Display all book references by keyword input"""
+        self.services.print_search_title()
         if not keyword:
             keyword = self.IO.read("search keyword")
         result = self.services.search(keyword)
@@ -112,8 +113,7 @@ class Ui:
         """Prints the entry attributes for user see and confirm
         before sending to the database"""
         while True:
-            print(self.services.print_book_attr_titles(self.lan))
-            self.IO.write(book)
+            self.print_confirmation_summary(book)
             answer = self.IO.read(
                 "validate save"
             )
@@ -131,6 +131,12 @@ class Ui:
                 break
             self.IO.write("answer")
 
+    def print_confirmation_summary(self, book):
+        self.IO.write("\n")
+        self.IO.write(self.services.print_book_attr_titles(self.lan)[9:])
+        self.IO.write(117 * "-")
+        self.IO.write(str(book)[9:])
+
     def collect_inputs(self):
         """Collects entry inputs from the user and check if the
         input is valid and informs if the input is not valid"""
@@ -143,6 +149,7 @@ class Ui:
 
         while True:
             author = self.IO.read("input author")
+            author = author.replace(chr(65533), '')
             if self.author_is_valid(author):
                 break
             else:

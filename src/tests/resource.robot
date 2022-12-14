@@ -4,7 +4,8 @@ Library  ../ReferencesLibrary.py
 *** Variables ***
 ${SUMMARY1}     ${SPACE}${SPACE}${SPACE} NO ${SPACE}${SPACE}| metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
 ${SUMMARY2}     ${SPACE}${SPACE}${SPACE} NO ${SPACE}${SPACE}| evan2018broa ${SPACE}| Evans, Claire L. ${SPACE} ${SPACE}| Broad band ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} | 2018 ${SPACE} | Portfolio/Penguin ${SPACE}| New York ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
-
+${CONFIRMATION_SUMMARY1}    | metz2021geni ${SPACE}| Metz, Cade ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| Genius makers ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| 2021 ${SPACE} | Penguin ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}| London ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}
+${CONFIRMATION_SUMMARY2}    | evan2018broa ${SPACE}| Evans, Claire L. ${SPACE} ${SPACE}| Broad band ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE} | 2018 ${SPACE} | Portfolio/Penguin ${SPACE}| New York ${SPACE} ${SPACE} ${SPACE} ${SPACE} ${SPACE}     
 
 *** Keywords ***
 Input Exit Command
@@ -86,4 +87,5 @@ Input Query
     Input    ${query}
 
 Entry Should Succeed With Summary
-    Output Should Contain    ${SUMMARY1}  
+    # Output Should Contain    ${SUMMARY1} 
+    Output Should Contain    ${CONFIRMATION_SUMMARY1} 

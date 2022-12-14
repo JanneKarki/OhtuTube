@@ -150,6 +150,13 @@ class ReferenceService:
         print("| ADD NEW REFERENCE")
         print(117 * "-")
 
+    @classmethod
+    def print_search_title(cls):
+        """Title of Search"""
+        print(117 * "-")
+        print("| SEARCH ")
+        print(117 * "-")
+
     def get_all_book_references_order_by_desc_datetime(self):
         result = self._references_repository.get_all_book_references_order_by_desc_datetime()
         return result

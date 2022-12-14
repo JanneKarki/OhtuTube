@@ -98,6 +98,7 @@ class Ui:
 
     def display_search_book(self, keyword=None):
         """Display all book references by keyword input"""
+        self.services.print_search_title()
         if not keyword:
             keyword = self.IO.read("> Keyword: ")
         result = self.services.search(keyword)
@@ -210,7 +211,7 @@ class Ui:
             )
             if answer == "y":
                 while True:
-                    reference_id = self.IO.read("> Reference ID:")
+                    reference_id = self.IO.read("> Reference ID: ")
 
                     if (
                         self.id_is_unique(reference_id)

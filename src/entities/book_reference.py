@@ -157,13 +157,13 @@ class BookReference:
         """
 
         if len(self.author) > 19:
-            self.author = self.author[0:16] + "..."
+            self.author = self.author[0:16] + '...'
         if len(self._title) > 19:
-            self.title = self.title[:25] + "..."
+            self.title = self.title[:25] + '...'
         if len(self._publisher) > 19:
-            self.publisher = self.publisher[:15] + "..."
+            self.publisher = self.publisher[:15] + '...'
         if len(self.address) > 19:
-            self.address = self.address[:15] + "..."
+            self.address = self.address[:15] + '...'
 
         if self._selected:
             return (

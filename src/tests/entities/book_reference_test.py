@@ -4,12 +4,12 @@ from entities.book_reference import BookReference
 
 class TestBookReference(unittest.TestCase):
     def setUp(self):
-        self.author = "Larman, Craig and Vodde, Bass"
-        self.reference_id = "LESS"
-        self.title = "Large-Scale Scrum: More with LeSS"
+        self.author = "Larman, Craig"
+        self.reference_id = "larm2016larg"
+        self.title = "Large-Scale Scrum"
         self.year = 2016
         self.publisher = "Addison-Wesley"
-        self.address = "Reading, Massachusetts"
+        self.address = "Reading"
         self.book = BookReference(
             self.reference_id,
             self.author,
@@ -39,12 +39,12 @@ class TestBookReference(unittest.TestCase):
 
     def test_bibtex(self):
         bibtex = self.book.bibtex
-        bibtex_model = """@book{LESS,
-        author = {Larman, Craig and Vodde, Bass},
-        title = {Large-Scale Scrum: More with LeSS},
+        bibtex_model = """@book{larm2016larg,
+        author = {Larman, Craig},
+        title = {Large-Scale Scrum},
         year = {2016},
         publisher = {Addison-Wesley},
-        address = {Reading, Massachusetts}
+        address = {Reading}
         }"""
 
         self.assertEqual(bibtex, bibtex_model)
@@ -55,3 +55,29 @@ class TestBookReference(unittest.TestCase):
             f"    NO   | {self.reference_id:13} | {self.author:19} | {self.title:28} | "
             + f"{self.year:6} | {self.publisher:18} | {self.address:18}",
         )
+
+    def test__str__call_with_exceeding_input(self):
+        self.author = "Larman, Craig and Vodde, Bass"
+        self.reference_id = "larm2016larg"
+        self.title = "Large-Scale Scrum: More with LeSS"
+        self.year = 2016
+        self.publisher = "Addison-Wesley Publishings"
+        self.address = "Reading, Massachusetts"
+
+        self.book = BookReference(
+            self.reference_id,
+            self.author,
+            self.title,
+            self.year,
+            self.publisher,
+            self.address,
+        )
+
+        self.assertEqual(
+            str(self.book),
+            f"    NO   | {self.reference_id:13} | {self.author[0:16] + '...':19} | {self.title[:25] + '...':28} | "
+            + f"{self.year:6} | {self.publisher[:15] + '...':18} | {self.address[:15] + '...':18}"
+        )
+
+
+

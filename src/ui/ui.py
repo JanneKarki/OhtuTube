@@ -126,8 +126,7 @@ class Ui:
         """Prints the entry attributes for user see and confirm
         before sending to the database"""
         while True:
-            print(self.services.print_book_attr_titles())
-            self.IO.write(book)
+            self.print_confirmation_summary(book)
             answer = self.IO.read(
                 "\n Do you want to save this item to database? (y/n): "
             )
@@ -145,6 +144,12 @@ class Ui:
                 break
             self.IO.write("Answer y(yes) or n(no)")
 
+    def print_confirmation_summary(self, book):
+        self.IO.write("\n")
+        self.IO.write(self.services.print_book_attr_titles()[9:])
+        self.IO.write(117 * "-")
+        self.IO.write(str(book)[9:])
+
     def collect_inputs(self):
         """Collects entry inputs from the user and check if the
         input is valid and informs if the input is not valid"""
@@ -157,6 +162,7 @@ class Ui:
 
         while True:
             author = self.IO.read("> Author (Last name, First name): ")
+            author = author.replace(chr(65533), '')
             if self.author_is_valid(author):
                 break
             else:
@@ -200,7 +206,7 @@ class Ui:
         while creating_reference_id:
             answer = self.IO.read(
                 f"> Automatically generated id: {reference_id}."
-                +"Do you want to manually create reference id? (y/n): "
+                +" Do you want to manually create reference id? (y/n): "
             )
             if answer == "y":
                 while True:

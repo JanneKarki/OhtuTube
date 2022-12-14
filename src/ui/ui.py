@@ -89,7 +89,7 @@ class Ui:
             keyword = self.IO.read("search keyword")
         result = self.services.search(keyword)
         if not self.test and result:
-            self.terminal(self.services)
+            self.terminal(self.services,self.lan)
         return result
 
     def display_selected_references(self):

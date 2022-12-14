@@ -35,7 +35,7 @@ Search Book References List Of One Book With Parameter
     Select Search
     Input Query   Genius
     Execute
-    Output Should Contain    ${SUMMARY1}
+    Output Should Contain    ${CONFIRMATION_SUMMARY1}
 
 
 Search Book References List Of Several Books With Parameter
@@ -44,8 +44,8 @@ Search Book References List Of Several Books With Parameter
     Select Search
     Input Query   Claire
     Execute
-    Output Should Contain    ${SUMMARY1} 
-    Output Should Contain    ${SUMMARY2} 
+    Output Should Contain    ${CONFIRMATION_SUMMARY1} 
+    Output Should Contain    ${CONFIRMATION_SUMMARY2} 
     
 See Summary Of The Entry
     [Documentation]    UI displaying summary of the reference entry

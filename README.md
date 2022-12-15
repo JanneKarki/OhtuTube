@@ -33,6 +33,7 @@ The application uses Poetry for dependency management, so it must be installed b
 
 ```bash
 poetry install
+
 ```
 
 2. Initialize the application with the command:
@@ -67,4 +68,19 @@ Test coverage report can be generated with the command:
 
 ```bash
 poetry run invoke coverage-report
+```
+
+## Importing and exporting references in bibtex form
+
+Default path for importing and exporting bibtex file:
+
+```bash
+src/bibtex_data/references.bib
+
+```
+Configuration for filename and path can be found in:
+
+```bash
+src/bibtex_config.py
+
 ```

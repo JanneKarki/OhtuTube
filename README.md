@@ -8,8 +8,6 @@ University of Helsinki Software Engineering mini-project Autumn 2022
 
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
 
-### [Test Coverage ](https://github.com/JanneKarki/OhtuTube/blob/main/documents/coverage_28_11.png)of version 1.0
-
 ## Releases
 
 [Release 1.0 - Sprint 1](https://github.com/JanneKarki/OhtuTube/releases/tag/Sprint1)

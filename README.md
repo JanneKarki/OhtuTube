@@ -4,6 +4,7 @@ University of Helsinki Software Engineering mini-project Autumn 2022
 
 ![workflow badge](https://github.com/smannist/ohtuvarasto/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/JanneKarki/OhtuTube/branch/main/graph/badge.svg?token=926J1FN1OR)](https://codecov.io/gh/JanneKarki/OhtuTube)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
 

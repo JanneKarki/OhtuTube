@@ -2,25 +2,7 @@ from re import search
 import curses
 from curses import wrapper
 from services.generate_reference_id import GenerateReferenceID
-
-COMMANDS = (
-    "Commands:"
-    + "\n"
-    + "-" * 117
-    + "\n"
-    + """[1]Add new reference
-[2]Display all references
-[3]Search
-[4]Display selected references
-[5]Create .bib file from selected references
-[6]Import references from bibtex-file
-[7]Remove reference
-[8]Empty database
-[0]Exit
-"""
-    + "-" * 117
-)
-
+from ui.language_display import build_id_display, english_attr, finnish_attr
 
 class Ui:
     """Class responsible for UI"""
@@ -37,6 +19,7 @@ class Ui:
             6: self.import_references,
             7: self.remove_reference,
             8: self.empty_database,
+            9: self.change_language,
             0: self.end,
         }
         self.running = False
@@ -45,15 +28,16 @@ class Ui:
         self.id = ""
         self.terminal = Terminal
         self.test = False
+        self.lan = 1
 
     def start(self):
         self.running = True
 
-        self.IO.write("\n Welcome to the OhtuTube reference application \n")
+        self.IO.write("welcome")
         self.menu_loop()
 
     def display_menu(self):
-        self.IO.write(COMMANDS)
+        self.IO.write("commands")
         return self.menu_input()
 
     def menu_input(self):
@@ -77,7 +61,9 @@ class Ui:
                 return 7
             elif command == "8":
                 return 8
-            self.IO.write("Command not recognized, please enter a valid command")
+            elif command == "9":
+                return 9
+            self.IO.write("no command")
 
     def set_test(self):
         self.test = True
@@ -100,17 +86,17 @@ class Ui:
         """Display all book references by keyword input"""
         self.services.print_search_title()
         if not keyword:
-            keyword = self.IO.read("> Keyword: ")
+            keyword = self.IO.read("search keyword")
         result = self.services.search(keyword)
         if not self.test and result:
-            self.terminal(self.services)
+            self.terminal(self.services,self.lan)
         return result
 
     def display_selected_references(self):
         """Display all selected references"""
         result = self.services.show_selected_references()
         if not self.test and result:
-            self.terminal(self.services)
+            self.terminal(self.services, self.lan)
 
     def generate_bib_file(self):
         """Creates Bibtex file from selected references"""
@@ -120,7 +106,7 @@ class Ui:
         """Display all book references ordered by time of creation"""
         result = self.services.search_all_ordered_by_descending_datetime()
         if not self.test and result:
-            self.terminal(self.services)
+            self.terminal(self.services, self.lan)
         return result
 
     def confirm_entry(self, book):
@@ -129,25 +115,25 @@ class Ui:
         while True:
             self.print_confirmation_summary(book)
             answer = self.IO.read(
-                "\n Do you want to save this item to database? (y/n): "
+                "validate save"
             )
             if answer == "y":
                 self.services.save_reference_to_db(book)
-                status = "Failed to add!"
+                status = "add failed"
                 info = self.services.get_all_book_references_order_by_desc_datetime()
                 if info:
                     for item in info:
                         if self.id in item:
-                            status = "Added successfully!"
+                            status = "add success"
                     return self.IO.write(status)
             if answer == "n":
                 print("\n")
                 break
-            self.IO.write("Answer y(yes) or n(no)")
+            self.IO.write("answer")
 
     def print_confirmation_summary(self, book):
         self.IO.write("\n")
-        self.IO.write(self.services.print_book_attr_titles()[9:])
+        self.IO.write(self.services.print_book_attr_titles(self.lan)[9:])
         self.IO.write(117 * "-")
         self.IO.write(str(book)[9:])
 
@@ -162,40 +148,40 @@ class Ui:
                 reference_ids[reference[0]] = reference
 
         while True:
-            author = self.IO.read("> Author (Last name, First name): ")
+            author = self.IO.read("input author")
             author = author.replace(chr(65533), '')
             if self.author_is_valid(author):
                 break
             else:
-                self.IO.write("Error, enter the author like this: Bond, James")
+                self.IO.write("author error")
 
         while True:
-            title = self.IO.read("> Title: ")
+            title = self.IO.read("input title")
             if self.title_is_valid(title):
                 break
             else:
-                self.IO.write("Error, field is empty!")
+                self.IO.write("empty error")
 
         while True:
-            year = self.IO.read("> Year: ")
+            year = self.IO.read("input year")
             if self.year_is_valid(year):
                 break
             else:
-                self.IO.write("Error, enter the year like this: 2014")
+                self.IO.write("year error")
 
         while True:
-            publisher = self.IO.read("> Publisher: ")
+            publisher = self.IO.read("input publisher")
             if self.publisher_is_valid(publisher):
                 break
             else:
-                self.IO.write("Error, field is empty!")
+                self.IO.write("empty error")
 
         while True:
-            address = self.IO.read("> Address: ")
+            address = self.IO.read("input address")
             if self.address_is_valid(address):
                 break
             else:
-                self.IO.write("Error, field is empty!")
+                self.IO.write("empty error")
 
         info = self.services.get_all_book_references_order_by_desc_datetime()
         reference_id = self.generate_ref_id.generate_reference_id(
@@ -205,13 +191,11 @@ class Ui:
         creating_reference_id = True
 
         while creating_reference_id:
-            answer = self.IO.read(
-                f"> Automatically generated id: {reference_id}."
-                +" Do you want to manually create reference id? (y/n): "
-            )
+            answer_text = build_id_display(reference_id, self.lan)
+            answer = self.IO.read(answer_text)
             if answer == "y":
                 while True:
-                    reference_id = self.IO.read("> Reference ID: ")
+                    reference_id = self.IO.read("input id")
 
                     if (
                         self.id_is_unique(reference_id)
@@ -222,15 +206,15 @@ class Ui:
                         break
 
                     if not self.id_is_valid(reference_id):
-                        self.IO.write("Error, Reference ID should not contain spaces")
+                        self.IO.write("id error space")
 
                     if not reference_id.islower():
                         self.IO.write(
-                            "Error, Reference ID should not contain uppercase letters"
+                            "id error uppercase"
                         )
 
                     if not self.id_is_unique(reference_id):
-                        self.IO.write("Error, Reference ID is already taken")
+                        self.IO.write("id error taken")
 
             if answer == "n":
                 break
@@ -246,26 +230,31 @@ class Ui:
     def remove_reference(self):
         """Remove selected references"""
         while True:
-            answer = self.IO.read("Do you want to remove selected references? y/n: ")
+            answer = self.IO.read("validate delete selected")
             if answer == "y":
                 self.services.remove_selected_references()
-                self.IO.write("Delete complete!")
+                self.IO.write("delete complete")
                 break
             elif answer == "n":
                 break
-            self.IO.write("Answer y or n")
+            self.IO.write("answer")
 
     def empty_database(self):
         """Remove all references"""
         while True:
-            answer = self.IO.read("Do you want to remove all references? y/n: ")
+            answer = self.IO.read("validate delete all")
             if answer == "y":
                 self.services.delete_all_book()
-                self.IO.write("All the references deleted")
+                self.IO.write("delete all")
                 break
             elif answer == "n":
                 break
-            self.IO.write("Answer y or n")
+            self.IO.write("answer")
+
+    def change_language(self):
+        self.IO.write("change language")
+        self.lan *= -1
+        self.IO.change_language()
 
     def author_is_valid(self, author):
         if search(",", author):
@@ -314,19 +303,20 @@ class Ui:
         return True
 
     def end(self):
-        self.IO.write("\n Closing application")
+        self.IO.write("close")
         self.running = False
         return
 
 
 class Terminal:
-    def __init__(self, services):
+    def __init__(self, services, lan):
         self.services = services
         self._book_references = None
         self.maximum_row = None
         self.current_row = 5
         self.current_book_number = 5
         self.set_book_references_and_maximum_row()
+        self.lan = lan
         wrapper(self.run_terminal)
 
     def set_book_references_and_maximum_row(self):
@@ -338,7 +328,10 @@ class Terminal:
         win.clear()
         the_line = "-"
         height, width = 5, 10
-        text = """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS."""
+        if self.lan == 1:
+            text = """Toggle selection: RIGHT ARROW, Return: LEFT ARROW, Move: UP and DOWN ARROWS."""
+        else:
+            text = """Valitse: OIKEA NUOLI, Palaa: VASEN NUOLI, Liiku: YLÖS ja ALAS NUOLI"""
         win.addstr(1, width, text)
         win.addstr(2, width, 117 * "-")
         win.addstr(3, width, self.print_book_attr_titles())
@@ -360,17 +353,20 @@ class Terminal:
             height += 2
         win.refresh()
 
-    @classmethod
-    def print_book_attr_titles(cls):
+    def print_book_attr_titles(self):
         """Creates a row of titles of the book reference attributes
         which can be used in the UI"""
+        if self.lan == 1:
+            attr_ref = english_attr
+        else:
+            attr_ref = finnish_attr
 
-        reference_id = "Reference ID"
-        author = "Author"
-        title = "Title"
-        year = "Year"
-        publisher = "Publisher"
-        address = "Address"
+        reference_id = attr_ref["reference_id"]
+        author = attr_ref["author"]
+        title = attr_ref["title"]
+        year = attr_ref["year"]
+        publisher = attr_ref["publisher"]
+        address = attr_ref["address"]
         return (
             f"  Select | {reference_id:13} | {author:19} | {title:28} | "
             + f"{year:6} | {publisher:18} | {address:18}"

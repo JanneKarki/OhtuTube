@@ -5,6 +5,7 @@ from entities.book_reference import BookReference
 from services.reference_service import ReferenceService
 from repositories.references_repository import ReferencesRepository
 from tests.services.bibfile import bibfile
+from bib_config import bib_test_file_path
 
 
 class TestReferenceService(unittest.TestCase):
@@ -54,7 +55,7 @@ class TestReferenceService(unittest.TestCase):
             str(self.reference_service.read_bib_file()).strip(), str(self.book.bibtex))
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
-            basepath, "../../generated_file.bib"))
+            basepath, bib_test_file_path()))
         os.remove(filepath)
 
     def test_fetch_all_book_references(self):

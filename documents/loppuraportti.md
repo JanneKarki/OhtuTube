@@ -1,7 +1,8 @@
-Helsingin Yliopisto, Tietojenkäsittelytiede
-TKT20006 Ohjelmistotuotanto
-19.12.2022
-Johanna Lehto, Janne Kärki, Kozheen Taher Esa, Laura Peltonen, Sami Männistö, Milla Vääräsmäki 
+*TKT20006 Ohjelmistotuotanto*
+
+*19.12.2022*
+
+*Johanna Lehto, Janne Kärki, Kozheen Taher Esa, Laura Peltonen, Sami Männistö, Milla Vääräsmäki*
 
 
 

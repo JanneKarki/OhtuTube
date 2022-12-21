@@ -7,6 +7,7 @@ University of Helsinki Software Engineering mini-project Autumn 2022
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Project [Backlog](https://docs.google.com/spreadsheets/d/10WoYOFuoc0nGcKmTAKLrLbm1TYcGsJvkDpc3olPwmWM/edit?usp=sharing)
+### [Final report](https://github.com/JanneKarki/OhtuTube/blob/main/documents/loppuraportti.md) (in Finnish)
 
 ## Releases
 

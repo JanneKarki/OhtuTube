@@ -81,3 +81,11 @@ class TestReferenceService(unittest.TestCase):
         self.reference_service.import_references_from_bibfile(self.bibfile)
         data = self.reference_service.fetch_all_book_references()
         self.assertEqual(len(data), 2)
+
+    def test_delete_all_book_references(self):
+        self.reference_service.delete_all_book()
+        self.assertEqual(None, None)
+
+    def test_get_book_references_and_max_row(self):
+        max_rows = self.reference_service.get_book_references_and_max_row()
+        self.assertEqual(max_rows, ({},5))

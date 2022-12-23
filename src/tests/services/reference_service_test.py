@@ -56,7 +56,7 @@ class TestReferenceService(unittest.TestCase):
         basepath = os.path.dirname(__file__)
         filepath = os.path.abspath(os.path.join(
             basepath, bib_test_file_path()))
-        os.remove(filepath)
+        os.remove(filepath) #muutos
 
     def test_fetch_all_book_references(self):
         self.book = BookReference("IDTEST2", "Bergström, Gunilla",

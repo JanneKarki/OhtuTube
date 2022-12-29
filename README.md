@@ -17,6 +17,8 @@ University of Helsinki Software Engineering mini-project Autumn 2022
 
 [Release 1.2 - Sprint 3](https://github.com/JanneKarki/OhtuTube/releases/tag/Sprint3)
 
+[Release 1.3 - Final release](https://github.com/JanneKarki/OhtuTube/releases/tag/Final_release)
+
 ## Definition of Done
 
 - Functionality is integrated to the rest of the software

@@ -2,7 +2,7 @@
 
 University of Helsinki Software Engineering mini-project Autumn 2022
 
-Applicatoion to keep the source references used in writing Kandi papers in order and in a suitable format for Kandi.
+Application to keep the source references used in writing Kandi papers in order and in a suitable format for Kandi.
 
 ![workflow badge](https://github.com/smannist/ohtuvarasto/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/JanneKarki/OhtuTube/branch/main/graph/badge.svg?token=926J1FN1OR)](https://codecov.io/gh/JanneKarki/OhtuTube)

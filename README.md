@@ -1,6 +1,6 @@
 # OhtuTube
 
-University of Helsinki Software Engineering mini-project Autumn 2022
+University of Helsinki Software Engineering mini-project, Agile practices, Autumn 2022
 
 Application to keep the source references used in writing Kandi papers in order and in a suitable format for Kandi.
 
